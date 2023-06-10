@@ -6,10 +6,10 @@ import generateSitemap from 'vite-ssg-sitemap'
 import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import pxToVw from 'postcss-px-to-viewport'
 import Unocss from 'unocss/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 
 // @ts-expect-error failed to resolve types
 import VueMacros from 'unplugin-vue-macros/vite'
@@ -41,34 +41,27 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
-        'vue-i18n',
         '@vueuse/head',
         '@vueuse/core',
       ],
       dts: 'src/auto-imports.d.ts',
       dirs: [
-        'src/composables',
         'src/stores',
+        'src/common',
+        'src/config',
+        'src/enums',
       ],
       vueTemplate: true,
     }),
 
     Components({
-
       extensions: ['vue'],
-
+      resolvers: [VantResolver()],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
     }),
 
     Unocss(),
-
-    VueI18n({
-      runtimeOnly: true,
-      compositionOnly: true,
-      fullInstall: true,
-      include: [path.resolve(__dirname, 'locales/**')],
-    }),
 
     WebfontDownload(),
 
@@ -95,7 +88,7 @@ export default defineConfig({
   },
 
   ssr: {
-    noExternal: ['workbox-window', /vue-i18n/],
+    noExternal: ['workbox-window', 'vant'],
   },
   css: {
     postcss: {

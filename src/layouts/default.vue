@@ -1,5 +1,5 @@
 <template>
-  <main bg-white>
+  <main>
     <RouterView />
     <Footer />
   </main>
