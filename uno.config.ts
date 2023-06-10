@@ -10,18 +10,25 @@ import {
 } from 'unocss'
 
 export default defineConfig({
+  theme: {
+    colors: {
+      // 添加您需要使用的颜色
+      white: '#fff',
+      primary: '#ffa900',
+    },
+    fontSize: {
+      xs: '16px',
+      sm: '12px',
+      base: '14px',
+    },
+  },
   shortcuts: [
-    ['btn', 'px-4 py-1 rounded inline-block bg-teal-700 text-white cursor-pointer !outline-none hover:bg-teal-800 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
-    ['icon-btn', 'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
     ['flex-center', 'flex justify-center items-center'],
+    ['flex-between-center', 'flex items-center justify-between'],
+    ['flex-col-center', 'flex flex-col justify-center items-center'],
   ],
   presets: [
-    presetUno({
-      colors: {
-        // 添加您需要使用的颜色
-        white: '#fff',
-      },
-    }),
+    presetUno(),
     presetAttributify(),
     presetIcons({
       scale: 1.2,
@@ -36,9 +43,6 @@ export default defineConfig({
       },
     }),
   ],
-  transformers: [
-    transformerDirectives(),
-    transformerVariantGroup(),
-  ],
+  transformers: [transformerDirectives(), transformerVariantGroup()],
   safelist: 'prose m-auto text-left'.split(' '),
 })

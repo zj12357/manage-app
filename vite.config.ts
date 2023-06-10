@@ -6,7 +6,8 @@ import generateSitemap from 'vite-ssg-sitemap'
 import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import VueDevTools from 'vite-plugin-vue-devtools'
+
+// import VueDevTools from 'vite-plugin-vue-devtools'
 import pxToVw from 'postcss-px-to-viewport'
 import Unocss from 'unocss/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
@@ -66,7 +67,7 @@ export default defineConfig({
 
     WebfontDownload(),
 
-    VueDevTools(),
+    // VueDevTools(),
   ],
 
   test: {

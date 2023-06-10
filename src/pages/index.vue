@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Home from './Home/index.vue'
+import home from './home/index.vue'
 </script>
 
 <template>
-  <Home />
+  <home />
 </template>
 
 <route lang="yaml">

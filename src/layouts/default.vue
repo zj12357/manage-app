@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="text-base">
     <RouterView />
     <NavFooter />
   </main>
