@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import dabt from './debt/index.vue'
+
 </script>
 
 <template>
-  <dabt />
+  <div>
+  </div>
 </template>
 
 <style scoped>

@@ -56,7 +56,7 @@ function toPage(path: string) {
       <div v-for="(item, index) in state.navList" :key="index" class="flex-col-center" @click="toPage(item.path)">
         <div v-if="item.path !== '/trade'" class="h-full w-[80px] flex-col-center">
           <img :src="route.path === item.path ? item.activeIcon : item.icon" alt="" class="mb-[4px] w-[25px]" />
-          <span>{{ item.name }}</span>
+          <span :class="route.path === item.path ? 'text-primary' : 'assist1' ">{{ item.name }}</span>
         </div>
         <div v-else class="mx-[20px] flex-center">
           <div class="absolute top-[-20px] h-[60px] w-[60px] flex-center rounded-[50%] bg-white">

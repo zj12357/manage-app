@@ -15,17 +15,24 @@ export default defineConfig({
       // 添加您需要使用的颜色
       white: '#fff',
       primary: '#ffa900',
+      assist1: '#333',
+      assist2: '#7e5400',
+      assist3: '#222',
     },
     fontSize: {
-      xs: '16px',
+      xs: '20px',
+      lg: '18px',
+      md: '16px',
       sm: '12px',
       base: '14px',
     },
   },
   shortcuts: [
+    ['bg-base', 'bg-top bg-no-repeat bg-cover'],
     ['flex-center', 'flex justify-center items-center'],
     ['flex-between-center', 'flex items-center justify-between'],
     ['flex-col-center', 'flex flex-col justify-center items-center'],
+
   ],
   presets: [
     presetUno(),

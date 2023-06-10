@@ -1,0 +1,63 @@
+<script setup lang="ts">
+import yhk from '~/assets/images/icons/icon_yhk.png'
+import dq from '~/assets/images/icons/icon_dq.png'
+import xxgl from '~/assets/images/icons/icon_xxgl.png'
+import appxz from '~/assets/images/icons/icon_appxz.png'
+import kf from '~/assets/images/icons/icon_kf.png'
+
+const router = useRouter()
+const state = reactive({
+  navList: [
+    {
+      name: '银行卡',
+      path: '/',
+      icon: yhk,
+
+    },
+    {
+      name: '定期',
+      path: '/market',
+      icon: dq,
+
+    },
+
+    {
+      name: '消息管理',
+      path: '/customer',
+      icon: xxgl,
+
+    },
+    {
+      name: 'APP下载',
+      path: '/my',
+      icon: appxz,
+
+    },
+    {
+      name: '客服',
+      path: '/my',
+      icon: kf,
+
+    },
+  ],
+})
+
+function toPage(path: string) {
+  router.push(path)
+}
+</script>
+
+<template>
+  <div
+    class="flex-between-center bg-white p-[20px]"
+  >
+    <div v-for="(item, index) in state.navList" :key="index" class="flex-col-center" @click="toPage(item.path)">
+      <img :src="item.icon" alt="" class="mb-[8px] w-[42px]" />
+      <span class="text-base font-600 text-assist3">{{ item.name }}</span>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+
+</style>
