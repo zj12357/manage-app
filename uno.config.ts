@@ -16,7 +16,12 @@ export default defineConfig({
     ['flex-center', 'flex justify-center items-center'],
   ],
   presets: [
-    presetUno(),
+    presetUno({
+      colors: {
+        // 添加您需要使用的颜色
+        white: '#fff',
+      },
+    }),
     presetAttributify(),
     presetIcons({
       scale: 1.2,

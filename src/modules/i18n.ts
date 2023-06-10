@@ -2,10 +2,6 @@ import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 import { type UserModule } from '~/types'
 
-// Import i18n resources
-// https://vitejs.dev/guide/features.html#glob-import
-//
-// Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
 const i18n = createI18n({
   legacy: false,
   locale: '',
@@ -29,15 +25,12 @@ function setI18nLanguage(lang: Locale) {
 }
 
 export async function loadLanguageAsync(lang: string): Promise<Locale> {
-  // If the same language
   if (i18n.global.locale.value === lang)
     return setI18nLanguage(lang)
 
-  // If the language was already loaded
   if (loadedLanguages.includes(lang))
     return setI18nLanguage(lang)
 
-  // If the language hasn't been loaded yet
   const messages = await localesMap[lang]()
   i18n.global.setLocaleMessage(lang, messages.default)
   loadedLanguages.push(lang)

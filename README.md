@@ -1,26 +1,3 @@
-<p align='center'>
-  <img src='https://user-images.githubusercontent.com/11247099/154486817-f86b8f20-5463-4122-b6e9-930622e757f2.png' alt='Vitesse - Opinionated Vite Starter Template' width='600'/>
-</p>
-
-<p align='center'>
-Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
-</p>
-
-<br>
-
-<p align='center'>
-<a href="https://vitesse.netlify.app/">Live Demo</a>
-</p>
-
-<br>
-
-<p align='center'>
-<b>English</b> | <a href="https://github.com/antfu/vitesse/blob/main/README.zh-CN.md">简体中文</a>
-<!-- Contributors: Thanks for getting interested, however we DON'T accept new transitions to the README, thanks. -->
-</p>
-
-<br>
-
 
 ## Features
 
@@ -44,8 +21,6 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - 🔎 [Component Preview](https://github.com/johnsoncodehk/vite-plugin-vue-component-preview)
 
-- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown)
-
 - 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227)
 
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import) - use Composition API and others directly
@@ -63,7 +38,6 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 - ☁️ Deploy on Netlify, zero-config
 
 <br>
-
 
 ## Pre-packed
 
@@ -87,8 +61,6 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 - [`unplugin-vue-macros`](https://github.com/sxzz/unplugin-vue-macros) - Explore and extend more macros and syntax sugar to Vue.
 - [`vite-plugin-pwa`](https://github.com/antfu/vite-plugin-pwa) - PWA
 - [`vite-plugin-vue-component-preview`](https://github.com/johnsoncodehk/vite-plugin-vue-component-preview) - Preview single component in VSCode
-- [`vite-plugin-vue-markdown`](https://github.com/antfu/vite-plugin-vue-markdown) - Markdown as components / components in Markdown
-  - [`markdown-it-shiki`](https://github.com/antfu/markdown-it-shiki) - [Shiki](https://github.com/shikijs/shiki) for syntax highlighting
 - [Vue I18n](https://github.com/intlify/vue-i18n-next) - Internationalization
   - [`unplugin-vue-i18n`](https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n) - unplugin for Vue I18n
 - [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
@@ -141,23 +113,9 @@ As this template is strongly opinionated, the following provides a curated list 
 - [bat](https://github.com/olgam4/bat) by [@olgam4](https://github.com/olgam4) - Vitesse for SolidJS
 - [vitesse-solid](https://github.com/xbmlz/vitesse-solid) by [@xbmlz](https://github.com/xbmlz) - Vitesse for SolidJS, build with [`SolidStart`](https://start.solidjs.com/), includes [UnoCSS](https://github.com/unocss/unocss) and [HopeUI](https://hope-ui.com/).
 
-## Try it now!
+## Try it now
 
 > Vitesse requires Node >=14.18
-
-### GitHub Template
-
-[Create a repo from this template on GitHub](https://github.com/antfu/vitesse/generate).
-
-### Clone to local
-
-If you prefer to do it manually with the cleaner git history
-
-```bash
-npx degit antfu/vitesse my-vitesse-app
-cd my-vitesse-app
-pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
-```
 
 ## Checklist
 
@@ -176,7 +134,7 @@ And, enjoy :)
 
 ### Development
 
-Just run and visit http://localhost:3333
+Just run and visit <http://localhost:3333>
 
 ```bash
 pnpm dev
@@ -209,9 +167,3 @@ Run the image and specify port mapping with the `-p` flag.
 ```bash
 docker run --rm -it -p 8080:80 vitesse:latest
 ```
-
-## Why
-
-I have created several Vite apps recently. Setting the configs up is kinda the bottleneck for me to make the ideas simply come true within a very short time.
-
-So I made this starter template for myself to create apps more easily, along with some good practices that I have learned from making those apps. It's strongly opinionated, but feel free to tweak it or even maintain your own forks. [(see community maintained variation forks)](#variations)
