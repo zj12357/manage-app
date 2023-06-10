@@ -55,9 +55,10 @@ export default defineConfig({
     }),
 
     Components({
+      dirs: ['src/components'], // 自动导入的文件夹路径
       extensions: ['vue'],
       resolvers: [VantResolver()],
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/components.d.ts',
     }),
 
