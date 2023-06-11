@@ -1,0 +1,34 @@
+<script setup lang="ts">
+import newsTitle from '~/assets/images/home/news_title.png'
+import newspaper from '~/assets/images/home/newspaper.png'
+</script>
+
+<template>
+  <div class="mb-[60px] w-full flex-col-top-center px-[20px]">
+    <div class="h-[44px] w-full flex-center bg-top-cover" :style="{ backgroundImage: `url(${newsTitle})` }">
+      <img :src="newspaper" alt="" class="mr-[6px] w-[50px]" />
+      <span class="text-lg">
+        最新资讯
+      </span>
+    </div>
+    <div class="w-full flex-col-top-center bg-white">
+      <div class="mb-[14px] w-full px-[8px]">
+        <div class="w-full flex-between-center border-b border-[#f0f0f0] border-dashed py-[10px]">
+          <div class="h-[80px] w-[120px]">
+            <img src="https://vasdkkd.com/img/n1.9516c4a8.png" alt="" class="img-cover rounded-[8px]" />
+          </div>
+          <div class="w-[188px]">
+            <p class="line-clamp-2 mb-[10px] text-ellipsis break-words break-all">
+              asdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdas
+            </p>
+            <span class="text-sm text-assist4">2020-01-23 12:00:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+
+</style>

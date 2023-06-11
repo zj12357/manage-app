@@ -99,6 +99,7 @@ function createAxios(options?: Partial<CreateAxiosOptions>) {
   // eslint-disable-next-line new-cap
   return new iAxios({
     ...{
+      baseURL: API_URL,
       // 请求时间
       timeout: 10 * 1000,
       // (拦截器)数据处理方式

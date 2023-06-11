@@ -1,10 +1,10 @@
 html,
 body,
 #app {
-  height: 100%;
   margin: 0;
   padding: 0;
   background: #fafafa;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Segoe UI,Arial,Roboto,"PingFang SC","miui","Hiragino Sans GB","Microsoft Yahei",sans-serif;
 }
 
 #nprogress {

@@ -1,13 +1,13 @@
 import { deffHttp } from '~/utils/axios'
-import type { HallParams, HallResult } from '~/types/api/home'
 
+// 后面补类型
 enum Api {
-  CMS_HALL_CACHE = '/api/cms/hall/cache',
+  APP_CAROUSELS = '/api/carousels', // 首页轮播图
 }
 
-export function getHallList(data: HallParams) {
-  return deffHttp.post<HallResult>(
-    { url: Api.CMS_HALL_CACHE, data },
+export function getCarousels() {
+  return deffHttp.post(
+    { url: Api.APP_CAROUSELS },
     { errorMessageMode: 'message', withToken: false },
   )
 }

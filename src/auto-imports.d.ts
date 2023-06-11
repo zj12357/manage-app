@@ -9,6 +9,7 @@ declare global {
   const CRYPTO_STORAGE_KEY: typeof import('./common/constants')['CRYPTO_STORAGE_KEY']
   const ContentTypeEnum: typeof import('./enums/httpEnum')['ContentTypeEnum']
   const EffectScope: typeof import('vue')['EffectScope']
+  const IMAGE_API_URL: typeof import('./common/constants')['IMAGE_API_URL']
   const RequestEnum: typeof import('./enums/httpEnum')['RequestEnum']
   const ResultEnum: typeof import('./enums/httpEnum')['ResultEnum']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -316,6 +317,7 @@ declare module 'vue' {
     readonly CRYPTO_STORAGE_KEY: UnwrapRef<typeof import('./common/constants')['CRYPTO_STORAGE_KEY']>
     readonly ContentTypeEnum: UnwrapRef<typeof import('./enums/httpEnum')['ContentTypeEnum']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly IMAGE_API_URL: UnwrapRef<typeof import('./common/constants')['IMAGE_API_URL']>
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -609,6 +611,7 @@ declare module '@vue/runtime-core' {
     readonly CRYPTO_STORAGE_KEY: UnwrapRef<typeof import('./common/constants')['CRYPTO_STORAGE_KEY']>
     readonly ContentTypeEnum: UnwrapRef<typeof import('./enums/httpEnum')['ContentTypeEnum']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly IMAGE_API_URL: UnwrapRef<typeof import('./common/constants')['IMAGE_API_URL']>
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
