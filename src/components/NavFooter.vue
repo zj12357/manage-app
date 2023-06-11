@@ -59,7 +59,7 @@ function toPage(path: string) {
           <span :class="route.path === item.path ? 'text-primary' : 'assist1' ">{{ item.name }}</span>
         </div>
         <div v-else class="mx-[20px] flex-center">
-          <div class="absolute top-[-20px] h-[60px] w-[60px] flex-center rounded-[50%] bg-white">
+          <div class="absolute top-[-15px] h-[60px] w-[60px] flex-center rounded-[50%] bg-white">
             <img :src="item.activeIcon" alt="" class="w-[45px]" />
           </div>
         </div>

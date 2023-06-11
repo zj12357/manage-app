@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import newsTitle from '~/assets/images/home/news_title.png'
 import newspaper from '~/assets/images/home/newspaper.png'
+
+const router = useRouter()
+function toPage(path: string) {
+  router.push(path)
+}
 </script>
 
 <template>
-  <div class="mb-[60px] w-full flex-col-top-center px-[20px]">
+  <div class="w-full flex-col-top-center px-[20px]">
     <div class="h-[44px] w-full flex-center bg-top-cover" :style="{ backgroundImage: `url(${newsTitle})` }">
       <img :src="newspaper" alt="" class="mr-[6px] w-[50px]" />
       <span class="text-lg">
@@ -12,7 +17,7 @@ import newspaper from '~/assets/images/home/newspaper.png'
       </span>
     </div>
     <div class="w-full flex-col-top-center bg-white">
-      <div class="mb-[14px] w-full px-[8px]">
+      <div class="mb-[14px] w-full px-[8px]" @click="toPage('/home/news/detail')">
         <div class="w-full flex-between-center border-b border-[#f0f0f0] border-dashed py-[10px]">
           <div class="h-[80px] w-[120px]">
             <img src="https://vasdkkd.com/img/n1.9516c4a8.png" alt="" class="img-cover rounded-[8px]" />

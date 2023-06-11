@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    页面没有找到
+    <van-empty image="error" description="页面不存在" />
   </div>
 </template>
 

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { getConfigs } from '~/api/common'
+
+const common = useCommonStore()
+
 useHead({
   title: ADMIN_NAME,
   meta: [
@@ -11,6 +15,15 @@ useHead({
       href: '/favicon.ico',
     },
   ],
+})
+
+async function fetchConfigs() {
+  const res = await getConfigs()
+  if (res.code === 200)
+    common.setConfig(res.data)
+}
+onMounted(() => {
+  fetchConfigs()
 })
 </script>
 
