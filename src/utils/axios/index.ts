@@ -1,9 +1,9 @@
-import { isString } from 'lodash'
 import { showFailToast, showNotify } from 'vant'
 import type { AxiosInterceptor, CreateAxiosOptions } from './axiosConfig'
 import { iAxios } from './iAxios'
 import { checkStatus } from './axiosStatus'
 import { errorData } from './errorConfig'
+import { isString } from '~/utils/tools'
 import { ContentTypeEnum } from '~/enums/httpEnum'
 
 /**

@@ -25,70 +25,74 @@ export function setStorage<T>(key: string,
   value: StorageValue<T>,
   expire = 0,
   type: StorageType = 'localStorage') {
-  if (value === null || value === undefined)
-    value = null
+  if (typeof window !== 'undefined') {
+    if (value === null || value === undefined)
+      value = null
 
-  if (Number.isNaN(expire) || expire < 0)
-    throw new Error('Expire 必须是数字')
+    if (Number.isNaN(expire) || expire < 0)
+      throw new Error('Expire 必须是数字')
 
-  expire = (expire || config.expire) * 1000
-  const data = {
-    value, // 存储值
-    time: Date.now(), // 存值时间戳
-    expire, // 过期时间
+    expire = (expire || config.expire) * 1000
+    const data = {
+      value, // 存储值
+      time: Date.now(), // 存值时间戳
+      expire, // 过期时间
+    }
+
+    const encryptString = config.isEncrypt
+      ? encrypt(JSON.stringify(data))
+      : JSON.stringify(data)
+
+    window[type].setItem(autoAddPrefix(key), encryptString)
   }
-
-  const encryptString = config.isEncrypt
-    ? encrypt(JSON.stringify(data))
-    : JSON.stringify(data)
-
-  window[type].setItem(autoAddPrefix(key), encryptString)
 }
 
 // 获取 getStorage
 export function getStorage<T>(key: string,
   type: StorageType = 'localStorage'): StorageValue<T> {
-  key = autoAddPrefix(key)
-  // key 不存在判断
-  if (
-    !window[type].getItem(key)
-        || JSON.stringify(window[type].getItem(key)) === 'null'
-  )
-    return null
+  if (typeof window !== 'undefined') {
+    key = autoAddPrefix(key)
+    // key 不存在判断
+    if (
+      !window[type].getItem(key)
+            || JSON.stringify(window[type].getItem(key)) === 'null'
+    )
+      return null
 
-  // 优化 持续使用中续期
-  const storage = config.isEncrypt
-    ? JSON.parse(decrypt(window[type].getItem(key) || ''))
-    : JSON.parse(window[type].getItem(key) || '')
+    // 优化 持续使用中续期
+    const storage = config.isEncrypt
+      ? JSON.parse(decrypt(window[type].getItem(key) || ''))
+      : JSON.parse(window[type].getItem(key) || '')
 
-  const nowTime = Date.now()
+    const nowTime = Date.now()
 
-  // 过期删除
-  if (storage.expire < nowTime - storage.time) {
-    removeStorage(key)
-    return null
-  }
-  else {
-    // 未过期期间被调用 则自动续期 进行保活
-    setStorage(autoRemovePrefix(key), storage.value)
-    return storage.value
+    // 过期删除
+    if (storage.expire < nowTime - storage.time) {
+      removeStorage(key)
+      return null
+    }
+    else {
+      // 未过期期间被调用 则自动续期 进行保活
+      setStorage(autoRemovePrefix(key), storage.value)
+      return storage.value
+    }
   }
 }
 
 // 是否存在 hasStorage
 export function hasStorage(key: string): boolean {
   key = autoAddPrefix(key)
-  const arr = getStorageAll().filter((item) => {
+  const arr = getStorageAll()?.filter((item) => {
     return item.key === key
   })
-  return !!arr.length
+  return !!arr?.length
 }
 
 // 获取所有key
 export function getStorageKeys(): (string | null)[] {
-  const items = getStorageAll()
+  const items = getStorageAll() ?? []
   const keys = []
-  for (let index = 0; index < items.length; index++)
+  for (let index = 0; index < items?.length; index++)
     keys.push(items[index].key)
 
   return keys
@@ -97,38 +101,44 @@ export function getStorageKeys(): (string | null)[] {
 // 根据索引获取key
 export function getStorageForIndex(index: number,
   type: StorageType = 'localStorage') {
-  return window[type].key(index)
+  if (typeof window !== 'undefined')
+    return window[type].key(index)
 }
 
 // 获取localStorage长度
 export function getStorageLength(type: StorageType = 'localStorage') {
-  return window[type].length
+  if (typeof window !== 'undefined')
+    return window[type].length
 }
 
 // 获取全部 getAllStorage
 export function getStorageAll(type: StorageType = 'localStorage') {
-  const len = window[type].length // 获取长度
-  const arr = [] // 定义数据集
-  for (let i = 0; i < len; i++) {
-    // 获取key 索引从0开始
-    const getKey = window[type].key(i) || ''
-    // 获取key对应的值
-    const getVal = window[type].getItem(getKey)
-    // 放进数组
-    arr[i] = { key: getKey, val: getVal }
+  if (typeof window !== 'undefined') {
+    const len = window[type].length // 获取长度
+    const arr = [] // 定义数据集
+    for (let i = 0; i < len; i++) {
+      // 获取key 索引从0开始
+      const getKey = window[type].key(i) || ''
+      // 获取key对应的值
+      const getVal = window[type].getItem(getKey)
+      // 放进数组
+      arr[i] = { key: getKey, val: getVal }
+    }
+    return arr
   }
-  return arr
 }
 
 // 删除 removeStorage
 export function removeStorage(key: string,
   type: StorageType = 'localStorage') {
-  window[type].removeItem(autoAddPrefix(key))
+  if (typeof window !== 'undefined')
+    window[type].removeItem(autoAddPrefix(key))
 }
 
 // 清空 clearStorage
 export function clearStorage(type: StorageType = 'localStorage') {
-  window[type].clear()
+  if (typeof window !== 'undefined')
+    window[type].clear()
 }
 
 // 名称前自动添加前缀
