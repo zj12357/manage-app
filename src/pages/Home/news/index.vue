@@ -23,7 +23,7 @@ function toPage(path: string) {
             <img src="https://vasdkkd.com/img/n1.9516c4a8.png" alt="" class="img-cover rounded-[8px]" />
           </div>
           <div class="w-[188px]">
-            <p class="line-clamp-2 mb-[10px] text-ellipsis break-words break-all">
+            <p class="line-clamp-2 mb-[10px] text-wrap-ellipsis">
               asdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdas
             </p>
             <span class="text-sm text-assist4">2020-01-23 12:00:00</span>

@@ -6,12 +6,10 @@ import news from './news/index.vue'
 </script>
 
 <template>
-  <div class="w-full pb-[70px]">
-    <dabt />
-    <notice />
-    <swiper />
-    <news />
-  </div>
+  <dabt />
+  <notice />
+  <swiper />
+  <news />
 </template>
 
 <style scoped>

@@ -11,40 +11,38 @@ import myActive from '~/assets/images/icons/icon_my_active.png'
 
 const route = useRoute()
 const router = useRouter()
-const state = reactive({
-  navList: [
-    {
-      name: '首页',
-      path: '/',
-      icon: home,
-      activeIcon: homeActive,
-    },
-    {
-      name: '行情',
-      path: '/market',
-      icon: market,
-      activeIcon: marketActive,
-    },
-    {
-      name: '',
-      path: '/trade',
-      icon: '',
-      activeIcon: trade,
-    },
-    {
-      name: '客服',
-      path: '/customer',
-      icon: customer,
-      activeIcon: customerActive,
-    },
-    {
-      name: '我的',
-      path: '/my',
-      icon: my,
-      activeIcon: myActive,
-    },
-  ],
-})
+const navList = [
+  {
+    name: '首页',
+    path: '/',
+    icon: home,
+    activeIcon: homeActive,
+  },
+  {
+    name: '行情',
+    path: '/market',
+    icon: market,
+    activeIcon: marketActive,
+  },
+  {
+    name: '',
+    path: '/trade',
+    icon: '',
+    activeIcon: trade,
+  },
+  {
+    name: '客服',
+    path: '/customer',
+    icon: customer,
+    activeIcon: customerActive,
+  },
+  {
+    name: '我的',
+    path: '/my',
+    icon: my,
+    activeIcon: myActive,
+  },
+]
 function toPage(path: string) {
   router.push(path)
 }
@@ -53,7 +51,7 @@ function toPage(path: string) {
 <template>
   <div class="fixed bottom-0 left-0 right-0 h-[54px] w-full bg-white">
     <div class="relative h-full w-full flex-between-center">
-      <div v-for="(item, index) in state.navList" :key="index" class="flex-col-center" @click="toPage(item.path)">
+      <div v-for="(item, index) in navList" :key="index" class="flex-col-center" @click="toPage(item.path)">
         <div v-if="item.path !== '/trade'" class="h-full w-[80px] flex-col-center">
           <img :src="route.path === item.path ? item.activeIcon : item.icon" alt="" class="mb-[4px] w-[25px]" />
           <span :class="route.path === item.path ? 'text-primary' : 'assist1' ">{{ item.name }}</span>
