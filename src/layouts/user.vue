@@ -1,6 +1,5 @@
 <template>
-  <main class="h-full w-full">
+  <main class="h-full w-full text-base text-assist1">
     <RouterView />
-    <TheFooter />
   </main>
 </template>

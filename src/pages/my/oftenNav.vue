@@ -63,7 +63,7 @@ function toPage(path: string) {
 <template>
   <div class="mt-[65px] w-full rounded-[16px] bg-white shadow-base">
     <div class="w-full flex-start-center p-[20px]">
-      <div class="mr-[4px] h-[16px] w-[5px] rounded-[5px] bg-[#f93]"></div>
+      <div class="mr-[4px] h-[16px] w-[5px] rounded-[5px] bg-primary"></div>
       <span class="text-lg font-500 text-assist6">常用功能</span>
     </div>
     <div class="mt-[8px] w-full flex-start-center-warp">

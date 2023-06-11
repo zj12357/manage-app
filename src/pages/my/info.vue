@@ -18,7 +18,7 @@ function toPage(path: string) {
           src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
         />
         <span class="mx-[6px] max-w-[120px] text-nowrap-ellipsis text-lg text-assist3">asdasddasdasdasd000</span>
-        <img :src="edit" alt="" class="w-[16px]" />
+        <img :src="edit" alt="" class="w-[16px]" @click="toPage('/my/userCenter')" />
       </div>
       <img :src="setting" class="w-[24px]" alt="" @click="toPage('/')" />
     </div>

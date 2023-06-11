@@ -3,12 +3,8 @@ import kefu from '~/assets/images/icons/icon_chat_kf.png'
 
 const common = useCommonStore()
 const config = computed(() => common.config)
-const router = useRouter()
 const showChat = ref(true)
 
-function goBack() {
-  router.back()
-}
 function switchChat(show: boolean) {
   showChat.value = show
 }
@@ -16,10 +12,8 @@ function switchChat(show: boolean) {
 
 <template>
   <div class="h-full w-full">
-    <van-nav-bar
+    <NavBar
       title="客服"
-      left-arrow
-      @click-left="goBack"
     />
 
     <div class="relative w-full" :style="{ height: `calc(100% - ${pxToVw(110)})` }">

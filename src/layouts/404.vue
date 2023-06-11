@@ -3,7 +3,7 @@ const router = useRouter()
 </script>
 
 <template>
-  <main class="h-full w-full flex-col-center">
+  <main class="h-full w-full flex-col-center text-base text-assist1">
     <RouterView />
     <van-button type="primary" size="small" class="!mt-[20px]" @click="router.push('/')">
       返回首页
