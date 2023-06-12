@@ -20,7 +20,7 @@ function toPage(path: string) {
         <span class="mx-[6px] max-w-[120px] text-nowrap-ellipsis text-lg text-assist3">asdasddasdasdasd000</span>
         <img :src="edit" alt="" class="w-[16px]" @click="toPage('/my/userCenter')" />
       </div>
-      <img :src="setting" class="w-[24px]" alt="" @click="toPage('/')" />
+      <img :src="setting" class="w-[24px]" alt="" @click="toPage('/my/setting')" />
     </div>
     <div class="mt-[10px] w-full flex-col-center">
       <van-image

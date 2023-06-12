@@ -5,8 +5,9 @@ import type { UserModule } from './types'
 import generatedRoutes from '~pages'
 
 import 'uno.css'
-import './assets/styles/base.css'
-import './assets/styles/main.css'
+import 'vant/lib/index.css'
+import './assets/styles/base.scss'
+import './assets/styles/main.scss'
 
 const routes = setupLayouts(generatedRoutes)
 
