@@ -14,13 +14,14 @@ export default defineConfig({
     colors: {
       // 添加需要使用的颜色
       white: '#fff',
-      primary: '#ffa900',
+      primary: '#f93',
       assist1: '#333',
       assist2: '#7e5400',
       assist3: '#222',
       assist4: '#666',
       assist5: '#6c6c6c',
       assist6: '#5d5d5d',
+      assist7: '#afafaf',
     },
     fontSize: {
       xs: '20px',

@@ -24,7 +24,7 @@ function onSubmit(values: any) {
       </div>
 
       <van-form class="mt-[20px]" @submit="onSubmit">
-        <van-cell-group inset>
+        <van-cell-group>
           <van-field v-model="userInfo.userName" label="真实姓名" disabled />
           <van-field
             v-model="userInfo.nickName"
