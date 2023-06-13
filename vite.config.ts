@@ -113,7 +113,7 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "./src/assets/styles/setting.scss";',
+        additionalData: '@import "~/assets/styles/setting.scss";',
       },
     },
   },

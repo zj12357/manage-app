@@ -34,11 +34,11 @@ function clearCache() {
   </div>
 </template>
 
-<style scoped lang="scss">
- :deep(.van-dialog) {
-    width: 260px;
- }
- .van-dialog{
-    width: 260px;
- }
+<style scoped>
+
 </style>
+
+<route lang="yaml">
+meta:
+  layout: user
+</route>

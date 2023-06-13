@@ -8,7 +8,7 @@ const router = useRouter()
 const navList = [
   {
     name: '存入',
-    path: '/',
+    path: '/my/deposit',
     icon: cr,
 
   },
