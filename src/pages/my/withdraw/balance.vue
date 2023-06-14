@@ -9,7 +9,7 @@ import tradeBalance from '~/assets/images/user/trade_balance_bg.png'
       <p class="text-md">
         资产总额&nbsp;¥
       </p>
-      <p class="mt-[12px] w-full text-nowrap-ellipsis text-xs font-500 text-assist3">
+      <p class="mt-[12px] w-full text-nowrap-ellipsis text-xl font-500 text-assist3">
         123123123123123112312312312312311231231231231231
       </p>
     </div>

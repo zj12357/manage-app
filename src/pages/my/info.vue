@@ -33,11 +33,11 @@ function toPage(path: string) {
       </h2>
       <div class="mt-[25px] w-full flex-between-center">
         <div class="w-[50%] flex-col-center">
-          <span class="mb-[4px] text-xs font-500">123123</span>
+          <span class="mb-[4px] text-xl font-500">123123</span>
           <span class="text-assist5">123123</span>
         </div>
         <div class="w-[50%] flex-col-center">
-          <span class="mb-[4px] text-xs font-500">12323</span>
+          <span class="mb-[4px] text-xl font-500">12323</span>
           <span class="text-assist5">21323</span>
         </div>
       </div>

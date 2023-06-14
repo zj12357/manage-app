@@ -24,9 +24,11 @@ export default defineConfig({
       assist6: '#5d5d5d',
       assist7: '#afafaf',
       assist8: '#9f9f9f',
+      assist9: '#f5f5f5',
     },
     fontSize: {
-      xs: '20px',
+      xxl: '24px',
+      xl: '20px',
       lg: '18px',
       md: '16px',
       sm: '12px',

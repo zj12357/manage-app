@@ -10,7 +10,7 @@ watch(route, (newValue, oldValue) => {
 
 <template>
   <main class="h-full w-full text-base text-assist1">
-    <div :class="isFull ? 'h-full w-full' : 'min-h-full w-full pb-[70px]' ">
+    <div :class="isFull ? 'h-full w-full' : 'w-full pb-[70px]' ">
       <RouterView />
     </div>
     <NavFooter />

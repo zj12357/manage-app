@@ -49,7 +49,7 @@ function toPage(path: string) {
 </script>
 
 <template>
-  <div class="fixed bottom-0 left-0 right-0 h-[54px] w-full bg-white">
+  <div class="fixed bottom-0 left-0 right-0 z-[99] h-[54px] w-full bg-white">
     <div class="relative h-full w-full flex-between-center">
       <div v-for="(item, index) in navList" :key="index" class="flex-col-center" @click="toPage(item.path)">
         <div v-if="item.path !== '/trade'" class="h-full w-[80px] flex-col-center">

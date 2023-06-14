@@ -21,13 +21,13 @@ const navList = [
 
   {
     name: '交易',
-    path: '/customer',
+    path: '/my/tradeRecord',
     icon: jy,
 
   },
   {
     name: '账变',
-    path: '/my',
+    path: '/my/tradeRecord',
     icon: zb,
 
   },
