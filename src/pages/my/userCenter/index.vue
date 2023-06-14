@@ -4,7 +4,7 @@
 
 <template>
   <div
-    class="h-full w-full"
+    class="w-full"
   >
     <NavBar
       title="个人中心"

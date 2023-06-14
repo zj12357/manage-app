@@ -14,7 +14,7 @@ const navList = [
   },
   {
     name: '赎回',
-    path: '/market',
+    path: '/my/withdraw',
     icon: sh,
 
   },

@@ -15,7 +15,7 @@ function clearCache() {
 </script>
 
 <template>
-  <div class="h-full w-full">
+  <div class="w-full">
     <NavBar title="设置" />
     <div class="“w-full">
       <van-cell-group>

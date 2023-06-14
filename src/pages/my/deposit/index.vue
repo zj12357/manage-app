@@ -14,7 +14,7 @@ const cardNavList = [
     icon: numberCard,
     cardName: '数字货币存入',
     des: '单笔 100 - 1,000,000',
-    path: '/my/deposit/bank',
+    path: '/my/deposit/number',
   },
 ]
 
@@ -24,7 +24,7 @@ function toPage(path: string) {
 </script>
 
 <template>
-  <div class="h-full w-full">
+  <div class="w-full">
     <NavBar title="存入方式" />
     <div class="w-full flex-col-center px-[20px] pt-[10px]">
       <div

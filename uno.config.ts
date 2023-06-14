@@ -51,6 +51,7 @@ export default defineConfig({
     ['text-nowrap-ellipsis', 'overflow-hidden whitespace-nowrap text-ellipsis'],
     ['text-wrap-ellipsis', 'overflow-hidden  text-ellipsis break-words break-all'],
     ['border-b-solid', 'border-b border-solid'],
+    ['absolute-row-center', 'left-[50%] transform -translate-x-1/2 absolute'],
   ],
   presets: [
     presetUno(),

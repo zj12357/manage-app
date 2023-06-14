@@ -82,6 +82,9 @@ const amountList = [500, 5000, 10000, 20000, 50000, 100000, 200000, 500000]
 
 <style scoped lang="scss">
 :deep() {
+    .van-cell {
+        padding: 16px 0px;
+    }
     .van-field__label {
         width: auto;
     }

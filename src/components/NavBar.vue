@@ -13,6 +13,7 @@ function goBack() {
     <van-nav-bar
       :title="props.title"
       left-arrow
+      fixed
       @click-left="goBack"
     />
   </div>
