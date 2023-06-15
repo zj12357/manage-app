@@ -28,7 +28,7 @@ function toPage(path: string) {
             @click="toPage('/my/userCenter/payCard/bank')"
           >
             <div class="flex-center">
-              <div i-carbon-add class="mr-[2px] text-lg"></div>
+              <div i-carbon:add class="mr-[2px] text-lg"></div>
               <span>添加银行卡</span>
             </div>
           </van-button>

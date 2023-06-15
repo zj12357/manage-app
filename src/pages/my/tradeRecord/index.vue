@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import binZs from '~/assets/images/icons/icon_bin_zs.png'
+
+const state = reactive({
+  recordValue: 1,
+  binValue: 1,
+  timeValue: 1,
+})
 const router = useRouter()
 const recordTypeList = [
   {
@@ -34,6 +41,33 @@ const binTypeList = [
   },
 ]
 
+const timeTypeList = [
+  {
+    label: '昨天',
+    value: 1,
+  },
+  {
+    label: '今天',
+    value: 2,
+  },
+  {
+    label: '近7天',
+    value: 3,
+  },
+]
+
+function changeRecordType(type: number) {
+  state.recordValue = type
+}
+
+function changeBinType(type: number) {
+  state.binValue = type
+}
+
+function changeTimeType(type: number) {
+  state.timeValue = type
+}
+
 function toPage(path: string) {
   router.push(path)
 }
@@ -48,7 +82,9 @@ function toPage(path: string) {
         <div
           v-for="(item, index) in recordTypeList"
           :key="index"
-          class="mr-[15px] h-[30px] w-[100px] flex-center rounded-[15px] bg-assist9"
+          class="mr-[15px] h-[30px] flex-center rounded-[15px] bg-assist9 px-[18px]"
+          :class="state.recordValue === item.value ? 'text-primary' : ''"
+          @click="changeRecordType(item.value)"
         >
           {{ item.label }}
         </div>
@@ -57,18 +93,46 @@ function toPage(path: string) {
         当前系统支持查询最近7天的交易记录
       </p>
 
-      <div class="w-full flex-start-center-warp">
+      <div v-if="state.recordValue === 1" class="w-full flex-start-center-warp">
         <div
           v-for="(item, index) in binTypeList"
           :key="index"
-          class="mb-[10px] mr-[15px] h-[28px] w-[94px] flex-center rounded-[14px] bg-assist9"
+          class="mb-[10px] mr-[10px] h-[28px] flex-center rounded-[14px] bg-assist9 px-[18px]"
+          :class="state.binValue === item.value ? 'text-primary' : ''"
+          @click="changeBinType(item.value)"
+        >
+          {{ item.label }}
+        </div>
+      </div>
+      <div v-else class="w-full flex-start-center-warp">
+        <div
+          v-for="(item, index) in timeTypeList"
+          :key="index"
+          class="mb-[10px] mr-[10px] h-[28px] flex-center rounded-[14px] bg-assist9 px-[18px]"
+          :class="state.timeValue === item.value ? 'text-primary' : ''"
+          @click="changeTimeType(item.value)"
         >
           {{ item.label }}
         </div>
       </div>
     </div>
 
-    <div class="mt-[8px] w-full bg-white p-[20px]" @click="toPage('/my/tradeRecord/detail')">
+    <div
+      class="mt-[8px] w-full bg-white p-[20px]"
+      @click="toPage('/my/tradeRecord/detail')"
+    >
+      <div class="flex-between-center">
+        <img :src="binZs" alt="" class="w-[36px]" />
+        <div>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <span></span>
+          <span></span>
+        </div>
+        <div i-carbon:chevron-right class="text-lg text-assist8"></div>
+      </div>
     </div>
   </div>
 </template>

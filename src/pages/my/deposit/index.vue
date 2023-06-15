@@ -38,7 +38,7 @@ function toPage(path: string) {
           <span class="mb-[8px] text-md">{{ item.cardName }}</span>
           <span class="text-md text-assist8">{{ item.des }}</span>
         </div>
-        <div i-carbon-chevron-right class="text-lg text-assist8"></div>
+        <div i-carbon:chevron-right class="text-lg text-assist8"></div>
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@ function switchChat(show: boolean) {
     <div class="relative w-full" :style="{ height: `calc(100% - ${pxToVw(110)})` }">
       <div v-if="showChat" class="h-full w-full">
         <div text-3xl class="absolute right-[10px] top-[10px] z-[9px]" @click="switchChat(false)">
-          <div i-carbon-close inline-block></div>
+          <div i-carbon:close inline-block></div>
         </div>
 
         <iframe :src="config.kefu_link" frameborder="0" class="h-full w-full"></iframe>

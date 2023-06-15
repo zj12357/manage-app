@@ -27,7 +27,7 @@ const navList = [
   },
   {
     name: '账变',
-    path: '/my/tradeRecord',
+    path: '/my/ledgerRecord',
     icon: zb,
 
   },

@@ -28,7 +28,7 @@ function toPage(path: string) {
             @click="toPage('/my/userCenter/payCard/number')"
           >
             <div class="flex-center">
-              <div i-carbon-add class="mr-[2px] text-lg"></div>
+              <div i-carbon:add class="mr-[2px] text-lg"></div>
               <span>暂无虚拟卡</span>
             </div>
           </van-button>
