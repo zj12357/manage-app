@@ -11,45 +11,45 @@ const router = useRouter()
 const navList = [
   {
     name: '登录密码',
-    path: '/',
+    path: '/my/userCenter/loginPassword',
     icon: dlmm,
 
   },
   {
     name: '支付密码',
-    path: '/market',
+    path: '/my/userCenter/tradePassword',
     icon: zfmm,
 
   },
 
   {
     name: '卡片管理',
-    path: '/customer',
+    path: '/my/userCenter/payCard',
     icon: kpgl,
 
   },
   {
     name: '交易记录',
-    path: '/my',
+    path: '/my/tradeRecord',
     icon: jyjl,
 
   },
   {
     name: '存入记录',
-    path: '/market',
+    path: '/my/rechargeRecord',
     icon: crjl,
 
   },
 
   {
     name: '账变记录',
-    path: '/customer',
+    path: '/my/ledgerRecord',
     icon: zbjl,
 
   },
   {
     name: '定期记录',
-    path: '/my',
+    path: '/my/terminalRecord',
     icon: dqjl,
 
   },
