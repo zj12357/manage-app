@@ -24,6 +24,7 @@ declare global {
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
+  const countryCode: typeof import('./common/telephoneDatas')['countryCode']
   const createApp: typeof import('vue')['createApp']
   const createEventHook: typeof import('@vueuse/core')['createEventHook']
   const createGlobalState: typeof import('@vueuse/core')['createGlobalState']
@@ -352,6 +353,9 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
+  const userLogin: typeof import('./api/user')['userLogin']
+  const userLoginOut: typeof import('./api/user')['userLoginOut']
+  const userRegister: typeof import('./api/user')['userRegister']
   const userToken: typeof import('./common/token')['userToken']
   const viteConfig: typeof import('../vite.config')['default']
   const waitTime: typeof import('./utils/tools')['waitTime']
@@ -401,6 +405,7 @@ declare module 'vue' {
     readonly computedWithControl: UnwrapRef<typeof import('@vueuse/core')['computedWithControl']>
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
+    readonly countryCode: UnwrapRef<typeof import('./common/telephoneDatas')['countryCode']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createEventHook: UnwrapRef<typeof import('@vueuse/core')['createEventHook']>
     readonly createGlobalState: UnwrapRef<typeof import('@vueuse/core')['createGlobalState']>
@@ -537,7 +542,6 @@ declare module 'vue' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
-    readonly telephoneDatas: UnwrapRef<typeof import('./common/telephoneDatas')['default']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
@@ -720,6 +724,9 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly userLogin: UnwrapRef<typeof import('./api/user')['userLogin']>
+    readonly userLoginOut: UnwrapRef<typeof import('./api/user')['userLoginOut']>
+    readonly userRegister: UnwrapRef<typeof import('./api/user')['userRegister']>
     readonly userToken: UnwrapRef<typeof import('./common/token')['userToken']>
     readonly waitTime: UnwrapRef<typeof import('./utils/tools')['waitTime']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
@@ -762,6 +769,7 @@ declare module '@vue/runtime-core' {
     readonly computedWithControl: UnwrapRef<typeof import('@vueuse/core')['computedWithControl']>
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
+    readonly countryCode: UnwrapRef<typeof import('./common/telephoneDatas')['countryCode']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createEventHook: UnwrapRef<typeof import('@vueuse/core')['createEventHook']>
     readonly createGlobalState: UnwrapRef<typeof import('@vueuse/core')['createGlobalState']>
@@ -898,7 +906,6 @@ declare module '@vue/runtime-core' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
-    readonly telephoneDatas: UnwrapRef<typeof import('./common/telephoneDatas')['default']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
@@ -1081,6 +1088,9 @@ declare module '@vue/runtime-core' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly userLogin: UnwrapRef<typeof import('./api/user')['userLogin']>
+    readonly userLoginOut: UnwrapRef<typeof import('./api/user')['userLoginOut']>
+    readonly userRegister: UnwrapRef<typeof import('./api/user')['userRegister']>
     readonly userToken: UnwrapRef<typeof import('./common/token')['userToken']>
     readonly waitTime: UnwrapRef<typeof import('./utils/tools')['waitTime']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>

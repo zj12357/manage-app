@@ -7,7 +7,7 @@ async function fetchGetNews() {
     info_id: route.query.id! as string,
   })
   if (res.code === 200)
-    newsDetail.value = res.data
+    newsDetail.value = { ...res.data, content: res.data.content?.replace(/<p>|<\/p>|&lt;p&gt;|&lt;\/p&gt;|\r\n|/g, '') }
 }
 onMounted(() => {
   fetchGetNews()
@@ -31,6 +31,10 @@ onMounted(() => {
     .news-content {
         p {
             line-height: 20px;
+        }
+        font {
+          display: block;
+          margin: 15px 0;
         }
     }
 }

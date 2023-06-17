@@ -137,7 +137,7 @@ export interface TelephoneItem {
   en: string
   tel: string
 }
-const data: TelephoneItem[] = [
+export const countryCode: TelephoneItem[] = [
   {
     short: 'AD',
     name: '安道尔共和国',
@@ -795,5 +795,3 @@ const data: TelephoneItem[] = [
     tel: '263',
   },
 ]
-
-export default data

@@ -11,7 +11,6 @@ async function fetchGetNotice() {
 onMounted(() => {
   fetchGetNotice()
 })
-console.log(notice)
 </script>
 
 <template>

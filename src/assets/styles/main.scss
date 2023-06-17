@@ -50,4 +50,14 @@ body,
   }
 }
 
+.van-notify--success{
+  background-color: 	var(--van-success-color) !important;
+}
 
+.van-notify--danger {
+  background-color: 	var(--van-danger-color) !important;
+}
+
+.van-notify--warning {
+  background-color: 	var(--van-warning-color) !important;
+}

@@ -59,9 +59,9 @@ const interceptor: AxiosInterceptor = {
   requestInterceptors: (config) => {
     const { requestOptions } = config
     if (requestOptions?.withToken) {
-      (config as Recordable).headers._token = 'myToken'
+      (config as Recordable).headers.token = userToken.getToken()
       if (requestOptions?.specialToken) {
-        (config as Recordable).headers._token
+        (config as Recordable).headers.token
                     = requestOptions?.specialToken
       }
     }

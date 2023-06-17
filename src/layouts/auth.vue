@@ -2,6 +2,7 @@
 import logoAuth from '~/assets/images/auth/logo_auth.png'
 import authKf from '~/assets/images/icons/icon_auth_kf.png'
 
+const common = useCommonStore()
 const router = useRouter()
 
 function goHome() {
@@ -11,7 +12,7 @@ function goHome() {
 
 <template>
   <div class="h-full w-full text-base text-assist1">
-    <div class="min-h-full w-full bg-primary">
+    <div class="min-h-full w-full overflow-auto bg-primary">
       <div class="w-full pl-[15px] pt-[50px]">
         <div
           class="fixed left-0 right-0 top-0 z-[9] h-[50px] w-full flex-between-center pl-[6px] pr-[10px] text-white"
@@ -25,7 +26,7 @@ function goHome() {
           <div class="flex-center">
             <img :src="authKf" class="mr-[4px] w-[28px]" alt="" />
             <a
-              href="http://"
+              :href="common.config.kefu_link"
               target="_blank"
               rel="noopener noreferrer"
               class="text-sm text-white"

@@ -11,8 +11,12 @@ function toPage(path: string) {
 
 async function fetchGetNews() {
   const res = await getNews()
-  if (res.code === 200)
-    newsList.value = res.data?.data
+  if (res.code === 200) {
+    newsList.value = res.data?.data?.map((item: any) => {
+      item.content = item.content.replace(/<p>|<\/p>|&lt;p&gt;|&lt;\/p&gt;|\r\n|/g, '')
+      return item
+    })
+  }
 }
 onMounted(() => {
   fetchGetNews()
@@ -31,10 +35,10 @@ onMounted(() => {
       <div v-for="(item, index) in newsList" :key="index" class="mb-[14px] w-full px-[8px]" @click="toPage(`/home/news/detail?id=${item.id}`)">
         <div class="w-full flex-between-center border-b border-[#f0f0f0] border-dashed py-[10px]">
           <div class="h-[80px] w-[120px]">
-            <img src="https://vasdkkd.com/img/n1.9516c4a8.png" alt="" class="img-cover rounded-[8px]" />
+            <img :src="`/src/assets/images/home/news_banner_0${index + 1}.png`" alt="" class="img-cover rounded-[8px]" />
           </div>
           <div class="w-[188px]">
-            <p class="line-clamp-2 mb-[10px] text-wrap-ellipsis" v-html="item.content">
+            <p class="news-content line-clamp-2 mb-[10px] text-wrap-ellipsis" v-html="item.content">
             </p>
             <span class="text-sm text-assist4">{{ item.created_at }}</span>
           </div>
@@ -44,6 +48,12 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+:deep() {
+    .news-content {
+        p {
+            line-height: 18px;
+        }
+    }
+}
 </style>
