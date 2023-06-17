@@ -6,6 +6,7 @@ import { errorData } from './errorConfig'
 import { isString } from '~/utils/tools'
 import { ContentTypeEnum } from '~/enums/httpEnum'
 
+const router = useRouter()
 /**
  * @description:一下所有拦截器请根据自身使用场景更改
  */
@@ -27,6 +28,11 @@ const interceptor: AxiosInterceptor = {
 
         else if (errorMessageMode === 'message')
           showNotify({ type: 'danger', message: data.msg })
+
+        if (data.code === 8888) {
+          userToken.clearToken()
+          router.push('/')
+        }
 
         return errorData(res)
       }
@@ -94,7 +100,7 @@ const interceptor: AxiosInterceptor = {
     checkStatus(response ? response.status : 404, errorMessageMode)
     if (response?.status === 401) {
       userToken.clearToken()
-      window.location.reload()
+      router.push('/')
     }
     return error
   },

@@ -13,6 +13,8 @@ enum Api {
   APP_ADD_TRADEPASSWORD = '/api/addTradePassword', // 设置资金密码接口
   APP_ADD_WALLET = '/api/addWallet', // 绑定USDT钱包
   APP_GET_WALLET = '/api/wallets', // 获取数字钱包
+  APP_ADD_CARD = '/api/addCard', // 获取银行卡
+  APP_GET_CARD = '/api/cards', // 获取银行卡
 }
 
 export function userRegister(params: any) {
@@ -88,6 +90,20 @@ export function addWallet(params: any) {
 export function getWallet(params: any) {
   return deffHttp.post(
     { url: Api.APP_GET_WALLET, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function addCard(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_ADD_CARD, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function getCard(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_GET_CARD, data: params },
     { errorMessageMode: 'message', withToken: true },
   )
 }

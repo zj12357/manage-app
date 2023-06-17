@@ -13,6 +13,7 @@ declare global {
   const RequestEnum: typeof import('./enums/httpEnum')['RequestEnum']
   const ResultEnum: typeof import('./enums/httpEnum')['ResultEnum']
   const VIEWPORTWIDTH: typeof import('./common/constants')['VIEWPORTWIDTH']
+  const addCard: typeof import('./api/user')['addCard']
   const addClass: typeof import('./utils/tools')['addClass']
   const addTradePassword: typeof import('./api/user')['addTradePassword']
   const addWallet: typeof import('./api/user')['addWallet']
@@ -54,6 +55,7 @@ declare global {
   const fetchGlobalConfigs: typeof import('./hooks/useGlobalData')['fetchGlobalConfigs']
   const fetchGlobalUserInfo: typeof import('./hooks/useGlobalData')['fetchGlobalUserInfo']
   const formatMoney: typeof import('./utils/tools')['formatMoney']
+  const getCard: typeof import('./api/user')['getCard']
   const getCarousels: typeof import('./api/home')['getCarousels']
   const getConfigs: typeof import('./api/common')['getConfigs']
   const getCookie: typeof import('./utils/tools')['getCookie']
@@ -405,6 +407,7 @@ declare module 'vue' {
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
+    readonly addCard: UnwrapRef<typeof import('./api/user')['addCard']>
     readonly addClass: UnwrapRef<typeof import('./utils/tools')['addClass']>
     readonly addTradePassword: UnwrapRef<typeof import('./api/user')['addTradePassword']>
     readonly addWallet: UnwrapRef<typeof import('./api/user')['addWallet']>
@@ -443,6 +446,7 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly formatMoney: UnwrapRef<typeof import('./utils/tools')['formatMoney']>
+    readonly getCard: UnwrapRef<typeof import('./api/user')['getCard']>
     readonly getCarousels: UnwrapRef<typeof import('./api/home')['getCarousels']>
     readonly getConfigs: UnwrapRef<typeof import('./api/common')['getConfigs']>
     readonly getCookie: UnwrapRef<typeof import('./utils/tools')['getCookie']>
@@ -779,6 +783,7 @@ declare module '@vue/runtime-core' {
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
+    readonly addCard: UnwrapRef<typeof import('./api/user')['addCard']>
     readonly addClass: UnwrapRef<typeof import('./utils/tools')['addClass']>
     readonly addTradePassword: UnwrapRef<typeof import('./api/user')['addTradePassword']>
     readonly addWallet: UnwrapRef<typeof import('./api/user')['addWallet']>
@@ -817,6 +822,7 @@ declare module '@vue/runtime-core' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly formatMoney: UnwrapRef<typeof import('./utils/tools')['formatMoney']>
+    readonly getCard: UnwrapRef<typeof import('./api/user')['getCard']>
     readonly getCarousels: UnwrapRef<typeof import('./api/home')['getCarousels']>
     readonly getConfigs: UnwrapRef<typeof import('./api/common')['getConfigs']>
     readonly getCookie: UnwrapRef<typeof import('./utils/tools')['getCookie']>
