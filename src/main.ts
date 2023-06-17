@@ -21,7 +21,7 @@ export const createApp = ViteSSG(
     // ctx.app.use(Previewer)
     // 添加全局前置守卫
     ctx.router.beforeEach((to, from, next) => {
-      next()
+      routeInterception(routes, to, from, next)
     })
   },
 )

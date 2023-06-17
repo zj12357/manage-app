@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     NavBar: typeof import('./components/NavBar.vue')['default']
     NavFooter: typeof import('./components/NavFooter.vue')['default']
+    NotData: typeof import('./components/NotData.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VanButton: typeof import('vant/es')['Button']
