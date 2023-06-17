@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import initPage from '~/assets/images/app/init_page_bg.png'
-import { getConfigs } from '~/api/common'
 
 const common = useCommonStore()
 const initLoad = computed(() => common.initLoad)
+const { fetchGlobalUserInfo, fetchGlobalConfigs } = useGlobalData()
 const state = reactive({
   progress: '0%',
 })
@@ -26,17 +26,11 @@ useHead({
   ],
 })
 
-async function fetchConfigs() {
-  const res = await getConfigs()
-  if (res.code === 200)
-    common.setConfig(res.data)
-}
-
 function setInitTime() {
   let countTime = 0
   const time = setInterval(() => {
     countTime += 1
-    state.progress = `${((Math.random() * 10) + (countTime * 20)).toFixed(2)}%`
+    state.progress = `${(Math.random() * 10 + countTime * 20).toFixed(2)}%`
     if (countTime > 4) {
       state.progress = '100%'
       common.setInitLoad(true)
@@ -46,15 +40,18 @@ function setInitTime() {
 }
 
 onMounted(() => {
-  fetchConfigs()
   setInitTime()
+  userToken.getToken() && fetchGlobalUserInfo()
+  fetchGlobalConfigs()
 })
 </script>
 
 <template>
   <div v-if="!initLoad" class="relative h-full w-full overflow-hidden">
     <img :src="initPage" class="w-full" alt="" />
-    <span class="bottom-[20px] text-primary absolute-row-center">{{ state.progress }}</span>
+    <span class="bottom-[20px] text-primary absolute-row-center">{{
+      state.progress
+    }}</span>
   </div>
   <RouterView v-else />
 </template>

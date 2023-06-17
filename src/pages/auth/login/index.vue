@@ -18,10 +18,10 @@ const navList = [
   },
 ]
 const rememberAccount = ref(true)
-const captchaLink = ref (`${API_URL}/api/captcha?${Date.now()}`)
+const captchaLink = ref(`${API_URL}/api/captcha?${Date.now()}`)
 const state = reactive({
-  username: getStorage('username') as string ?? '',
-  password: getStorage('password') as string ?? '',
+  username: (getStorage('username') as string) ?? '',
+  password: (getStorage('password') as string) ?? '',
   captcha: '',
 })
 
@@ -46,6 +46,7 @@ async function onSubmit(values: any) {
     }
     userToken.setToken(res.data.token)
     toPage('/')
+    fetchGlobalUserInfo()
   }
   else {
     handleCaptchaLink()
@@ -77,7 +78,13 @@ function handleCaptchaLink() {
             v-model="state.username"
             name="username"
             placeholder="请填写用户名"
-            :rules="[{ pattern: /^[A-Za-z0-9]{6,12}$/, message: '请填写6到12位字母或者数字' }, { required: true, message: '请填写用户名' }]"
+            :rules="[
+              {
+                pattern: /^[A-Za-z0-9]{6,12}$/,
+                message: '请填写6到12位字母或者数字',
+              },
+              { required: true, message: '请填写用户名' },
+            ]"
           >
             <template #label>
               <img
@@ -93,7 +100,13 @@ function handleCaptchaLink() {
             name="password"
             placeholder="请填写密码"
             maxlength="12"
-            :rules="[{ pattern: /^[A-Za-z0-9]{6,12}$/, message: '请填写6到12位字母或者数字' }, { required: true, message: '请填写密码' }]"
+            :rules="[
+              {
+                pattern: /^[A-Za-z0-9]{6,12}$/,
+                message: '请填写6到12位字母或者数字',
+              },
+              { required: true, message: '请填写密码' },
+            ]"
           >
             <template #label>
               <img
@@ -107,7 +120,10 @@ function handleCaptchaLink() {
             v-model="state.captcha"
             name="captcha"
             placeholder="请填写验证码"
-            :rules="[{ pattern: /^\d{4}$/, message: '请填写4位数字验证码' }, { required: true, message: '请填写验证码' }]"
+            :rules="[
+              { pattern: /^\d{4}$/, message: '请填写4位数字验证码' },
+              { required: true, message: '请填写验证码' },
+            ]"
           >
             <template #label>
               <img

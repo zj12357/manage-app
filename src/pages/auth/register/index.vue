@@ -53,8 +53,10 @@ async function onSubmit(values: any) {
       type: 'success',
       message: res.msg,
     })
+
     userToken.setToken(res.data.token)
     toPage('/')
+    fetchGlobalUserInfo()
   }
   else {
     handleCaptchaLink()

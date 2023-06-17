@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import setting from '~/assets/images/icons/icon_setting.png'
 import edit from '~/assets/images/icons/icon_edit.png'
+import avatar from '~/assets/images/user/avatar.png'
 
+const user = useUserStore()
 const router = useRouter()
 function toPage(path: string) {
   router.push(path)
@@ -15,9 +17,9 @@ function toPage(path: string) {
         <van-image
           round
           class="h-[34px] w-[34px]"
-          src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+          :src="user.userInfo.url_img || avatar"
         />
-        <span class="mx-[6px] max-w-[120px] text-nowrap-ellipsis text-lg text-assist3">asdasddasdasdasd000</span>
+        <span class="mx-[6px] max-w-[120px] text-nowrap-ellipsis text-lg text-assist3">{{ user.userInfo.username }}</span>
         <img :src="edit" alt="" class="w-[16px]" @click="toPage('/my/userCenter')" />
       </div>
       <img :src="setting" class="w-[24px]" alt="" @click="toPage('/my/setting')" />
@@ -26,19 +28,19 @@ function toPage(path: string) {
       <van-image
         round
         class="h-[60px] w-[60px]"
-        src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+        :src="user.userInfo.url_img || avatar"
       />
       <h2 class="mt-[10px] text-[24px] font-500 text-assist3">
         宁银理财 &nbsp; 您赢未来
       </h2>
       <div class="mt-[25px] w-full flex-between-center">
         <div class="w-[50%] flex-col-center">
-          <span class="mb-[4px] text-xl font-500">123123</span>
-          <span class="text-assist5">123123</span>
+          <span class="mb-[4px] text-xl font-500">{{ user.balance.toFixed(2) }}</span>
+          <span class="text-assist5">持仓账户</span>
         </div>
         <div class="w-[50%] flex-col-center">
-          <span class="mb-[4px] text-xl font-500">12323</span>
-          <span class="text-assist5">21323</span>
+          <span class="mb-[4px] text-xl font-500">{{ user.userInfo.profit.toFixed(2) }}</span>
+          <span class="text-assist5">今日盈亏</span>
         </div>
       </div>
     </div>

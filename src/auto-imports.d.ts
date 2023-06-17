@@ -49,6 +49,8 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const fetchGlobalConfigs: typeof import('./hooks/useGlobalData')['fetchGlobalConfigs']
+  const fetchGlobalUserInfo: typeof import('./hooks/useGlobalData')['fetchGlobalUserInfo']
   const formatMoney: typeof import('./utils/tools')['formatMoney']
   const getCarousels: typeof import('./api/home')['getCarousels']
   const getConfigs: typeof import('./api/common')['getConfigs']
@@ -62,6 +64,8 @@ declare global {
   const getNotice: typeof import('./api/home')['getNotice']
   const getScrollHeight: typeof import('./utils/tools')['getScrollHeight']
   const getType: typeof import('./utils/tools')['getType']
+  const getUserBalance: typeof import('./api/user')['getUserBalance']
+  const getUserInfo: typeof import('./api/user')['getUserInfo']
   const getWindowHeight: typeof import('./utils/tools')['getWindowHeight']
   const goExitFullscreen: typeof import('./utils/tools')['goExitFullscreen']
   const goToFullScreen: typeof import('./utils/tools')['goToFullScreen']
@@ -187,6 +191,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const updateUserInfo: typeof import('./api/user')['updateUserInfo']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
@@ -254,6 +259,7 @@ declare global {
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
   const useGeolocation: typeof import('@vueuse/core')['useGeolocation']
+  const useGlobalData: typeof import('./hooks/useGlobalData')['useGlobalData']
   const useHead: typeof import('@vueuse/head')['useHead']
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useIdle: typeof import('@vueuse/core')['useIdle']
@@ -442,6 +448,8 @@ declare module 'vue' {
     readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
+    readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
+    readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
     readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
@@ -560,6 +568,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updateUserInfo: UnwrapRef<typeof import('./api/user')['updateUserInfo']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -627,6 +636,7 @@ declare module 'vue' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
+    readonly useGlobalData: UnwrapRef<typeof import('./hooks/useGlobalData')['useGlobalData']>
     readonly useHead: UnwrapRef<typeof import('@vueuse/head')['useHead']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
@@ -712,6 +722,7 @@ declare module 'vue' {
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
+    readonly useUserStore: UnwrapRef<typeof import('./stores/user')['useUserStore']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
@@ -806,6 +817,8 @@ declare module '@vue/runtime-core' {
     readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
+    readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
+    readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
     readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
@@ -924,6 +937,7 @@ declare module '@vue/runtime-core' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updateUserInfo: UnwrapRef<typeof import('./api/user')['updateUserInfo']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -991,6 +1005,7 @@ declare module '@vue/runtime-core' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
+    readonly useGlobalData: UnwrapRef<typeof import('./hooks/useGlobalData')['useGlobalData']>
     readonly useHead: UnwrapRef<typeof import('@vueuse/head')['useHead']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
@@ -1076,6 +1091,7 @@ declare module '@vue/runtime-core' {
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
+    readonly useUserStore: UnwrapRef<typeof import('./stores/user')['useUserStore']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>

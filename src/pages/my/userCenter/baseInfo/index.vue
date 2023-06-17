@@ -1,12 +1,33 @@
 <script setup lang="ts">
+import { showNotify } from 'vant'
+import avatar from '~/assets/images/user/avatar.png'
+
+const user = useUserStore()
+const { fetchGlobalUserInfo } = useGlobalData()
+const router = useRouter()
 const userInfo = reactive({
-  userName: '1111',
-  password: '',
-  nickName: '',
+  real_name: user.userInfo.real_name,
+  mobile: user.userInfo.mobile,
+  nickname: user.userInfo.nickname,
 })
 
-function onSubmit(values: any) {
-  console.log('submit', values)
+function toPage(path: string) {
+  router.push(path)
+}
+async function onSubmit(values: any) {
+  const res = await updateUserInfo({
+    real_name: values.real_name,
+    mobile: values.mobile,
+    nickname: values.nickname,
+  })
+  if (res.code === 200) {
+    showNotify({
+      type: 'success',
+      message: res.msg,
+    })
+    fetchGlobalUserInfo()
+    toPage('/my/userCenter')
+  }
 }
 </script>
 
@@ -18,28 +39,35 @@ function onSubmit(values: any) {
         <van-image
           round
           class="h-[64px] w-[64px]"
-          src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+          :src="user.userInfo.url_img || avatar"
         />
         <span class="mb-[16px] mt-[8px] font-500">完善基本资料</span>
       </div>
 
       <van-form class="mt-[20px]" @submit="onSubmit">
         <van-cell-group>
-          <van-field v-model="userInfo.userName" label="真实姓名" disabled />
           <van-field
-            v-model="userInfo.nickName"
-            name="nickName"
+            v-model="userInfo.real_name"
+            label="真实姓名"
+            placeholder="请填写真实姓名"
+            required
+            name="real_name"
+            :rules="[{ required: true, message: '请填写真实姓名' }]"
+            :disabled="user.userInfo.real_name"
+          />
+          <van-field
+            v-model="userInfo.nickname"
+            name="nickname"
             label="用户昵称"
             placeholder="请填写用户昵称"
             :rules="[{ required: true, message: '请填写用户昵称' }]"
           />
           <van-field
-            v-model="userInfo.password"
-            type="password"
-            name="password"
-            label="密码"
-            placeholder="请填写密码"
-            :rules="[{ required: true, message: '请填写密码' }]"
+            v-model="userInfo.mobile"
+            name="mobile"
+            label="手机号码"
+            placeholder="请填写手机号码"
+            :rules="[{ pattern: /^\d*$/, message: '请填写数字' }, { required: true, message: '请填写手机号码' }]"
           />
         </van-cell-group>
         <div class="mt-[20px] w-full flex-center">
