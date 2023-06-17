@@ -1,12 +1,24 @@
 <script setup lang="ts">
-import notice from '~/assets/images/home/notice_title.png'
+import noticeTitle from '~/assets/images/home/notice_title.png'
+
+const notice = ref('')
+
+async function fetchGetNotice() {
+  const res = await getNotice()
+  if (res.code === 200)
+    notice.value = res.data?.data?.map((item: any, index: number) => `${index + 1}.${item.content}  `)?.join('')
+}
+onMounted(() => {
+  fetchGetNotice()
+})
+console.log(notice)
 </script>
 
 <template>
   <div>
     <van-notice-bar
-      text="无论我们能活多久，我们能够享受的只有无法分割的此刻，此外别无其他。"
-      :left-icon="notice"
+      :text="notice"
+      :left-icon="noticeTitle"
       class="bg-[#fff9ed] text-assist1"
     />
   </div>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
-
+const router = useRouter()
+function toPage(path: string) {
+  router.push(path)
+}
 </script>
 
 <template>
   <div class="mt-[50px] w-full flex-center">
-    <div class="detail-btn">
+    <div class="detail-btn" @click="toPage('/trade')">
       查看详情
     </div>
   </div>

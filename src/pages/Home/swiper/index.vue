@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { getCarousels } from '~/api/home'
-
 const carouselList = ref<any>([])
 
-async function fetchCarousels() {
+async function fetchGetCarousels() {
   const res = await getCarousels()
   if (res.code === 200)
     carouselList.value = res.data?.data ?? []
 }
 onMounted(() => {
-  fetchCarousels()
+  fetchGetCarousels()
 })
 </script>
 

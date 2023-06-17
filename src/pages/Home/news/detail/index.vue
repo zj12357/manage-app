@@ -1,19 +1,42 @@
 <script setup lang="ts">
+const newsDetail = ref<any>()
+const route = useRoute()
 
+async function fetchGetNews() {
+  const res = await getNewsDetail({
+    info_id: route.query.id! as string,
+  })
+  if (res.code === 200)
+    newsDetail.value = res.data
+}
+onMounted(() => {
+  fetchGetNews()
+})
 </script>
 
 <template>
-  <div class="w-full">
-    <NavBar
-      title="活动资讯详情"
-    />
-    <div>
-      <div>www</div>
-      <div>wwww</div>
+  <div class="w-full bg-white">
+    <NavBar title="活动资讯详情" />
+    <div class="w-full p-[20px]">
+      <div class="mb-[20px] text-center text-md font-500">
+        {{ newsDetail?.title }}
+      </div>
+      <div class="news-content" v-html="newsDetail?.content"></div>
     </div>
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+:deep() {
+    .news-content {
+        p {
+            line-height: 20px;
+        }
+    }
+}
 </style>
+
+<route lang="yaml">
+meta:
+  layout: user
+</route>

@@ -13,8 +13,10 @@ declare global {
   const RequestEnum: typeof import('./enums/httpEnum')['RequestEnum']
   const ResultEnum: typeof import('./enums/httpEnum')['ResultEnum']
   const VIEWPORTWIDTH: typeof import('./common/constants')['VIEWPORTWIDTH']
+  const addClass: typeof import('./utils/tools')['addClass']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const compose: typeof import('./utils/tools')['compose']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -31,29 +33,81 @@ declare global {
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
   const createTemplatePromise: typeof import('@vueuse/core')['createTemplatePromise']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
+  const cryptoDecrypt: typeof import('./utils/tools')['cryptoDecrypt']
+  const cryptoEncrypt: typeof import('./utils/tools')['cryptoEncrypt']
   const customRef: typeof import('vue')['customRef']
   const cypressConfig: typeof import('../cypress.config')['default']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
+  const decimal: typeof import('./utils/tools')['decimal']
+  const deepClone: typeof import('./utils/tools')['deepClone']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const delCookie: typeof import('./utils/tools')['delCookie']
   const devMode: typeof import('./config/env')['devMode']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const formatMoney: typeof import('./utils/tools')['formatMoney']
+  const getCarousels: typeof import('./api/home')['getCarousels']
+  const getConfigs: typeof import('./api/common')['getConfigs']
+  const getCookie: typeof import('./utils/tools')['getCookie']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getDocumentTop: typeof import('./utils/tools')['getDocumentTop']
+  const getExplorerInfo: typeof import('./utils/tools')['getExplorerInfo']
+  const getNews: typeof import('./api/home')['getNews']
+  const getNewsDetail: typeof import('./api/home')['getNewsDetail']
+  const getNotice: typeof import('./api/home')['getNotice']
+  const getScrollHeight: typeof import('./utils/tools')['getScrollHeight']
+  const getType: typeof import('./utils/tools')['getType']
+  const getWindowHeight: typeof import('./utils/tools')['getWindowHeight']
+  const goExitFullscreen: typeof import('./utils/tools')['goExitFullscreen']
+  const goToFullScreen: typeof import('./utils/tools')['goToFullScreen']
   const h: typeof import('vue')['h']
+  const hasClass: typeof import('./utils/tools')['hasClass']
+  const idNumber: typeof import('./utils/validate')['idNumber']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
+  const is12Hours: typeof import('./utils/validate')['is12Hours']
+  const is24Hours: typeof import('./utils/validate')['is24Hours']
+  const isAmount: typeof import('./utils/validate')['isAmount']
+  const isAndroid: typeof import('./utils/tools')['isAndroid']
+  const isArray: typeof import('./utils/tools')['isArray']
+  const isBankCard: typeof import('./utils/validate')['isBankCard']
+  const isBase64: typeof import('./utils/validate')['isBase64']
+  const isBoolean: typeof import('./utils/tools')['isBoolean']
+  const isChineseName: typeof import('./utils/validate')['isChineseName']
   const isDark: typeof import('./composables/dark')['isDark']
+  const isDate: typeof import('./utils/tools')['isDate']
+  const isDecimal: typeof import('./utils/validate')['isDecimal']
+  const isDef: typeof import('./utils/tools')['isDef']
   const isDefined: typeof import('@vueuse/core')['isDefined']
   const isDevMode: typeof import('./config/env')['isDevMode']
+  const isEmail: typeof import('./utils/validate')['isEmail']
+  const isEnglishName: typeof import('./utils/validate')['isEnglishName']
+  const isFloatingPointNumber: typeof import('./utils/validate')['isFloatingPointNumber']
+  const isFunction: typeof import('./utils/tools')['isFunction']
+  const isIOS: typeof import('./utils/tools')['isIOS']
+  const isInteger: typeof import('./utils/validate')['isInteger']
+  const isMobile: typeof import('./utils/tools')['isMobile']
+  const isNegativeInteger: typeof import('./utils/validate')['isNegativeInteger']
+  const isNegativeNumber: typeof import('./utils/validate')['isNegativeNumber']
+  const isNumber: typeof import('./utils/tools')['isNumber']
+  const isNumberLetter: typeof import('./utils/validate')['isNumberLetter']
+  const isObject: typeof import('./utils/tools')['isObject']
+  const isPhoneNumber: typeof import('./utils/validate')['isPhoneNumber']
+  const isPositiveInteger: typeof import('./utils/validate')['isPositiveInteger']
+  const isPositiveNumber: typeof import('./utils/validate')['isPositiveNumber']
   const isProdMode: typeof import('./config/env')['isProdMode']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const isRepeat: typeof import('./utils/validate')['isRepeat']
+  const isString: typeof import('./utils/tools')['isString']
+  const isUndef: typeof import('./utils/tools')['isUndef']
+  const isWebURL: typeof import('./utils/validate')['isWebURL']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
@@ -81,6 +135,8 @@ declare global {
   const prodMode: typeof import('./config/env')['prodMode']
   const provide: typeof import('vue')['provide']
   const pxToVw: typeof import('./config/pxtovw')['pxToVw']
+  const randomNum: typeof import('./utils/tools')['randomNum']
+  const randomString: typeof import('./utils/tools')['randomString']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
   const reactive: typeof import('vue')['reactive']
@@ -94,16 +150,21 @@ declare global {
   const refDefault: typeof import('@vueuse/core')['refDefault']
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
+  const removeClass: typeof import('./utils/tools')['removeClass']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const routeInterception: typeof import('./common/permission')['routeInterception']
+  const scrollTo: typeof import('./utils/scroll-to')['scrollTo']
+  const scrollToBottom: typeof import('./utils/tools')['scrollToBottom']
+  const setCookie: typeof import('./utils/tools')['setCookie']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const shimsD: typeof import('./shims.d')['default']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
+  const telephoneDatas: typeof import('./common/telephoneDatas')['default']
   const templateRef: typeof import('@vueuse/core')['templateRef']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
@@ -112,6 +173,7 @@ declare global {
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('vue')['toValue']
+  const toggleClass: typeof import('./utils/tools')['toggleClass']
   const toggleDark: typeof import('./composables/dark')['toggleDark']
   const token: typeof import('./common/token')['default']
   const triggerRef: typeof import('vue')['triggerRef']
@@ -216,6 +278,7 @@ declare global {
   const useMutationObserver: typeof import('@vueuse/core')['useMutationObserver']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
+  const useNewWindow: typeof import('./hooks/useNewWindow')['useNewWindow']
   const useNow: typeof import('@vueuse/core')['useNow']
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
@@ -289,7 +352,9 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
+  const userToken: typeof import('./common/token')['userToken']
   const viteConfig: typeof import('../vite.config')['default']
+  const waitTime: typeof import('./utils/tools')['waitTime']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
   const watchAtMost: typeof import('@vueuse/core')['watchAtMost']
@@ -325,8 +390,10 @@ declare module 'vue' {
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
+    readonly addClass: UnwrapRef<typeof import('./utils/tools')['addClass']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -343,27 +410,79 @@ declare module 'vue' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
+    readonly cryptoDecrypt: UnwrapRef<typeof import('./utils/tools')['cryptoDecrypt']>
+    readonly cryptoEncrypt: UnwrapRef<typeof import('./utils/tools')['cryptoEncrypt']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
+    readonly decimal: UnwrapRef<typeof import('./utils/tools')['decimal']>
+    readonly deepClone: UnwrapRef<typeof import('./utils/tools')['deepClone']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly delCookie: UnwrapRef<typeof import('./utils/tools')['delCookie']>
     readonly devMode: UnwrapRef<typeof import('./config/env')['devMode']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly formatMoney: UnwrapRef<typeof import('./utils/tools')['formatMoney']>
+    readonly getCarousels: UnwrapRef<typeof import('./api/home')['getCarousels']>
+    readonly getConfigs: UnwrapRef<typeof import('./api/common')['getConfigs']>
+    readonly getCookie: UnwrapRef<typeof import('./utils/tools')['getCookie']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getDocumentTop: UnwrapRef<typeof import('./utils/tools')['getDocumentTop']>
+    readonly getExplorerInfo: UnwrapRef<typeof import('./utils/tools')['getExplorerInfo']>
+    readonly getNews: UnwrapRef<typeof import('./api/home')['getNews']>
+    readonly getNewsDetail: UnwrapRef<typeof import('./api/home')['getNewsDetail']>
+    readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
+    readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
+    readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
+    readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
+    readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
+    readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly hasClass: UnwrapRef<typeof import('./utils/tools')['hasClass']>
+    readonly idNumber: UnwrapRef<typeof import('./utils/validate')['idNumber']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
+    readonly is12Hours: UnwrapRef<typeof import('./utils/validate')['is12Hours']>
+    readonly is24Hours: UnwrapRef<typeof import('./utils/validate')['is24Hours']>
+    readonly isAmount: UnwrapRef<typeof import('./utils/validate')['isAmount']>
+    readonly isAndroid: UnwrapRef<typeof import('./utils/tools')['isAndroid']>
+    readonly isArray: UnwrapRef<typeof import('./utils/tools')['isArray']>
+    readonly isBankCard: UnwrapRef<typeof import('./utils/validate')['isBankCard']>
+    readonly isBase64: UnwrapRef<typeof import('./utils/validate')['isBase64']>
+    readonly isBoolean: UnwrapRef<typeof import('./utils/tools')['isBoolean']>
+    readonly isChineseName: UnwrapRef<typeof import('./utils/validate')['isChineseName']>
+    readonly isDate: UnwrapRef<typeof import('./utils/tools')['isDate']>
+    readonly isDecimal: UnwrapRef<typeof import('./utils/validate')['isDecimal']>
+    readonly isDef: UnwrapRef<typeof import('./utils/tools')['isDef']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isDevMode: UnwrapRef<typeof import('./config/env')['isDevMode']>
+    readonly isEmail: UnwrapRef<typeof import('./utils/validate')['isEmail']>
+    readonly isEnglishName: UnwrapRef<typeof import('./utils/validate')['isEnglishName']>
+    readonly isFloatingPointNumber: UnwrapRef<typeof import('./utils/validate')['isFloatingPointNumber']>
+    readonly isFunction: UnwrapRef<typeof import('./utils/tools')['isFunction']>
+    readonly isIOS: UnwrapRef<typeof import('./utils/tools')['isIOS']>
+    readonly isInteger: UnwrapRef<typeof import('./utils/validate')['isInteger']>
+    readonly isMobile: UnwrapRef<typeof import('./utils/tools')['isMobile']>
+    readonly isNegativeInteger: UnwrapRef<typeof import('./utils/validate')['isNegativeInteger']>
+    readonly isNegativeNumber: UnwrapRef<typeof import('./utils/validate')['isNegativeNumber']>
+    readonly isNumber: UnwrapRef<typeof import('./utils/tools')['isNumber']>
+    readonly isNumberLetter: UnwrapRef<typeof import('./utils/validate')['isNumberLetter']>
+    readonly isObject: UnwrapRef<typeof import('./utils/tools')['isObject']>
+    readonly isPhoneNumber: UnwrapRef<typeof import('./utils/validate')['isPhoneNumber']>
+    readonly isPositiveInteger: UnwrapRef<typeof import('./utils/validate')['isPositiveInteger']>
+    readonly isPositiveNumber: UnwrapRef<typeof import('./utils/validate')['isPositiveNumber']>
     readonly isProdMode: UnwrapRef<typeof import('./config/env')['isProdMode']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isRepeat: UnwrapRef<typeof import('./utils/validate')['isRepeat']>
+    readonly isString: UnwrapRef<typeof import('./utils/tools')['isString']>
+    readonly isUndef: UnwrapRef<typeof import('./utils/tools')['isUndef']>
+    readonly isWebURL: UnwrapRef<typeof import('./utils/validate')['isWebURL']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
@@ -390,6 +509,8 @@ declare module 'vue' {
     readonly prodMode: UnwrapRef<typeof import('./config/env')['prodMode']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly pxToVw: UnwrapRef<typeof import('./config/pxtovw')['pxToVw']>
+    readonly randomNum: UnwrapRef<typeof import('./utils/tools')['randomNum']>
+    readonly randomString: UnwrapRef<typeof import('./utils/tools')['randomString']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
@@ -403,15 +524,20 @@ declare module 'vue' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly removeClass: UnwrapRef<typeof import('./utils/tools')['removeClass']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly routeInterception: UnwrapRef<typeof import('./common/permission')['routeInterception']>
+    readonly scrollTo: UnwrapRef<typeof import('./utils/scroll-to')['scrollTo']>
+    readonly scrollToBottom: UnwrapRef<typeof import('./utils/tools')['scrollToBottom']>
+    readonly setCookie: UnwrapRef<typeof import('./utils/tools')['setCookie']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
+    readonly telephoneDatas: UnwrapRef<typeof import('./common/telephoneDatas')['default']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
@@ -420,7 +546,7 @@ declare module 'vue' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly token: UnwrapRef<typeof import('./common/token')['default']>
+    readonly toggleClass: UnwrapRef<typeof import('./utils/tools')['toggleClass']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -521,6 +647,7 @@ declare module 'vue' {
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
+    readonly useNewWindow: UnwrapRef<typeof import('./hooks/useNewWindow')['useNewWindow']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
@@ -593,6 +720,8 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly userToken: UnwrapRef<typeof import('./common/token')['userToken']>
+    readonly waitTime: UnwrapRef<typeof import('./utils/tools')['waitTime']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
@@ -622,8 +751,10 @@ declare module '@vue/runtime-core' {
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
+    readonly addClass: UnwrapRef<typeof import('./utils/tools')['addClass']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -640,27 +771,79 @@ declare module '@vue/runtime-core' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
+    readonly cryptoDecrypt: UnwrapRef<typeof import('./utils/tools')['cryptoDecrypt']>
+    readonly cryptoEncrypt: UnwrapRef<typeof import('./utils/tools')['cryptoEncrypt']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
+    readonly decimal: UnwrapRef<typeof import('./utils/tools')['decimal']>
+    readonly deepClone: UnwrapRef<typeof import('./utils/tools')['deepClone']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly delCookie: UnwrapRef<typeof import('./utils/tools')['delCookie']>
     readonly devMode: UnwrapRef<typeof import('./config/env')['devMode']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly formatMoney: UnwrapRef<typeof import('./utils/tools')['formatMoney']>
+    readonly getCarousels: UnwrapRef<typeof import('./api/home')['getCarousels']>
+    readonly getConfigs: UnwrapRef<typeof import('./api/common')['getConfigs']>
+    readonly getCookie: UnwrapRef<typeof import('./utils/tools')['getCookie']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getDocumentTop: UnwrapRef<typeof import('./utils/tools')['getDocumentTop']>
+    readonly getExplorerInfo: UnwrapRef<typeof import('./utils/tools')['getExplorerInfo']>
+    readonly getNews: UnwrapRef<typeof import('./api/home')['getNews']>
+    readonly getNewsDetail: UnwrapRef<typeof import('./api/home')['getNewsDetail']>
+    readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
+    readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
+    readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
+    readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
+    readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
+    readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly hasClass: UnwrapRef<typeof import('./utils/tools')['hasClass']>
+    readonly idNumber: UnwrapRef<typeof import('./utils/validate')['idNumber']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
+    readonly is12Hours: UnwrapRef<typeof import('./utils/validate')['is12Hours']>
+    readonly is24Hours: UnwrapRef<typeof import('./utils/validate')['is24Hours']>
+    readonly isAmount: UnwrapRef<typeof import('./utils/validate')['isAmount']>
+    readonly isAndroid: UnwrapRef<typeof import('./utils/tools')['isAndroid']>
+    readonly isArray: UnwrapRef<typeof import('./utils/tools')['isArray']>
+    readonly isBankCard: UnwrapRef<typeof import('./utils/validate')['isBankCard']>
+    readonly isBase64: UnwrapRef<typeof import('./utils/validate')['isBase64']>
+    readonly isBoolean: UnwrapRef<typeof import('./utils/tools')['isBoolean']>
+    readonly isChineseName: UnwrapRef<typeof import('./utils/validate')['isChineseName']>
+    readonly isDate: UnwrapRef<typeof import('./utils/tools')['isDate']>
+    readonly isDecimal: UnwrapRef<typeof import('./utils/validate')['isDecimal']>
+    readonly isDef: UnwrapRef<typeof import('./utils/tools')['isDef']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isDevMode: UnwrapRef<typeof import('./config/env')['isDevMode']>
+    readonly isEmail: UnwrapRef<typeof import('./utils/validate')['isEmail']>
+    readonly isEnglishName: UnwrapRef<typeof import('./utils/validate')['isEnglishName']>
+    readonly isFloatingPointNumber: UnwrapRef<typeof import('./utils/validate')['isFloatingPointNumber']>
+    readonly isFunction: UnwrapRef<typeof import('./utils/tools')['isFunction']>
+    readonly isIOS: UnwrapRef<typeof import('./utils/tools')['isIOS']>
+    readonly isInteger: UnwrapRef<typeof import('./utils/validate')['isInteger']>
+    readonly isMobile: UnwrapRef<typeof import('./utils/tools')['isMobile']>
+    readonly isNegativeInteger: UnwrapRef<typeof import('./utils/validate')['isNegativeInteger']>
+    readonly isNegativeNumber: UnwrapRef<typeof import('./utils/validate')['isNegativeNumber']>
+    readonly isNumber: UnwrapRef<typeof import('./utils/tools')['isNumber']>
+    readonly isNumberLetter: UnwrapRef<typeof import('./utils/validate')['isNumberLetter']>
+    readonly isObject: UnwrapRef<typeof import('./utils/tools')['isObject']>
+    readonly isPhoneNumber: UnwrapRef<typeof import('./utils/validate')['isPhoneNumber']>
+    readonly isPositiveInteger: UnwrapRef<typeof import('./utils/validate')['isPositiveInteger']>
+    readonly isPositiveNumber: UnwrapRef<typeof import('./utils/validate')['isPositiveNumber']>
     readonly isProdMode: UnwrapRef<typeof import('./config/env')['isProdMode']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly isRepeat: UnwrapRef<typeof import('./utils/validate')['isRepeat']>
+    readonly isString: UnwrapRef<typeof import('./utils/tools')['isString']>
+    readonly isUndef: UnwrapRef<typeof import('./utils/tools')['isUndef']>
+    readonly isWebURL: UnwrapRef<typeof import('./utils/validate')['isWebURL']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
@@ -687,6 +870,8 @@ declare module '@vue/runtime-core' {
     readonly prodMode: UnwrapRef<typeof import('./config/env')['prodMode']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly pxToVw: UnwrapRef<typeof import('./config/pxtovw')['pxToVw']>
+    readonly randomNum: UnwrapRef<typeof import('./utils/tools')['randomNum']>
+    readonly randomString: UnwrapRef<typeof import('./utils/tools')['randomString']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
@@ -700,15 +885,20 @@ declare module '@vue/runtime-core' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly removeClass: UnwrapRef<typeof import('./utils/tools')['removeClass']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly routeInterception: UnwrapRef<typeof import('./common/permission')['routeInterception']>
+    readonly scrollTo: UnwrapRef<typeof import('./utils/scroll-to')['scrollTo']>
+    readonly scrollToBottom: UnwrapRef<typeof import('./utils/tools')['scrollToBottom']>
+    readonly setCookie: UnwrapRef<typeof import('./utils/tools')['setCookie']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
+    readonly telephoneDatas: UnwrapRef<typeof import('./common/telephoneDatas')['default']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
@@ -717,7 +907,7 @@ declare module '@vue/runtime-core' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly token: UnwrapRef<typeof import('./common/token')['default']>
+    readonly toggleClass: UnwrapRef<typeof import('./utils/tools')['toggleClass']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -818,6 +1008,7 @@ declare module '@vue/runtime-core' {
     readonly useMutationObserver: UnwrapRef<typeof import('@vueuse/core')['useMutationObserver']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('@vueuse/core')['useNavigatorLanguage']>
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
+    readonly useNewWindow: UnwrapRef<typeof import('./hooks/useNewWindow')['useNewWindow']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
@@ -890,6 +1081,8 @@ declare module '@vue/runtime-core' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly userToken: UnwrapRef<typeof import('./common/token')['userToken']>
+    readonly waitTime: UnwrapRef<typeof import('./utils/tools')['waitTime']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

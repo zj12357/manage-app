@@ -28,6 +28,7 @@ function toPage(path: string) {
   router.push(path)
 }
 function onSubmit(values: any) {
+  userToken.setToken('111')
   console.log('submit', values)
 }
 </script>

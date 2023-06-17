@@ -1,2 +1,4 @@
-export interface HallParams {}
-export interface HallResult {}
+export interface GetNewsParams {
+    info_id?: string;
+}
+export interface  GetNewsResult {}

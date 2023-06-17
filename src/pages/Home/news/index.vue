@@ -2,10 +2,21 @@
 import newsTitle from '~/assets/images/home/news_title.png'
 import newspaper from '~/assets/images/home/newspaper.png'
 
+const newsList = ref<any[]>([])
+
 const router = useRouter()
 function toPage(path: string) {
   router.push(path)
 }
+
+async function fetchGetNews() {
+  const res = await getNews()
+  if (res.code === 200)
+    newsList.value = res.data?.data
+}
+onMounted(() => {
+  fetchGetNews()
+})
 </script>
 
 <template>
@@ -17,16 +28,15 @@ function toPage(path: string) {
       </span>
     </div>
     <div class="w-full flex-col-top-center bg-white">
-      <div class="mb-[14px] w-full px-[8px]" @click="toPage('/home/news/detail')">
+      <div v-for="(item, index) in newsList" :key="index" class="mb-[14px] w-full px-[8px]" @click="toPage(`/home/news/detail?id=${item.id}`)">
         <div class="w-full flex-between-center border-b border-[#f0f0f0] border-dashed py-[10px]">
           <div class="h-[80px] w-[120px]">
             <img src="https://vasdkkd.com/img/n1.9516c4a8.png" alt="" class="img-cover rounded-[8px]" />
           </div>
           <div class="w-[188px]">
-            <p class="line-clamp-2 mb-[10px] text-wrap-ellipsis">
-              asdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdas
+            <p class="line-clamp-2 mb-[10px] text-wrap-ellipsis" v-html="item.content">
             </p>
-            <span class="text-sm text-assist4">2020-01-23 12:00:00</span>
+            <span class="text-sm text-assist4">{{ item.created_at }}</span>
           </div>
         </div>
       </div>

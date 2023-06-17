@@ -124,6 +124,7 @@ function changeStatusType(type: number) {
         <div i-carbon:chevron-right class="text-lg text-assist8"></div>
       </div>
     </div>
+    <NotData />
   </div>
 </template>
 

@@ -8,26 +8,26 @@ const router = useRouter()
 const navList = [
   {
     name: '立即存入',
-    path: '/',
+    path: '/my/deposit',
     icon: ljcr,
 
   },
   {
     name: '我要赎回',
-    path: '/market',
+    path: '/my/withdraw',
     icon: wysh,
 
   },
 
   {
     name: '我要交易',
-    path: '/customer',
+    path: '/my/tradeRecord',
     icon: wyjy,
 
   },
   {
     name: '我的账变',
-    path: '/my',
+    path: '/my/ledgerRecord',
     icon: wyzb,
 
   },

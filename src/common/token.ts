@@ -5,7 +5,7 @@ import { getStorage, removeStorage, setStorage } from '~/utils/storage'
 
 const tokenKey = 'token'
 
-export default Object.freeze({
+export const userToken = Object.freeze({
   clearToken: () => {
     removeStorage(tokenKey)
   },
