@@ -1,0 +1,799 @@
+export type countryType =
+'AD' &
+'AE' &
+'AF' &
+'AG' &
+'AL' &
+'AM' &
+'AO' &
+'AR' &
+'AT' &
+'AU' &
+'AZ' &
+'BB' &
+'BD' &
+'BE' &
+'BF' &
+'BG' &
+'BH' &
+'BI' &
+'BJ' &
+'BL' &
+'BM' &
+'BN' &
+'BO' &
+'BR' &
+'BS' &
+'BW' &
+'BY' &
+'BZ' &
+'CA' &
+'CF' &
+'CG' &
+'CH' &
+'CL' &
+'CM' &
+'CN' &
+'CO' &
+'CR' &
+'CS' &
+'CU' &
+'CY' &
+'CZ' &
+'DE' &
+'DJ' &
+'DK' &
+'DO' &
+'DZ' &
+'EC' &
+'EE' &
+'EG' &
+'ES' &
+'ET' &
+'FI' &
+'FJ' &
+'FR' &
+'GA' &
+'GB' &
+'GD' &
+'GE' &
+'GF' &
+'GH' &
+'GI' &
+'GR' &
+'HK' &
+'HT' &
+'HU' &
+'ID' &
+'IE' &
+'IL' &
+'IN' &
+'IQ' &
+'IR' &
+'IS' &
+'IT' &
+'JM' &
+'JP' &
+'KE' &
+'KG' &
+'KH' &
+'KP' &
+'KR' &
+'KW' &
+'KZ' &
+'LA' &
+'LB' &
+'LC' &
+'LI' &
+'LK' &
+'LR' &
+'LS' &
+'LT' &
+'LY' &
+'MA' &
+'MC' &
+'MD' &
+'MG' &
+'ML' &
+'MM' &
+'MN' &
+'MO' &
+'MV' &
+'MX' &
+'MY' &
+'NL' &
+'NO' &
+'NZ' &
+'PA' &
+'PH' &
+'PK' &
+'PR' &
+'PT' &
+'RU' &
+'SE' &
+'SG' &
+'SO' &
+'SV' &
+'SY' &
+'TH' &
+'TJ' &
+'TM' &
+'TO' &
+'TR' &
+'TT' &
+'TW' &
+'TZ' &
+'UA' &
+'UG' &
+'US' &
+'VN' &
+'ZA' &
+'ZM' &
+'ZW'
+
+export interface TelephoneItem {
+  short: string
+  name: string
+  en: string
+  tel: string
+}
+const data: TelephoneItem[] = [
+  {
+    short: 'AD',
+    name: '安道尔共和国',
+    en: 'Andorra',
+    tel: '376',
+  }, {
+    short: 'AE',
+    name: '阿拉伯联合酋长国',
+    en: 'UnitedArabEmirates',
+    tel: '971',
+  }, {
+    short: 'AF',
+    name: '阿富汗',
+    en: 'Afghanistan',
+    tel: '93',
+  }, {
+    short: 'AG',
+    name: '安提瓜和巴布达',
+    en: 'AntiguaandBarbuda',
+    tel: '1268',
+  }, {
+    short: 'AL',
+    name: '阿尔巴尼亚',
+    en: 'Albania',
+    tel: '355',
+  }, {
+    short: 'AM',
+    name: '亚美尼亚',
+    en: 'Armenia',
+    tel: '374',
+  }, {
+    short: 'AO',
+    name: '安哥拉',
+    en: 'Angola',
+    tel: '244',
+  }, {
+    short: 'AR',
+    name: '阿根廷',
+    en: 'Argentina',
+    tel: '54',
+  }, {
+    short: 'AT',
+    name: '奥地利',
+    en: 'Austria',
+    tel: '43',
+  }, {
+    short: 'AU',
+    name: '澳大利亚',
+    en: 'Australia',
+    tel: '61',
+  }, {
+    short: 'AZ',
+    name: '阿塞拜疆',
+    en: 'Azerbaijan',
+    tel: '994',
+  }, {
+    short: 'BB',
+    name: '巴巴多斯',
+    en: 'Barbados',
+    tel: '1246',
+  }, {
+    short: 'BD',
+    name: '孟加拉国',
+    en: 'Bangladesh',
+    tel: '880',
+  }, {
+    short: 'BE',
+    name: '比利时',
+    en: 'Belgium',
+    tel: '32',
+  }, {
+    short: 'BF',
+    name: '布基纳法索',
+    en: 'Burkina-faso',
+    tel: '226',
+  }, {
+    short: 'BG',
+    name: '保加利亚',
+    en: 'Bulgaria',
+    tel: '359',
+  }, {
+    short: 'BH',
+    name: '巴林',
+    en: 'Bahrain',
+    tel: '973',
+  }, {
+    short: 'BI',
+    name: '布隆迪',
+    en: 'Burundi',
+    tel: '257',
+  }, {
+    short: 'BJ',
+    name: '贝宁',
+    en: 'Benin',
+    tel: '229',
+  }, {
+    short: 'BL',
+    name: '巴勒斯坦',
+    en: 'Palestine',
+    tel: '970',
+  }, {
+    short: 'BM',
+    name: '百慕大群岛',
+    en: 'BermudaIs.',
+    tel: '1441',
+  }, {
+    short: 'BN',
+    name: '文莱',
+    en: 'Brunei',
+    tel: '673',
+  }, {
+    short: 'BO',
+    name: '玻利维亚',
+    en: 'Bolivia',
+    tel: '591',
+  }, {
+    short: 'BR',
+    name: '巴西',
+    en: 'Brazil',
+    tel: '55',
+  }, {
+    short: 'BS',
+    name: '巴哈马',
+    en: 'Bahamas',
+    tel: '1242',
+  }, {
+    short: 'BW',
+    name: '博茨瓦纳',
+    en: 'Botswana',
+    tel: '267',
+  }, {
+    short: 'BY',
+    name: '白俄罗斯',
+    en: 'Belarus',
+    tel: '375',
+  }, {
+    short: 'BZ',
+    name: '伯利兹',
+    en: 'Belize',
+    tel: '501',
+  }, {
+    short: 'CA',
+    name: '加拿大',
+    en: 'Canada',
+    tel: '1',
+  }, {
+    short: 'CF',
+    name: '中非共和国',
+    en: 'CentralAfricanRepublic',
+    tel: '236',
+  }, {
+    short: 'CG',
+    name: '刚果',
+    en: 'Congo',
+    tel: '242',
+  }, {
+    short: 'CH',
+    name: '瑞士',
+    en: 'Switzerland',
+    tel: '41',
+  }, {
+    short: 'CL',
+    name: '智利',
+    en: 'Chile',
+    tel: '56',
+  }, {
+    short: 'CM',
+    name: '喀麦隆',
+    en: 'Cameroon',
+    tel: '237',
+  }, {
+    short: 'CN',
+    name: '中国',
+    en: 'China',
+    tel: '86',
+  }, {
+    short: 'CO',
+    name: '哥伦比亚',
+    en: 'Colombia',
+    tel: '57',
+  }, {
+    short: 'CR',
+    name: '哥斯达黎加',
+    en: 'CostaRica',
+    tel: '506',
+  }, {
+    short: 'CS',
+    name: '捷克',
+    en: 'Czech',
+    tel: '420',
+  }, {
+    short: 'CU',
+    name: '古巴',
+    en: 'Cuba',
+    tel: '53',
+  }, {
+    short: 'CY',
+    name: '塞浦路斯',
+    en: 'Cyprus',
+    tel: '357',
+  }, {
+    short: 'CZ',
+    name: '捷克',
+    en: 'CzechRepublic',
+    tel: '420',
+  }, {
+    short: 'DE',
+    name: '德国',
+    en: 'Germany',
+    tel: '49',
+  }, {
+    short: 'DJ',
+    name: '吉布提',
+    en: 'Djibouti',
+    tel: '253',
+  }, {
+    short: 'DK',
+    name: '丹麦',
+    en: 'Denmark',
+    tel: '45',
+  }, {
+    short: 'DO',
+    name: '多米尼加共和国',
+    en: 'DominicaRep.',
+    tel: '1890',
+  }, {
+    short: 'DZ',
+    name: '阿尔及利亚',
+    en: 'Algeria',
+    tel: '213',
+  }, {
+    short: 'EC',
+    name: '厄瓜多尔',
+    en: 'Ecuador',
+    tel: '593',
+  }, {
+    short: 'EE',
+    name: '爱沙尼亚',
+    en: 'Estonia',
+    tel: '372',
+  }, {
+    short: 'EG',
+    name: '埃及',
+    en: 'Egypt',
+    tel: '20',
+  }, {
+    short: 'ES',
+    name: '西班牙',
+    en: 'Spain',
+    tel: '34',
+  }, {
+    short: 'ET',
+    name: '埃塞俄比亚',
+    en: 'Ethiopia',
+    tel: '251',
+  }, {
+    short: 'FI',
+    name: '芬兰',
+    en: 'Finland',
+    tel: '358',
+  }, {
+    short: 'FJ',
+    name: '斐济',
+    en: 'Fiji',
+    tel: '679',
+  }, {
+    short: 'FR',
+    name: '法国',
+    en: 'France',
+    tel: '33',
+  }, {
+    short: 'GA',
+    name: '加蓬',
+    en: 'Gabon',
+    tel: '241',
+  }, {
+    short: 'GB',
+    name: '英国',
+    en: 'UnitedKiongdom',
+    tel: '44',
+  }, {
+    short: 'GD',
+    name: '格林纳达',
+    en: 'Grenada',
+    tel: '1809',
+  }, {
+    short: 'GE',
+    name: '格鲁吉亚',
+    en: 'Georgia',
+    tel: '995',
+  }, {
+    short: 'GF',
+    name: '法属圭亚那',
+    en: 'FrenchGuiana',
+    tel: '594',
+  }, {
+    short: 'GH',
+    name: '加纳',
+    en: 'Ghana',
+    tel: '233',
+  }, {
+    short: 'GI',
+    name: '直布罗陀',
+    en: 'Gibraltar',
+    tel: '350',
+  }, {
+    short: 'GR',
+    name: '希腊',
+    en: 'Greece',
+    tel: '30',
+  }, {
+    short: 'HK',
+    name: '香港特别行政区',
+    en: 'Hongkong',
+    tel: '852',
+  }, {
+    short: 'HT',
+    name: '海地',
+    en: 'Haiti',
+    tel: '509',
+  }, {
+    short: 'HU',
+    name: '匈牙利',
+    en: 'Hungary',
+    tel: '36',
+  }, {
+    short: 'ID',
+    name: '印度尼西亚',
+    en: 'Indonesia',
+    tel: '62',
+  }, {
+    short: 'IE',
+    name: '爱尔兰',
+    en: 'Ireland',
+    tel: '353',
+  }, {
+    short: 'IL',
+    name: '以色列',
+    en: 'Israel',
+    tel: '972',
+  }, {
+    short: 'IN',
+    name: '印度',
+    en: 'India',
+    tel: '91',
+  }, {
+    short: 'IQ',
+    name: '伊拉克',
+    en: 'Iraq',
+    tel: '964',
+  }, {
+    short: 'IR',
+    name: '伊朗',
+    en: 'Iran',
+    tel: '98',
+  }, {
+    short: 'IS',
+    name: '冰岛',
+    en: 'Iceland',
+    tel: '354',
+  }, {
+    short: 'IT',
+    name: '意大利',
+    en: 'Italy',
+    tel: '39',
+  }, {
+    short: 'JM',
+    name: '牙买加',
+    en: 'Jamaica',
+    tel: '1876',
+  }, {
+    short: 'JP',
+    name: '日本',
+    en: 'Japan',
+    tel: '81',
+  }, {
+    short: 'KE',
+    name: '肯尼亚',
+    en: 'Kenya',
+    tel: '254',
+  }, {
+    short: 'KG',
+    name: '吉尔吉斯坦',
+    en: 'Kyrgyzstan',
+    tel: '331',
+  }, {
+    short: 'KH',
+    name: '柬埔寨',
+    en: 'Kampuchea(Cambodia)',
+    tel: '855',
+  }, {
+    short: 'KP',
+    name: '朝鲜',
+    en: 'NorthKorea',
+    tel: '850',
+  }, {
+    short: 'KR',
+    name: '韩国',
+    en: 'Korea',
+    tel: '82',
+  }, {
+    short: 'KW',
+    name: '科威特',
+    en: 'Kuwait',
+    tel: '965',
+  }, {
+    short: 'KZ',
+    name: '哈萨克斯坦',
+    en: 'Kazakstan',
+    tel: '327',
+  }, {
+    short: 'LA',
+    name: '老挝',
+    en: 'Laos',
+    tel: '856',
+  }, {
+    short: 'LB',
+    name: '黎巴嫩',
+    en: 'Lebanon',
+    tel: '961',
+  }, {
+    short: 'LC',
+    name: '圣卢西亚',
+    en: 'St.Lucia',
+    tel: '1758',
+  }, {
+    short: 'LI',
+    name: '列支敦士登',
+    en: 'Liechtenstein',
+    tel: '423',
+  }, {
+    short: 'LK',
+    name: '斯里兰卡',
+    en: 'SriLanka',
+    tel: '94',
+  }, {
+    short: 'LR',
+    name: '利比里亚',
+    en: 'Liberia',
+    tel: '231',
+  }, {
+    short: 'LS',
+    name: '莱索托',
+    en: 'Lesotho',
+    tel: '266',
+  }, {
+    short: 'LT',
+    name: '立陶宛',
+    en: 'Lithuania',
+    tel: '370',
+  }, {
+    short: 'LY',
+    name: '利比亚',
+    en: 'Libya',
+    tel: '218',
+  }, {
+    short: 'MA',
+    name: '摩洛哥',
+    en: 'Morocco',
+    tel: '212',
+  }, {
+    short: 'MC',
+    name: '摩纳哥',
+    en: 'Monaco',
+    tel: '377',
+  }, {
+    short: 'MD',
+    name: '摩尔多瓦',
+    en: 'Moldova,Republicof',
+    tel: '373',
+  }, {
+    short: 'MG',
+    name: '马达加斯加',
+    en: 'Madagascar',
+    tel: '261',
+  }, {
+    short: 'ML',
+    name: '马里',
+    en: 'Mali',
+    tel: '223',
+  }, {
+    short: 'MM',
+    name: '缅甸',
+    en: 'Burma',
+    tel: '95',
+  }, {
+    short: 'MN',
+    name: '蒙古',
+    en: 'Mongolia',
+    tel: '976',
+  }, {
+    short: 'MO',
+    name: '澳门',
+    en: 'Macao',
+    tel: '853',
+  }, {
+    short: 'MV',
+    name: '马尔代夫',
+    en: 'Maldives',
+    tel: '960',
+  }, {
+    short: 'MX',
+    name: '墨西哥',
+    en: 'Mexico',
+    tel: '52',
+  }, {
+    short: 'MY',
+    name: '马来西亚',
+    en: 'Malaysia',
+    tel: '60',
+  }, {
+    short: 'NL',
+    name: '荷兰',
+    en: 'Netherlands',
+    tel: '31',
+  }, {
+    short: 'NO',
+    name: '挪威',
+    en: 'Norway',
+    tel: '47',
+  }, {
+    short: 'NZ',
+    name: '新西兰',
+    en: 'NewZealand',
+    tel: '64',
+  }, {
+    short: 'PA',
+    name: '巴拿马',
+    en: 'Panama',
+    tel: '507',
+  }, {
+    short: 'PH',
+    name: '菲律宾',
+    en: 'Philippines',
+    tel: '63',
+  }, {
+    short: 'PK',
+    name: '巴基斯坦',
+    en: 'Pakistan',
+    tel: '92',
+  }, {
+    short: 'PR',
+    name: '波多黎各',
+    en: 'PuertoRico',
+    tel: '1787',
+  }, {
+    short: 'PT',
+    name: '葡萄牙',
+    en: 'Portugal',
+    tel: '351',
+  }, {
+    short: 'RU',
+    name: '俄罗斯',
+    en: 'Russia',
+    tel: '7',
+  }, {
+    short: 'SE',
+    name: '瑞典',
+    en: 'Sweden',
+    tel: '46',
+  }, {
+    short: 'SG',
+    name: '新加坡',
+    en: 'Singapore',
+    tel: '65',
+  }, {
+    short: 'SO',
+    name: '索马里',
+    en: 'Somali',
+    tel: '252',
+  }, {
+    short: 'SV',
+    name: '萨尔瓦多',
+    en: 'EISalvador',
+    tel: '503',
+  }, {
+    short: 'SY',
+    name: '叙利亚',
+    en: 'Syria',
+    tel: '963',
+  }, {
+    short: 'TH',
+    name: '泰国',
+    en: 'Thailand',
+    tel: '66',
+  }, {
+    short: 'TJ',
+    name: '塔吉克斯坦',
+    en: 'Tajikstan',
+    tel: '992',
+  }, {
+    short: 'TM',
+    name: '土库曼斯坦',
+    en: 'Turkmenistan',
+    tel: '993',
+  }, {
+    short: 'TO',
+    name: '汤加',
+    en: 'Tonga',
+    tel: '676',
+  }, {
+    short: 'TR',
+    name: '土耳其',
+    en: 'Turkey',
+    tel: '90',
+  }, {
+    short: 'TT',
+    name: '特立尼达和多巴哥',
+    en: 'TrinidadandTobago',
+    tel: '1809',
+  }, {
+    short: 'TW',
+    name: '台湾省',
+    en: 'Taiwan',
+    tel: '886',
+  }, {
+    short: 'TZ',
+    name: '坦桑尼亚',
+    en: 'Tanzania',
+    tel: '255',
+  }, {
+    short: 'UA',
+    name: '乌克兰',
+    en: 'Ukraine',
+    tel: '380',
+  }, {
+    short: 'UG',
+    name: '乌干达',
+    en: 'Uganda',
+    tel: '256',
+  }, {
+    short: 'US',
+    name: '美国',
+    en: 'UnitedStatesofAmerica',
+    tel: '1',
+  }, {
+    short: 'VN',
+    name: '越南',
+    en: 'Vietnam',
+    tel: '84',
+  }, {
+    short: 'ZA',
+    name: '南非',
+    en: 'SouthAfrica',
+    tel: '27',
+  }, {
+    short: 'ZM',
+    name: '赞比亚',
+    en: 'Zambia',
+    tel: '260',
+  }, {
+    short: 'ZW',
+    name: '津巴布韦',
+    en: 'Zimbabwe',
+    tel: '263',
+  },
+]
+
+export default data
