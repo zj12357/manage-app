@@ -47,5 +47,5 @@ export function checkStatus(
     default:
   }
   if (errMessage)
-    showNotify({ type: 'danger', message: '通知内容' })
+    showNotify({ type: 'danger', message: '请求错误' })
 }

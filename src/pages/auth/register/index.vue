@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { showNotify } from 'vant'
-import { getStorage } from '~/utils/storage'
+import { getStorage, setStorage } from '~/utils/storage'
 import authLock from '~/assets/images/icons/icon_auth_lock.png'
 import authSafe from '~/assets/images/icons/icon_auth_safe.png'
 import authUser from '~/assets/images/icons/icon_auth_user.png'
@@ -31,6 +31,7 @@ const state = reactive({
   currentCountryCode: '86',
   currentCountryName: 'CN',
   captchaLink: `${API_URL}/api/captcha?${Date.now()}`,
+  rememberAccount: true,
 })
 
 function toPage(path: string) {
@@ -53,6 +54,10 @@ async function onSubmit(values: any) {
       type: 'success',
       message: res.msg,
     })
+    if (values.rememberAccount) {
+      setStorage('username', values.username)
+      setStorage('password', values.password)
+    }
 
     userToken.setToken(res.data.token)
     toPage('/')
@@ -87,7 +92,13 @@ function handleCaptchaLink() {
             v-model="state.params.username"
             name="username"
             placeholder="请填写用户名"
-            :rules="[{ pattern: /^[A-Za-z0-9]{6,12}$/, message: '请填写6到12位字母或者数字' }, { required: true, message: '请填写用户名' }]"
+            :rules="[
+              {
+                pattern: /^[A-Za-z0-9]{6,12}$/,
+                message: '请填写6到12位字母或者数字',
+              },
+              { required: true, message: '请填写用户名' },
+            ]"
           >
             <template #label>
               <img
@@ -101,7 +112,10 @@ function handleCaptchaLink() {
             v-model="state.params.mobile"
             name="mobile"
             placeholder="请填写手机号"
-            :rules="[{ pattern: /^\d*$/, message: '请填写数字' }, { required: true, message: '请填写手机号' }]"
+            :rules="[
+              { pattern: /^\d*$/, message: '请填写数字' },
+              { required: true, message: '请填写手机号' },
+            ]"
           >
             <template #label>
               <img
@@ -155,7 +169,13 @@ function handleCaptchaLink() {
             name="password"
             placeholder="请填写密码"
             maxlength="12"
-            :rules="[{ pattern: /^[A-Za-z0-9]{6,12}$/, message: '请填写6到12位字母或者数字' }, { required: true, message: '请填写密码' }]"
+            :rules="[
+              {
+                pattern: /^[A-Za-z0-9]{6,12}$/,
+                message: '请填写6到12位字母或者数字',
+              },
+              { required: true, message: '请填写密码' },
+            ]"
           >
             <template #label>
               <img
@@ -172,13 +192,16 @@ function handleCaptchaLink() {
             placeholder="请填写确认密码"
             maxlength="12"
             :rules="[
-              { pattern: /^[A-Za-z0-9]{6,12}$/, message: '请填写6到12位字母或者数字' },
+              {
+                pattern: /^[A-Za-z0-9]{6,12}$/,
+                message: '请填写6到12位字母或者数字',
+              },
               { required: true, message: '请填写确认密码' },
               {
                 validator: (val) => {
                   return val === state.params.password;
                 },
-                message: '两次密码输入的不一致',
+                message: '两次密码输入不一致',
               },
             ]"
           >
@@ -195,7 +218,10 @@ function handleCaptchaLink() {
             name="captcha"
             placeholder="请填写验证码"
             maxlength="4"
-            :rules="[{ pattern: /^\d{4}$/, message: '请填写4位数字验证码' }, { required: true, message: '请填写验证码' }]"
+            :rules="[
+              { pattern: /^\d{4}$/, message: '请填写4位数字验证码' },
+              { required: true, message: '请填写验证码' },
+            ]"
           >
             <template #label>
               <img :src="authSafe" class="relative top-0 w-[28px]" alt="" />
@@ -209,6 +235,17 @@ function handleCaptchaLink() {
               />
             </template>
           </van-field>
+          <div class="relative w-full">
+            <div class="absolute right-0">
+              <van-field name="rememberAccount">
+                <template #input>
+                  <van-checkbox v-model="state.rememberAccount">
+                    记住账号
+                  </van-checkbox>
+                </template>
+              </van-field>
+            </div>
+          </div>
         </van-cell-group>
 
         <div class="mb-[20px] mt-[80px]">

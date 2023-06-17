@@ -26,7 +26,8 @@ import balance from '../balance.vue'
             name="name"
             label="交易密码"
             placeholder="请填写交易密码"
-            :rules="[{ required: true, message: '请填写交易密码' }]"
+            maxlength="6"
+            :rules="[{ required: true, message: '请填写交易密码' }, { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' }]"
           />
         </div>
         <div class="my-[14px] w-full text-assist5">

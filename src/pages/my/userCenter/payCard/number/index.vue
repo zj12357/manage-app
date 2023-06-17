@@ -1,12 +1,35 @@
 <script setup lang="ts">
-const cardInfo = reactive({
-  username: '',
+import { showNotify } from 'vant'
+
+const router = useRouter()
+const { fetchGlobalUserInfo } = useGlobalData()
+
+const state = reactive({
+  remark: '',
+  style: 'TRC20',
+  wallet: '',
   trade_password: '',
-  checked: 1,
 })
 
-function onSubmit(values: any) {
-  console.log('submit', values)
+function toPage(path: string) {
+  router.push(path)
+}
+
+async function onSubmit(values: any) {
+  const res = await addWallet({
+    remark: values.remark,
+    style: values.style,
+    wallet: values.wallet,
+    trade_password: values.trade_password,
+  })
+  if (res.code === 200) {
+    showNotify({
+      type: 'success',
+      message: res.msg,
+    })
+    fetchGlobalUserInfo()
+    toPage('/my/userCenter/payCard')
+  }
 }
 </script>
 
@@ -17,36 +40,29 @@ function onSubmit(values: any) {
       <van-form @submit="onSubmit">
         <van-cell-group>
           <van-field
-            v-model="cardInfo.username"
-            name="username"
+            v-model="state.remark"
+            name="remark"
             label="别名名称"
             required
             placeholder="请输入别名名称"
             :rules="[{ required: true, message: '请输入别名名称' }]"
           />
-          <van-field
-            v-model="cardInfo.username"
-            name="username"
-            label="虚拟币种类"
-            required
-            placeholder="请输入虚拟币种类"
-            :rules="[{ required: true, message: '请输入虚拟币种类' }]"
-          />
-          <van-field label="虚拟币协议" required name="username" :rules="[{ required: true, message: '请选择虚拟币协议' }]">
+
+          <van-field label="虚拟币协议" required name="style" :rules="[{ required: true, message: '请选择虚拟币协议' }]">
             <template #input>
-              <van-radio-group v-model="cardInfo.checked" direction="horizontal">
-                <van-radio name="1">
+              <van-radio-group v-model="state.style" direction="horizontal">
+                <van-radio name="TRC20">
                   TRC20
                 </van-radio>
-                <van-radio name="2">
+                <van-radio name="ERC20">
                   ERC20
                 </van-radio>
               </van-radio-group>
             </template>
           </van-field>
           <van-field
-            v-model="cardInfo.username"
-            name="username"
+            v-model="state.wallet"
+            name="wallet"
             label="虚拟币地址"
             required
             placeholder="请输入虚拟币地址"
@@ -54,13 +70,14 @@ function onSubmit(values: any) {
           />
 
           <van-field
-            v-model="cardInfo.trade_password"
+            v-model="state.trade_password"
             type="password"
-            name="password"
+            name="trade_password"
             label="交易密码"
             required
             placeholder="请填写交易密码"
-            :rules="[{ required: true, message: '请填写交易密码' }]"
+            maxlength="6"
+            :rules="[{ required: true, message: '请填写交易密码' }, { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' }]"
           />
         </van-cell-group>
         <div class="mt-[20px] w-full flex-center">

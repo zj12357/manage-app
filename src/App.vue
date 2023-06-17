@@ -32,9 +32,9 @@ function setInitTime() {
     countTime += 1
     state.progress = `${(Math.random() * 10 + countTime * 20).toFixed(2)}%`
     if (countTime > 4) {
-      state.progress = '100%'
       common.setInitLoad(true)
       clearInterval(time)
+      state.progress = '0%'
     }
   }, 1000)
 }
@@ -43,6 +43,10 @@ onMounted(() => {
   setInitTime()
   userToken.getToken() && fetchGlobalUserInfo()
   fetchGlobalConfigs()
+})
+watch(initLoad, (newValue, oldValue) => {
+  if (newValue)
+    setInitTime()
 })
 </script>
 

@@ -14,6 +14,8 @@ declare global {
   const ResultEnum: typeof import('./enums/httpEnum')['ResultEnum']
   const VIEWPORTWIDTH: typeof import('./common/constants')['VIEWPORTWIDTH']
   const addClass: typeof import('./utils/tools')['addClass']
+  const addTradePassword: typeof import('./api/user')['addTradePassword']
+  const addWallet: typeof import('./api/user')['addWallet']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const compose: typeof import('./utils/tools')['compose']
@@ -66,6 +68,7 @@ declare global {
   const getType: typeof import('./utils/tools')['getType']
   const getUserBalance: typeof import('./api/user')['getUserBalance']
   const getUserInfo: typeof import('./api/user')['getUserInfo']
+  const getWallet: typeof import('./api/user')['getWallet']
   const getWindowHeight: typeof import('./utils/tools')['getWindowHeight']
   const goExitFullscreen: typeof import('./utils/tools')['goExitFullscreen']
   const goToFullScreen: typeof import('./utils/tools')['goToFullScreen']
@@ -191,6 +194,8 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const updatePassword: typeof import('./api/user')['updatePassword']
+  const updateTradePassword: typeof import('./api/user')['updateTradePassword']
   const updateUserInfo: typeof import('./api/user')['updateUserInfo']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
@@ -401,6 +406,8 @@ declare module 'vue' {
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
     readonly addClass: UnwrapRef<typeof import('./utils/tools')['addClass']>
+    readonly addTradePassword: UnwrapRef<typeof import('./api/user')['addTradePassword']>
+    readonly addWallet: UnwrapRef<typeof import('./api/user')['addWallet']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
@@ -450,6 +457,7 @@ declare module 'vue' {
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
+    readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
     readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
@@ -568,6 +576,8 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updatePassword: UnwrapRef<typeof import('./api/user')['updatePassword']>
+    readonly updateTradePassword: UnwrapRef<typeof import('./api/user')['updateTradePassword']>
     readonly updateUserInfo: UnwrapRef<typeof import('./api/user')['updateUserInfo']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
@@ -770,6 +780,8 @@ declare module '@vue/runtime-core' {
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
     readonly addClass: UnwrapRef<typeof import('./utils/tools')['addClass']>
+    readonly addTradePassword: UnwrapRef<typeof import('./api/user')['addTradePassword']>
+    readonly addWallet: UnwrapRef<typeof import('./api/user')['addWallet']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
@@ -819,6 +831,7 @@ declare module '@vue/runtime-core' {
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
+    readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
     readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
@@ -937,6 +950,8 @@ declare module '@vue/runtime-core' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updatePassword: UnwrapRef<typeof import('./api/user')['updatePassword']>
+    readonly updateTradePassword: UnwrapRef<typeof import('./api/user')['updateTradePassword']>
     readonly updateUserInfo: UnwrapRef<typeof import('./api/user')['updateUserInfo']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>

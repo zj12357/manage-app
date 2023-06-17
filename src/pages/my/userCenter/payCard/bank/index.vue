@@ -68,7 +68,8 @@ function onSubmit(values: any) {
             label="交易密码"
             required
             placeholder="请填写交易密码"
-            :rules="[{ required: true, message: '请填写交易密码' }]"
+            maxlength="6"
+            :rules="[{ required: true, message: '请填写交易密码' }, { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' }]"
           />
         </van-cell-group>
         <div class="mt-[20px] w-full flex-center">

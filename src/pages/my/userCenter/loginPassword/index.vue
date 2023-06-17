@@ -1,12 +1,31 @@
 <script setup lang="ts">
-const passwordInfo = reactive({
+import { showNotify } from 'vant'
+
+const router = useRouter()
+const { fetchGlobalUserInfo } = useGlobalData()
+const state = reactive({
   password: '',
   new_password: '',
   confirm_password: '',
 })
 
-function onSubmit(values: any) {
-  console.log('submit', values)
+function toPage(path: string) {
+  router.push(path)
+}
+
+async function onSubmit(values: any) {
+  const res = await updatePassword({
+    password: values.password,
+    new_password: values.new_password,
+  })
+  if (res.code === 200) {
+    showNotify({
+      type: 'success',
+      message: res.msg,
+    })
+    fetchGlobalUserInfo()
+    toPage('/my/userCenter')
+  }
 }
 </script>
 
@@ -17,7 +36,7 @@ function onSubmit(values: any) {
       <van-form @submit="onSubmit">
         <van-cell-group>
           <van-field
-            v-model="passwordInfo.password"
+            v-model="state.password"
             type="password"
             name="password"
             label="旧登录密码"
@@ -26,7 +45,7 @@ function onSubmit(values: any) {
             :rules="[{ required: true, message: '请填写旧登录密码' }]"
           />
           <van-field
-            v-model="passwordInfo.new_password"
+            v-model="state.new_password"
             type="password"
             name="new_password"
             label="新登录密码"
@@ -35,13 +54,21 @@ function onSubmit(values: any) {
             :rules="[{ required: true, message: '请填写新登录密码' }]"
           />
           <van-field
-            v-model="passwordInfo.confirm_password"
+            v-model="state.confirm_password"
             type="password"
             name="confirm_password"
-            label="确定密码"
+            label="确认密码"
             required
-            placeholder="请填写确定密码"
-            :rules="[{ required: true, message: '请填写确定密码' }]"
+            placeholder="请填写确认密码"
+            :rules="[
+              { required: true, message: '请填写确认密码' },
+              {
+                validator: (val) => {
+                  return val === state.new_password;
+                },
+                message: '两次密码输入不一致',
+              },
+            ]"
           />
         </van-cell-group>
         <div class="mt-[40px] w-full flex-center">
@@ -56,9 +83,7 @@ function onSubmit(values: any) {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 
 <route lang="yaml">
 meta:

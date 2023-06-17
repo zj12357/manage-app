@@ -8,6 +8,11 @@ enum Api {
   APP_GET_USERINFO = '/api/userInfo', // 获取用户信息
   APP_GET_BALANCE = '/api/balance', // 获取用户余额
   APP_UPDATE_USERINFO = '/api/updateUserInfo', // 更新用户信息
+  APP_UPDATE_PASSWORD = '/api/updatePassword', // 更新用户登录密码
+  APP_UPDATE_TRADEPASSWORD = '/api/updateTradePassword', // 更新资金密码接口
+  APP_ADD_TRADEPASSWORD = '/api/addTradePassword', // 设置资金密码接口
+  APP_ADD_WALLET = '/api/addWallet', // 绑定USDT钱包
+  APP_GET_WALLET = '/api/wallets', // 获取数字钱包
 }
 
 export function userRegister(params: any) {
@@ -24,10 +29,10 @@ export function userLogin(params: any) {
   )
 }
 
-export function userLoginOut(params: any) {
+export function userLoginOut() {
   return deffHttp.post(
-    { url: Api.APP_LOGIN_OUT, data: params },
-    { errorMessageMode: 'message', withToken: false },
+    { url: Api.APP_LOGIN_OUT },
+    { errorMessageMode: 'message', withToken: true },
   )
 }
 
@@ -48,6 +53,41 @@ export function getUserBalance() {
 export function updateUserInfo(params: any) {
   return deffHttp.post(
     { url: Api.APP_UPDATE_USERINFO, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function updatePassword(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_UPDATE_PASSWORD, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function updateTradePassword(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_UPDATE_TRADEPASSWORD, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function addTradePassword(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_ADD_TRADEPASSWORD, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function addWallet(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_ADD_WALLET, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function getWallet(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_GET_WALLET, data: params },
     { errorMessageMode: 'message', withToken: true },
   )
 }

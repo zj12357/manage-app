@@ -27,6 +27,7 @@ const interceptor: AxiosInterceptor = {
 
         else if (errorMessageMode === 'message')
           showNotify({ type: 'danger', message: data.msg })
+
         return errorData(res)
       }
       else {
@@ -91,6 +92,10 @@ const interceptor: AxiosInterceptor = {
     const errorMessageMode
             = config.requestOptions.errorMessageMode || 'none'
     checkStatus(response ? response.status : 404, errorMessageMode)
+    if (response?.status === 401) {
+      userToken.clearToken()
+      window.location.reload()
+    }
     return error
   },
 }
