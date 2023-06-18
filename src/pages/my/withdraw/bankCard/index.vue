@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import balance from '../balance.vue'
+
+const common = useCommonStore()
+const state = reactive({
+  money: '',
+  trade_password: '',
+})
 </script>
 
 <template>
@@ -15,7 +21,15 @@ import balance from '../balance.vue'
           name="amount"
           label="￥"
           placeholder="请填写赎回金额"
-          :rules="[{ required: true, message: '请填写赎回金额' }]"
+          :rules="[{ required: true, message: '请填写赎回金额' }, {
+            validator: (val) => {
+
+              return (
+                common.config.withdraw_min <= val && val <= common.config.withdraw_max
+              );
+            },
+            message: `单笔赎回范围：${common.config.withdraw_min} - ${common.config.withdraw_max}￥`,
+          }]"
         />
         <div class="mt-[10px] w-full flex-start-center py-[10px] text-sm">
           <span class="text-assist7">单笔赎回范围：</span>

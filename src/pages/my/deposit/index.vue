@@ -3,17 +3,18 @@ import bankCard from '~/assets/images/icons/icon_bank_card.png'
 import numberCard from '~/assets/images/icons/icon_number_card.png'
 
 const router = useRouter()
+const common = useCommonStore()
 const cardNavList = [
   {
     icon: bankCard,
     cardName: '银联存入',
-    des: '单笔 100 - 1,000,000',
+    des: `单笔 ${common.config.depost_min}  -  ${common.config.depost_max}`,
     path: '/my/deposit/bank',
   },
   {
     icon: numberCard,
     cardName: '数字货币存入',
-    des: '单笔 100 - 1,000,000',
+    des: `单笔 ${common.config.depost_min}  -  ${common.config.depost_max}`,
     path: '/my/deposit/number',
   },
 ]
@@ -26,7 +27,7 @@ function toPage(path: string) {
 <template>
   <div class="w-full">
     <NavBar title="存入方式" />
-    <div class="w-full flex-col-center px-[20px] pt-[10px]">
+    <div class="w-full flex-col-center p-[20px]">
       <div
         v-for="(item, index) in cardNavList"
         :key="index"

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import tradeBalanceDown from '~/assets/images/user/trade_balance_down.png'
 import tradeBalance from '~/assets/images/user/trade_balance_bg.png'
+
+const user = useUserStore()
 </script>
 
 <template>
@@ -10,7 +12,7 @@ import tradeBalance from '~/assets/images/user/trade_balance_bg.png'
         资产总额&nbsp;¥
       </p>
       <p class="mt-[12px] w-full text-nowrap-ellipsis text-xl font-500 text-assist3">
-        123123123123123112312312312312311231231231231231
+        {{ user.balance.toFixed(2) }}
       </p>
     </div>
     <img :src="tradeBalanceDown" class="bottom-[5px] z-[9] w-[340px] absolute-row-center" alt="" />

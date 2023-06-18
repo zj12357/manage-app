@@ -1,12 +1,39 @@
 <script setup lang="ts">
-const passwordInfo = reactive({
-  username: '',
-  trade_password: '',
+import { showNotify } from 'vant'
 
+const router = useRouter()
+const user = useUserStore()
+const state = reactive({
+  card_name: user.userInfo.real_name,
+  card_number: '',
+  start_bank: '',
+  province: '',
+  city: '',
+  branch_name: '',
+  trade_password: '',
 })
 
-function onSubmit(values: any) {
+function toPage(path: string) {
+  router.push(path)
+}
+async function onSubmit(values: any) {
   console.log('submit', values)
+  const res = await addCard({
+    card_name: values.card_name,
+    card_number: values.card_number,
+    start_bank: values.start_bank,
+    province: values.province,
+    city: values.city,
+    branch_name: values.branch_name,
+    trade_password: values.trade_password,
+  })
+  if (res.code === 200) {
+    showNotify({
+      type: 'success',
+      message: res.msg,
+    })
+    toPage('/my/userCenter/payCard?id=0')
+  }
 }
 </script>
 
@@ -17,54 +44,51 @@ function onSubmit(values: any) {
       <van-form @submit="onSubmit">
         <van-cell-group>
           <van-field
-            v-model="passwordInfo.username"
-            name="username"
+            v-model="state.card_name"
+            name="card_name"
             label="姓名"
             required
             placeholder="请输入持卡人姓名"
             :rules="[{ required: true, message: '请输入持卡人姓名' }]"
           />
           <van-field
-            v-model="passwordInfo.username"
-            name="username"
+            v-model="state.card_number"
+            name="card_number"
             label="卡号"
             required
             placeholder="请输入银行卡号"
             :rules="[{ required: true, message: '请输入银行卡号' }]"
           />
           <van-field
-            v-model="passwordInfo.username"
-            name="username"
+            v-model="state.start_bank"
+            name="start_bank"
             label="开户行"
             required
             placeholder="请输入开户银行"
             :rules="[{ required: true, message: '请输入开户银行' }]"
           />
           <van-field
-            v-model="passwordInfo.username"
-            name="username"
+            v-model="state.province"
+            name="province"
             label="开户省份"
             placeholder="请输入开户省份"
-            :rules="[{ required: true, message: '请输入开户省份' }]"
           />
           <van-field
-            v-model="passwordInfo.username"
-            name="username"
+            v-model="state.city"
+            name="city"
             label="开户城市"
             placeholder="请输入开户城市"
-            :rules="[{ required: true, message: '请输入开户城市' }]"
           />
           <van-field
-            v-model="passwordInfo.username"
-            name="username"
+            v-model="state.branch_name"
+            name="branch_name"
             label="支行名称"
             placeholder="如:湖北武汉市工商银行某某支行"
-            :rules="[{ required: true, message: '请输入支行名称' }]"
           />
           <van-field
-            v-model="passwordInfo.trade_password"
+            v-model="state.trade_password"
             type="password"
-            name="password"
+            name="trade_password"
             label="交易密码"
             required
             placeholder="请填写交易密码"

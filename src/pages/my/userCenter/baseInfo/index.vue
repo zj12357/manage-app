@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showConfirmDialog, showNotify } from 'vant'
 import avatar from '~/assets/images/user/avatar.png'
 
 const user = useUserStore()
@@ -26,7 +26,18 @@ async function onSubmit(values: any) {
       message: res.msg,
     })
     fetchGlobalUserInfo()
-    toPage('/my/userCenter')
+    if (!user.userInfo.trade_password) {
+      showConfirmDialog({
+        title: '温馨提示',
+        message: '您还未设置交易密码',
+        className: 'app-dialog',
+      }).then((result) => {
+        router.push('/my/userCenter/tradePassword')
+      })
+    }
+    else {
+      toPage('/my/userCenter/payCard')
+    }
   }
 }
 </script>

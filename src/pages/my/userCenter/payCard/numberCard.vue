@@ -1,14 +1,27 @@
 <script setup lang="ts">
+import { showConfirmDialog } from 'vant'
 import noBankCard from '~/assets/images/user/no_bank_card.png'
 import warn from '~/assets/images/icons/icon_user_warn.png'
 import number_card_bg from '~/assets/images/user/number_card_bg.png'
 import icon_number_card from '~/assets/images/icons/icon_number_card.png'
 
 const router = useRouter()
+const user = useUserStore()
 const loading = ref(true)
 const cardList = ref<any[]>([])
 function toPage(path: string) {
-  router.push(path)
+  if (!user.userInfo.real_name) {
+    showConfirmDialog({
+      title: '温馨提示',
+      message: '您还未完善个人资料',
+      className: 'app-dialog',
+    }).then((result) => {
+      router.push('/my/userCenter/baseInfo')
+    })
+  }
+  else {
+    router.push(path)
+  }
 }
 
 async function fetchGetWallet() {
@@ -59,16 +72,16 @@ onMounted(() => {
         </p>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="w-full pt-[20px]">
       <div v-for="(item, index) in cardList" :key="index" class="h-[147px] w-full flex-start-center bg-center-cover p-[20px]" :style="{ backgroundImage: `url(${number_card_bg})` }">
         <div class="h-[42px] w-[42px] flex-center rounded-[50%] bg-white">
           <img :src="icon_number_card" class="w-[32px]" alt="" />
         </div>
-        <div class="ml-[20px] text-md text-white">
-          <p class="mb-[14px]">
+        <div class="ml-[20px] break-all text-md text-white">
+          <p class="mb-[14px] break-all">
             别名：{{ item.alias }}
           </p>
-          <p class="mb-[14px]">
+          <p class="mb-[14px] break-all">
             {{ item.style }}
           </p>
           <p>

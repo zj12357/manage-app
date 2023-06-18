@@ -7,6 +7,7 @@ import authUser from '~/assets/images/icons/icon_auth_user.png'
 import authMobile from '~/assets/images/icons/icon_auth_mobile.png'
 
 const route = useRoute()
+const { fetchGlobalUserInfo } = useGlobalData()
 const router = useRouter()
 const navList = [
   {

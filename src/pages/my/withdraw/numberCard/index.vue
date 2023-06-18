@@ -1,5 +1,25 @@
 <script setup lang="ts">
+import { showNotify } from 'vant'
 import balance from '../balance.vue'
+
+const common = useCommonStore()
+const state = reactive({
+  money: '',
+  trade_password: '',
+})
+async function onSubmit(values: any) {
+  const res = await userWithdraw({
+    style: 2,
+    money: values.money,
+    trade_password: values.trade_password,
+  })
+  if (res.code === 200) {
+    showNotify({
+      type: 'success',
+      message: res.msg,
+    })
+  }
+}
 </script>
 
 <template>
@@ -9,33 +29,50 @@ import balance from '../balance.vue'
       <h2 class="mb-[10px] text-md">
         赎回金额
       </h2>
-      <van-form>
+      <van-form @submit="onSubmit">
         <van-field
+          v-model="state.money"
           class="app-money"
-          name="amount"
+          name="money"
           label="￥"
           placeholder="请填写赎回金额"
-          :rules="[{ required: true, message: '请填写赎回金额' }]"
+          :rules="[
+            { required: true, message: '请填写赎回金额' },
+            {
+              validator: (val) => {
+
+                return (
+                  common.config.withdraw_min < val && val < common.config.withdraw_max
+                );
+              },
+              message: `单笔赎回范围：${common.config.withdraw_min} - ${common.config.withdraw_max}￥`,
+            },
+          ]"
         />
         <div class="mt-[10px] w-full flex-start-center py-[10px] text-sm">
           <span class="text-assist7">单笔赎回范围：</span>
-          <span class="text-primary">100 - 10,000,000￥</span>
+          <span class="text-primary">{{ common.config.withdraw_min }} -
+            {{ common.config.withdraw_max }}￥</span>
         </div>
         <div class="mt-[10px] w-full border-b-solid border-light">
           <van-field
-            name="name"
+            v-model="state.trade_password"
+            name="trade_password"
             label="交易密码"
             placeholder="请填写交易密码"
             maxlength="6"
-            :rules="[{ required: true, message: '请填写交易密码' }, { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' }]"
+            :rules="[
+              { required: true, message: '请填写交易密码' },
+              { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' },
+            ]"
           />
         </div>
-        <div class="my-[14px] w-full text-assist5">
+        <!-- <div class="my-[14px] w-full text-assist5">
           <p class="mb-[4px]">
             预计到账： <span class="text-primary">1.269394</span>  USDT
           </p>
           <p>参考汇率为1USDT ≈ 7.09CNY</p>
-        </div>
+        </div> -->
 
         <div class="mt-[30px] w-full flex-center">
           <div class="w-[300px]">

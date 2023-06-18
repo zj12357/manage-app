@@ -13,8 +13,10 @@ enum Api {
   APP_ADD_TRADEPASSWORD = '/api/addTradePassword', // 设置资金密码接口
   APP_ADD_WALLET = '/api/addWallet', // 绑定USDT钱包
   APP_GET_WALLET = '/api/wallets', // 获取数字钱包
-  APP_ADD_CARD = '/api/addCard', // 获取银行卡
+  APP_ADD_CARD = '/api/addCard', // 添加银行卡
   APP_GET_CARD = '/api/cards', // 获取银行卡
+  APP_WITHDRAW = '/api/withdraw', // 用户提现
+  APP_RECHARGE = '/api/recharge', // 用户充值
 }
 
 export function userRegister(params: any) {
@@ -87,9 +89,9 @@ export function addWallet(params: any) {
   )
 }
 
-export function getWallet(params: any) {
+export function getWallet() {
   return deffHttp.post(
-    { url: Api.APP_GET_WALLET, data: params },
+    { url: Api.APP_GET_WALLET },
     { errorMessageMode: 'message', withToken: true },
   )
 }
@@ -101,9 +103,23 @@ export function addCard(params: any) {
   )
 }
 
-export function getCard(params: any) {
+export function getCard() {
   return deffHttp.post(
-    { url: Api.APP_GET_CARD, data: params },
+    { url: Api.APP_GET_CARD },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function userWithdraw(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_WITHDRAW, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function userRecharge(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_RECHARGE, data: params },
     { errorMessageMode: 'message', withToken: true },
   )
 }

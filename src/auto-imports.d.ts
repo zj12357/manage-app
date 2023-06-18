@@ -368,8 +368,10 @@ declare global {
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
   const userLogin: typeof import('./api/user')['userLogin']
   const userLoginOut: typeof import('./api/user')['userLoginOut']
+  const userRecharge: typeof import('./api/user')['userRecharge']
   const userRegister: typeof import('./api/user')['userRegister']
   const userToken: typeof import('./common/token')['userToken']
+  const userWithdraw: typeof import('./api/user')['userWithdraw']
   const viteConfig: typeof import('../vite.config')['default']
   const waitTime: typeof import('./utils/tools')['waitTime']
   const watch: typeof import('vue')['watch']
@@ -751,8 +753,10 @@ declare module 'vue' {
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly userLogin: UnwrapRef<typeof import('./api/user')['userLogin']>
     readonly userLoginOut: UnwrapRef<typeof import('./api/user')['userLoginOut']>
+    readonly userRecharge: UnwrapRef<typeof import('./api/user')['userRecharge']>
     readonly userRegister: UnwrapRef<typeof import('./api/user')['userRegister']>
     readonly userToken: UnwrapRef<typeof import('./common/token')['userToken']>
+    readonly userWithdraw: UnwrapRef<typeof import('./api/user')['userWithdraw']>
     readonly waitTime: UnwrapRef<typeof import('./utils/tools')['waitTime']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
@@ -1127,8 +1131,10 @@ declare module '@vue/runtime-core' {
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly userLogin: UnwrapRef<typeof import('./api/user')['userLogin']>
     readonly userLoginOut: UnwrapRef<typeof import('./api/user')['userLoginOut']>
+    readonly userRecharge: UnwrapRef<typeof import('./api/user')['userRecharge']>
     readonly userRegister: UnwrapRef<typeof import('./api/user')['userRegister']>
     readonly userToken: UnwrapRef<typeof import('./common/token')['userToken']>
+    readonly userWithdraw: UnwrapRef<typeof import('./api/user')['userWithdraw']>
     readonly waitTime: UnwrapRef<typeof import('./utils/tools')['waitTime']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
