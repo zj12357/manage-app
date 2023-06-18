@@ -6,6 +6,7 @@ import authSafe from '~/assets/images/icons/icon_auth_safe.png'
 import authUser from '~/assets/images/icons/icon_auth_user.png'
 import authMobile from '~/assets/images/icons/icon_auth_mobile.png'
 
+const imageModules = import.meta.globEager('~/assets/images/country/*.png')
 const route = useRoute()
 const { fetchGlobalUserInfo } = useGlobalData()
 const router = useRouter()
@@ -19,6 +20,8 @@ const navList = [
     path: '/auth/register',
   },
 ]
+
+const images = Object.values(imageModules).map((module: any) => module.default)
 
 const state = reactive({
   params: {
@@ -144,7 +147,7 @@ function handleCaptchaLink() {
                     @click="handleCountryCode(item)"
                   >
                     <img
-                      :src="`/src/assets/images/country/${item.short}.png`"
+                      :src="images[index]"
                       alt=""
                       class="w-[24px]"
                     />

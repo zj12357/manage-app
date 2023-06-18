@@ -9,11 +9,13 @@ const state = reactive({
   order_id: undefined,
   start_date: undefined as any,
   picker_date: undefined,
+  status: undefined as any,
   showPicker: false,
   choose_date: `${dayjs().format('YYYY-MM-DD')} - ${dayjs().format('YYYY-MM-DD')}`,
   loading: false,
   finished: false,
   page: 1,
+  limit: 10,
 })
 const router = useRouter()
 const depositTypeList = [
@@ -58,6 +60,9 @@ function initState() {
   state.recordList = []
   state.loading = false
   state.finished = false
+  state.status = undefined
+  state.order_id = undefined
+  state.start_date = undefined
 }
 
 function changeDepositType(type: number) {
@@ -69,14 +74,15 @@ function changeDepositType(type: number) {
 function changeStatusType(type: number) {
   initState()
   state.statusValue = type
+  state.status = type === 3 ? undefined : type
 }
 async function fetchGetUserRechargeRecord() {
   state.loading = true
   const res = await getUserRechargeRecord({
-    status: state.statusValue === 3 ? undefined : state.statusValue,
+    status: state.status,
     order_id: state.order_id,
     start_date: state.start_date,
-    limit: 10,
+    limit: state.limit,
     page: state.page,
   })
   if (res.code === 200) {

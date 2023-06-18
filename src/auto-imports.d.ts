@@ -66,10 +66,12 @@ declare global {
   const getNews: typeof import('./api/home')['getNews']
   const getNewsDetail: typeof import('./api/home')['getNewsDetail']
   const getNotice: typeof import('./api/home')['getNotice']
+  const getRooms: typeof import('./api/bet')['getRooms']
   const getScrollHeight: typeof import('./utils/tools')['getScrollHeight']
   const getType: typeof import('./utils/tools')['getType']
   const getUserBalance: typeof import('./api/user')['getUserBalance']
   const getUserInfo: typeof import('./api/user')['getUserInfo']
+  const getUserOrderRecord: typeof import('./api/user')['getUserOrderRecord']
   const getUserRechargeRecord: typeof import('./api/user')['getUserRechargeRecord']
   const getWallet: typeof import('./api/user')['getWallet']
   const getWindowHeight: typeof import('./utils/tools')['getWindowHeight']
@@ -408,7 +410,6 @@ declare module 'vue' {
     readonly CRYPTO_STORAGE_KEY: UnwrapRef<typeof import('./common/constants')['CRYPTO_STORAGE_KEY']>
     readonly ContentTypeEnum: UnwrapRef<typeof import('./enums/httpEnum')['ContentTypeEnum']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly IMAGE_API_URL: UnwrapRef<typeof import('./common/constants')['IMAGE_API_URL']>
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
@@ -462,10 +463,12 @@ declare module 'vue' {
     readonly getNews: UnwrapRef<typeof import('./api/home')['getNews']>
     readonly getNewsDetail: UnwrapRef<typeof import('./api/home')['getNewsDetail']>
     readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
+    readonly getRooms: UnwrapRef<typeof import('./api/bet')['getRooms']>
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
+    readonly getUserOrderRecord: UnwrapRef<typeof import('./api/user')['getUserOrderRecord']>
     readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>
     readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
@@ -789,7 +792,6 @@ declare module '@vue/runtime-core' {
     readonly CRYPTO_STORAGE_KEY: UnwrapRef<typeof import('./common/constants')['CRYPTO_STORAGE_KEY']>
     readonly ContentTypeEnum: UnwrapRef<typeof import('./enums/httpEnum')['ContentTypeEnum']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly IMAGE_API_URL: UnwrapRef<typeof import('./common/constants')['IMAGE_API_URL']>
     readonly RequestEnum: UnwrapRef<typeof import('./enums/httpEnum')['RequestEnum']>
     readonly ResultEnum: UnwrapRef<typeof import('./enums/httpEnum')['ResultEnum']>
     readonly VIEWPORTWIDTH: UnwrapRef<typeof import('./common/constants')['VIEWPORTWIDTH']>
@@ -843,10 +845,12 @@ declare module '@vue/runtime-core' {
     readonly getNews: UnwrapRef<typeof import('./api/home')['getNews']>
     readonly getNewsDetail: UnwrapRef<typeof import('./api/home')['getNewsDetail']>
     readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
+    readonly getRooms: UnwrapRef<typeof import('./api/bet')['getRooms']>
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
+    readonly getUserOrderRecord: UnwrapRef<typeof import('./api/user')['getUserOrderRecord']>
     readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>
     readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>

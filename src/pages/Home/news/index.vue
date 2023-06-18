@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import newsTitle from '~/assets/images/home/news_title.png'
 import newspaper from '~/assets/images/home/newspaper.png'
+import news_banner_01 from '~/assets/images/home/news_banner_01.png'
+import news_banner_02 from '~/assets/images/home/news_banner_02.png'
+import news_banner_03 from '~/assets/images/home/news_banner_03.png'
+
+const bannerList: Record<number, string> = {
+  0: news_banner_01,
+  1: news_banner_02,
+  2: news_banner_03,
+}
 
 const newsList = ref<any[]>([])
 
@@ -35,7 +44,7 @@ onMounted(() => {
       <div v-for="(item, index) in newsList" :key="index" class="mb-[14px] w-full px-[8px]" @click="toPage(`/home/news/detail?id=${item.id}`)">
         <div class="w-full flex-between-center border-b border-[#f0f0f0] border-dashed py-[10px]">
           <div class="h-[80px] w-[120px]">
-            <img :src="`/src/assets/images/home/news_banner_0${index + 1}.png`" alt="" class="img-cover rounded-[8px]" />
+            <img :src="bannerList[index]" alt="" class="img-cover rounded-[8px]" />
           </div>
           <div class="w-[188px]">
             <p class="news-content line-clamp-2 mb-[10px] text-wrap-ellipsis" v-html="item.content">

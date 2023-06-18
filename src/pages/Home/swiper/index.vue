@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const carouselList = ref<any>([])
 
+const common = useCommonStore()
 async function fetchGetCarousels() {
   const res = await getCarousels()
   if (res.code === 200)
@@ -17,7 +18,7 @@ onMounted(() => {
       <van-swipe-item v-for="(item, index) in carouselList" :key="index" class="rounded-[8px] bg-primary">
         <van-image
           class="img-cover rounded-[8px]"
-          :src="`${IMAGE_API_URL}/${item.image}`"
+          :src="`${common.config.img_url}${item.image}`"
         />
         <span>{{ item.image }}</span>
       </van-swipe-item>

@@ -28,7 +28,7 @@ async function onSubmit(values: any) {
       message: res.msg,
     })
     fetchGlobalUserInfo()
-    toPage('/my/userCenter/payCard?id=1')
+    toPage('/my/userCenter/payCard?id=0')
   }
 }
 </script>
