@@ -19,6 +19,7 @@ enum Api {
   APP_RECHARGE = '/api/recharge', // 用户充值
   APP_GET_RECHARGES = '/api/recharges', // 用户充值记录
   APP_GET_ORDERS = '/api/orders', // 用户交易记录
+  APP_GET_BILLS = '/api/bills', // 用户账变记录
 }
 
 export function userRegister(params: any) {
@@ -136,6 +137,13 @@ export function getUserRechargeRecord(params: any) {
 export function getUserOrderRecord(params: any) {
   return deffHttp.post(
     { url: Api.APP_GET_ORDERS, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function getUserBillRecord(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_GET_BILLS, data: params },
     { errorMessageMode: 'message', withToken: true },
   )
 }

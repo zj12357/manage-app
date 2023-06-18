@@ -61,20 +61,24 @@ function initState() {
   state.loading = false
   state.finished = false
   state.status = undefined
-  state.order_id = undefined
   state.start_date = undefined
 }
 
 function changeDepositType(type: number) {
-  initState()
-  state.depositValue = type
-  if (type === 2)
-    state.start_date = dayjs().format('YYYY-MM-DD')
+  if (type !== state.depositValue) {
+    initState()
+    state.order_id = undefined
+    state.depositValue = type
+    if (type === 2)
+      state.start_date = dayjs().format('YYYY-MM-DD')
+  }
 }
 function changeStatusType(type: number) {
-  initState()
-  state.statusValue = type
-  state.status = type === 3 ? undefined : type
+  if (type !== state.statusValue) {
+    initState()
+    state.statusValue = type
+    state.status = type === 3 ? undefined : type
+  }
 }
 async function fetchGetUserRechargeRecord() {
   state.loading = true
@@ -94,12 +98,17 @@ async function fetchGetUserRechargeRecord() {
 }
 
 function handleDateConfirm(value: any) {
+  initState()
   state.choose_date = `${value.selectedValues.join('-')} - ${dayjs().format('YYYY-MM-DD')}`
   state.start_date = value.selectedValues.join('-')
   state.showPicker = false
 }
 function handleLoadPage() {
   state.page = state.page + 1
+  fetchGetUserRechargeRecord()
+}
+function handleSearch() {
+  initState()
   fetchGetUserRechargeRecord()
 }
 
@@ -169,7 +178,7 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
             placeholder="请输入订单号"
           >
             <template #button>
-              <van-button size="small" type="primary">
+              <van-button size="small" type="primary" @click="handleSearch">
                 搜索
               </van-button>
             </template>

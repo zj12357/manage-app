@@ -19,6 +19,7 @@ declare global {
   const addWallet: typeof import('./api/user')['addWallet']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const billStatusType: typeof import('./common/commonType')['billStatusType']
   const compose: typeof import('./utils/tools')['compose']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
@@ -70,6 +71,7 @@ declare global {
   const getScrollHeight: typeof import('./utils/tools')['getScrollHeight']
   const getType: typeof import('./utils/tools')['getType']
   const getUserBalance: typeof import('./api/user')['getUserBalance']
+  const getUserBillRecord: typeof import('./api/user')['getUserBillRecord']
   const getUserInfo: typeof import('./api/user')['getUserInfo']
   const getUserOrderRecord: typeof import('./api/user')['getUserOrderRecord']
   const getUserRechargeRecord: typeof import('./api/user')['getUserRechargeRecord']
@@ -419,6 +421,7 @@ declare module 'vue' {
     readonly addWallet: UnwrapRef<typeof import('./api/user')['addWallet']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly billStatusType: UnwrapRef<typeof import('./common/commonType')['billStatusType']>
     readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -467,6 +470,7 @@ declare module 'vue' {
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
+    readonly getUserBillRecord: UnwrapRef<typeof import('./api/user')['getUserBillRecord']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
     readonly getUserOrderRecord: UnwrapRef<typeof import('./api/user')['getUserOrderRecord']>
     readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>
@@ -801,6 +805,7 @@ declare module '@vue/runtime-core' {
     readonly addWallet: UnwrapRef<typeof import('./api/user')['addWallet']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly billStatusType: UnwrapRef<typeof import('./common/commonType')['billStatusType']>
     readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -849,6 +854,7 @@ declare module '@vue/runtime-core' {
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
+    readonly getUserBillRecord: UnwrapRef<typeof import('./api/user')['getUserBillRecord']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
     readonly getUserOrderRecord: UnwrapRef<typeof import('./api/user')['getUserOrderRecord']>
     readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>

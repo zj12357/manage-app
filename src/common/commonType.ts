@@ -11,3 +11,16 @@ export const rechargeStatusType: Record<number, string> = {
   2: '充值失败',
   3: '等待付款',
 }
+
+export const billStatusType: Record<number, string> = {
+  1: '认购',
+  2: '存入',
+  3: '匹配成功',
+  4: '赎回',
+  5: '赎回退回',
+  6: '调整添加余额',
+  7: '礼金赠送',
+  8: '调整减少余额',
+  9: '定期转出',
+  12: '数字钱包',
+}

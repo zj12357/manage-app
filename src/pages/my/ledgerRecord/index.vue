@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import binZs from '~/assets/images/icons/icon_bin_zs.png'
+import dayjs from 'dayjs'
+import icon_record_usdt from '~/assets/images/icons/icon_record_usdt.png'
 
 const state = reactive({
   orderValue: 1,
-  statusValue: 1,
+  statusValue: 0,
+  type: 0,
+  start_date: undefined as any,
+  picker_date: undefined,
+  recordList: [] as any[],
+  showPicker: false,
+  choose_date: `${dayjs().format('YYYY-MM-DD')} - ${dayjs().format('YYYY-MM-DD')}`,
+  loading: false,
+  finished: false,
+  page: 1,
+  limit: 10,
 })
 const router = useRouter()
 const orderTypeList = [
@@ -20,7 +31,7 @@ const orderTypeList = [
 const statusList = [
   {
     label: '全部',
-    value: 1,
+    value: 0,
   },
   {
     label: '认购',
@@ -65,16 +76,69 @@ const statusList = [
   },
 ]
 
+function initState() {
+  state.page = 1
+  state.recordList = []
+  state.loading = false
+  state.finished = false
+  state.type = 0
+  state.start_date = undefined
+}
+
 function toPage(path: string) {
   router.push(path)
 }
 
 function changeOrderType(type: number) {
-  state.orderValue = type
+  if (type !== state.orderValue) {
+    initState()
+    state.orderValue = type
+    if (type === 2)
+      state.start_date = dayjs().format('YYYY-MM-DD')
+  }
 }
 function changeStatusType(type: number) {
-  state.statusValue = type
+  if (type !== state.statusValue) {
+    initState()
+    state.statusValue = type
+    state.type = type
+  }
 }
+function handleDateConfirm(value: any) {
+  initState()
+  state.choose_date = `${value.selectedValues.join('-')} - ${dayjs().format('YYYY-MM-DD')}`
+  state.start_date = value.selectedValues.join('-')
+  state.showPicker = false
+}
+async function fetchGetUserBillRecord() {
+  state.loading = true
+  const res = await getUserBillRecord({
+    type: state.type,
+    start_date: state.start_date,
+    limit: state.limit,
+    page: state.page,
+  })
+  if (res.code === 200) {
+    state.loading = false
+    state.recordList = [...state.recordList, ...res.data.data]
+    if (res.data.data?.length === 0)
+      state.finished = true
+  }
+}
+
+function handleLoadPage() {
+  state.page = state.page + 1
+  fetchGetUserBillRecord()
+}
+
+onMounted(() => {
+  fetchGetUserBillRecord()
+})
+
+watch(() => [state.start_date, state.statusValue, state.orderValue], (newValue, oldValue) => {
+  if (newValue !== oldValue)
+    fetchGetUserBillRecord()
+})
 </script>
 
 <template>
@@ -97,7 +161,7 @@ function changeStatusType(type: number) {
         当前系统支持查询最近7天的交易记录
       </p>
 
-      <div class="w-full flex-start-center-warp">
+      <div v-if="state.orderValue === 1" class="w-full flex-start-center-warp">
         <div
           v-for="(item, index) in statusList"
           :key="index"
@@ -108,23 +172,49 @@ function changeStatusType(type: number) {
           {{ item.label }}
         </div>
       </div>
-    </div>
-
-    <div class="mt-[8px] w-full bg-white p-[20px]" @click="toPage('/my/tradeRecord/detail')">
-      <div class="flex-between-center">
-        <img :src="binZs" alt="" class="w-[36px]" />
-        <div>
-          <span></span>
-          <span></span>
-        </div>
-        <div>
-          <span></span>
-          <span></span>
-        </div>
-        <div i-carbon:chevron-right class="text-lg text-assist8"></div>
+      <div v-else>
+        <van-field
+          v-model="state.choose_date"
+          readonly
+          label="时间选择"
+          placeholder="点击选择时间"
+          @click="state.showPicker = true"
+        />
+        <van-popup v-model:show="state.showPicker" position="bottom">
+          <van-date-picker
+            v-model="state.picker_date"
+            title="选择日期"
+            :max-date="new Date()"
+            @cancel="state.showPicker = false"
+            @confirm="handleDateConfirm"
+          />
+        </van-popup>
       </div>
     </div>
-    <NotData />
+
+    <van-list
+      v-model:loading="state.loading"
+      :finished="state.finished"
+      @load="handleLoadPage"
+    >
+      <div v-for="(item, index) in state.recordList" :key="index" class="mt-[8px] w-full border-b-solid border-light bg-white p-[20px]" @click="toPage(`/my/ledgerRecord/detail?order_id=${item.order_number}`)">
+        <div class="flex-between-center">
+          <div class="mr-[6px]">
+            <img :src="icon_record_usdt" class="w-[36px]" alt="" />
+          </div>
+          <div class="flex-col-center-start flex-auto">
+            <span class="mb-[6px]">{{ billStatusType[item.type] }}</span>
+            <span class="text-sm text-assist8">{{ item.created_at }}</span>
+          </div>
+          <div class="mr-[10px] flex-col-center-start">
+            <span class="mb-[6px] text-primary">{{ item.balance > 0 ? `+${item.balance}` : item.balance }}</span>
+            <span class="text-sm text-assist8">{{ item.order_number }}</span>
+          </div>
+          <div i-carbon:chevron-right class="text-lg text-assist8"></div>
+        </div>
+      </div>
+    </van-list>
+    <NotData v-if="!state.recordList.length && !state.loading && state.finished" />
   </div>
 </template>
 

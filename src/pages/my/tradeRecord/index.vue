@@ -55,20 +55,26 @@ const timeTypeList = [
 ]
 
 function changeRecordType(type: number) {
-  initState()
-  state.recordValue = type
+  if (type !== state.recordValue) {
+    initState()
+    state.recordValue = type
+  }
 }
 
 function changeBinType(type: number) {
-  initState()
-  state.binValue = type
-  state.room_id = type === 0 ? undefined : type
+  if (type !== state.binValue) {
+    initState()
+    state.binValue = type
+    state.room_id = type === 0 ? undefined : type
+  }
 }
 
 function changeTimeType(type: number) {
-  initState()
-  state.timeValue = type
-  state.date_id = type
+  if (type !== state.timeValue) {
+    initState()
+    state.timeValue = type
+    state.date_id = type
+  }
 }
 
 function toPage(path: string) {
