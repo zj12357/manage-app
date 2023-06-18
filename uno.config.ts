@@ -14,7 +14,7 @@ export default defineConfig({
     colors: {
       // 添加需要使用的颜色
       white: '#fff',
-      primary: '#f93',
+      primary: '#269E89',
       light: '#ebedf0', // border颜色
       assist1: '#333',
       assist2: '#7e5400',
