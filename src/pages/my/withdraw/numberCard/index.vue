@@ -42,7 +42,7 @@ async function onSubmit(values: any) {
               validator: (val) => {
 
                 return (
-                  common.config.withdraw_min < val && val < common.config.withdraw_max
+                  common.config.withdraw_min <= val && val <= common.config.withdraw_max
                 );
               },
               message: `单笔赎回范围：${common.config.withdraw_min} - ${common.config.withdraw_max}￥`,

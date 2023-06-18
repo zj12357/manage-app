@@ -2,12 +2,6 @@
 import dayjs from 'dayjs'
 import icon_record_cr from '~/assets/images/icons/icon_record_cr.png'
 
-const statusMap: Record<number, string> = {
-  1: '充值成功',
-  2: '充值失败',
-  3: '等待付款',
-}
-
 const state = reactive({
   depositValue: 1,
   statusValue: 3,
@@ -184,7 +178,7 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
       finished-text="没有更多了"
       @load="handleLoadPage"
     >
-      <div v-for="(item, index) in state.recordList" :key="index" class="mt-[8px] w-full border-b-solid border-light bg-white p-[20px]" @click="toPage('/my/tradeRecord/detail')">
+      <div v-for="(item, index) in state.recordList" :key="index" class="mt-[8px] w-full border-b-solid border-light bg-white p-[20px]" @click="toPage(`/my/rechargeRecord/detail?order_id=${item.order_number}`)">
         <div class="flex-between-center">
           <div class="mr-[6px]">
             <img :src="icon_record_cr" class="w-[36px]" alt="" />
@@ -195,7 +189,7 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
           </div>
           <div class="mr-[10px] flex-col-center-start">
             <span class="mb-[6px] text-primary">{{ item.money }}</span>
-            <span class="text-sm text-assist8">{{ statusMap[item.status] }}</span>
+            <span class="text-sm text-assist8">{{ rechargeStatusType[item.status] }}</span>
           </div>
           <div i-carbon:chevron-right class="text-lg text-assist8"></div>
         </div>

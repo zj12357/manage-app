@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { showConfirmDialog } from 'vant'
-import bankCard from './bankCard/index.vue'
+
+// import bankCard from './bankCard/index.vue'
 import numberCard from './numberCard/index.vue'
 
 const active = ref(0)
@@ -41,9 +42,9 @@ watch(active, (newValue, oldValue) => {
     <NavBar title="赎回" />
     <div class="w-full">
       <van-tabs v-model:active="active">
-        <van-tab title="银行卡">
+        <!-- <van-tab title="银行卡">
           <bankCard />
-        </van-tab>
+        </van-tab> -->
         <van-tab title="数字钱包">
           <numberCard />
         </van-tab>

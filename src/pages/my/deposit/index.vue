@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import bankCard from '~/assets/images/icons/icon_bank_card.png'
+// import bankCard from '~/assets/images/icons/icon_bank_card.png'
 import numberCard from '~/assets/images/icons/icon_number_card.png'
 
 const router = useRouter()
 const common = useCommonStore()
 const cardNavList = [
-  {
-    icon: bankCard,
-    cardName: '银联存入',
-    des: `单笔 ${common.config.depost_min}  -  ${common.config.depost_max}`,
-    path: '/my/deposit/bank',
-  },
+  // {
+  //   icon: bankCard,
+  //   cardName: '银联存入',
+  //   des: `单笔 ${common.config.depost_min}  -  ${common.config.depost_max}`,
+  //   path: '/my/deposit/bank',
+  // },
   {
     icon: numberCard,
     cardName: '数字货币存入',
