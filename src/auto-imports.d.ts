@@ -70,6 +70,7 @@ declare global {
   const getType: typeof import('./utils/tools')['getType']
   const getUserBalance: typeof import('./api/user')['getUserBalance']
   const getUserInfo: typeof import('./api/user')['getUserInfo']
+  const getUserRechargeRecord: typeof import('./api/user')['getUserRechargeRecord']
   const getWallet: typeof import('./api/user')['getWallet']
   const getWindowHeight: typeof import('./utils/tools')['getWindowHeight']
   const goExitFullscreen: typeof import('./utils/tools')['goExitFullscreen']
@@ -463,6 +464,7 @@ declare module 'vue' {
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
+    readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>
     readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
@@ -841,6 +843,7 @@ declare module '@vue/runtime-core' {
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
+    readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>
     readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>

@@ -17,6 +17,7 @@ enum Api {
   APP_GET_CARD = '/api/cards', // 获取银行卡
   APP_WITHDRAW = '/api/withdraw', // 用户提现
   APP_RECHARGE = '/api/recharge', // 用户充值
+  APP_GET_RECHARGES = '/api/recharges', // 用户充值记录
 }
 
 export function userRegister(params: any) {
@@ -120,6 +121,13 @@ export function userWithdraw(params: any) {
 export function userRecharge(params: any) {
   return deffHttp.post(
     { url: Api.APP_RECHARGE, data: params },
+    { errorMessageMode: 'message', withToken: true },
+  )
+}
+
+export function getUserRechargeRecord(params: any) {
+  return deffHttp.post(
+    { url: Api.APP_GET_RECHARGES, data: params },
     { errorMessageMode: 'message', withToken: true },
   )
 }

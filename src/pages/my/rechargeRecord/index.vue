@@ -1,7 +1,25 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
+import icon_record_cr from '~/assets/images/icons/icon_record_cr.png'
+
+const statusMap: Record<number, string> = {
+  1: '充值成功',
+  2: '充值失败',
+  3: '等待付款',
+}
+
 const state = reactive({
   depositValue: 1,
-  statusValue: 1,
+  statusValue: 3,
+  recordList: [] as any[],
+  order_id: undefined,
+  start_date: undefined as any,
+  picker_date: undefined,
+  showPicker: false,
+  choose_date: `${dayjs().format('YYYY-MM-DD')} - ${dayjs().format('YYYY-MM-DD')}`,
+  loading: false,
+  finished: false,
+  page: 1,
 })
 const router = useRouter()
 const depositTypeList = [
@@ -22,32 +40,76 @@ const depositTypeList = [
 const statusList = [
   {
     label: '全部',
-    value: 1,
-  },
-  {
-    label: '存入成功',
-    value: 2,
-  },
-  {
-    label: '存入失败',
     value: 3,
   },
   {
+    label: '存入成功',
+    value: 1,
+  },
+  {
+    label: '存入失败',
+    value: 2,
+  },
+  {
     label: '等待付款',
-    value: 4,
+    value: 0,
   },
 ]
 
 function toPage(path: string) {
   router.push(path)
 }
+function initState() {
+  state.page = 1
+  state.recordList = []
+  state.loading = false
+  state.finished = false
+}
 
 function changeDepositType(type: number) {
+  initState()
   state.depositValue = type
+  if (type === 2)
+    state.start_date = dayjs().format('YYYY-MM-DD')
 }
 function changeStatusType(type: number) {
+  initState()
   state.statusValue = type
 }
+async function fetchGetUserRechargeRecord() {
+  state.loading = true
+  const res = await getUserRechargeRecord({
+    status: state.statusValue === 3 ? undefined : state.statusValue,
+    order_id: state.order_id,
+    start_date: state.start_date,
+    limit: 10,
+    page: state.page,
+  })
+  if (res.code === 200) {
+    state.loading = false
+    state.recordList = [...state.recordList, ...res.data.data]
+    if (res.data.data?.length === 0)
+      state.finished = true
+  }
+}
+
+function handleDateConfirm(value: any) {
+  state.choose_date = `${value.selectedValues.join('-')} - ${dayjs().format('YYYY-MM-DD')}`
+  state.start_date = value.selectedValues.join('-')
+  state.showPicker = false
+}
+function handleLoadPage() {
+  state.page = state.page + 1
+  fetchGetUserRechargeRecord()
+}
+
+onMounted(() => {
+  fetchGetUserRechargeRecord()
+})
+watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue, oldValue) => {
+  if (newValue !== oldValue)
+    fetchGetUserRechargeRecord()
+})
 </script>
 
 <template>
@@ -69,7 +131,7 @@ function changeStatusType(type: number) {
         当前系统支持查询最近7天的交易记录
       </p>
 
-      <div class="w-full flex-start-center-warp">
+      <div v-if="state.depositValue === 1" class="w-full flex-start-center-warp">
         <div
           v-for="(item, index) in statusList"
           :key="index"
@@ -80,20 +142,65 @@ function changeStatusType(type: number) {
           {{ item.label }}
         </div>
       </div>
-    </div>
-    <div class="mt-[8px] w-full bg-white p-[20px]" @click="toPage('/my/tradeRecord/detail')">
-      <div class="flex-between-center">
-        <div>
-          <span></span>
-          <span></span>
-        </div>
-        <div>
-          <span></span>
-          <span></span>
-        </div>
-        <div i-carbon:chevron-right class="text-lg text-assist8"></div>
+      <div v-else-if="state.depositValue === 2" class="w-full">
+        <van-field
+          v-model="state.choose_date"
+          readonly
+          label="时间选择"
+          placeholder="点击选择时间"
+          @click="state.showPicker = true"
+        />
+        <van-popup v-model:show="state.showPicker" position="bottom">
+          <van-date-picker
+            v-model="state.picker_date"
+            title="选择日期"
+            :max-date="new Date()"
+            @cancel="state.showPicker = false"
+            @confirm="handleDateConfirm"
+          />
+        </van-popup>
+      </div>
+      <div v-else-if="state.depositValue === 3" class="border-b-solid border-light">
+        <van-cell-group inset>
+          <van-field
+            v-model="state.order_id"
+            center
+            clearable
+            placeholder="请输入订单号"
+          >
+            <template #button>
+              <van-button size="small" type="primary">
+                搜索
+              </van-button>
+            </template>
+          </van-field>
+        </van-cell-group>
       </div>
     </div>
+
+    <van-list
+      v-model:loading=" state.loading"
+      :finished="state.finished"
+      finished-text="没有更多了"
+      @load="handleLoadPage"
+    >
+      <div v-for="(item, index) in state.recordList" :key="index" class="mt-[8px] w-full border-b-solid border-light bg-white p-[20px]" @click="toPage('/my/tradeRecord/detail')">
+        <div class="flex-between-center">
+          <div class="mr-[6px]">
+            <img :src="icon_record_cr" class="w-[36px]" alt="" />
+          </div>
+          <div class="flex-col-center-start flex-auto">
+            <span class="mb-[6px]">存入</span>
+            <span class="text-sm text-assist8">{{ item.created_at }}</span>
+          </div>
+          <div class="mr-[10px] flex-col-center-start">
+            <span class="mb-[6px] text-primary">{{ item.money }}</span>
+            <span class="text-sm text-assist8">{{ statusMap[item.status] }}</span>
+          </div>
+          <div i-carbon:chevron-right class="text-lg text-assist8"></div>
+        </div>
+      </div>
+    </van-list>
   </div>
 </template>
 
