@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showSuccessToast } from 'vant'
 import { getStorage, setStorage } from '~/utils/storage'
 import authLock from '~/assets/images/icons/icon_auth_lock.png'
 import authSafe from '~/assets/images/icons/icon_auth_safe.png'
@@ -12,11 +12,11 @@ const { fetchGlobalUserInfo } = useGlobalData()
 const router = useRouter()
 const navList = [
   {
-    name: '登录',
+    name: '登錄',
     path: '/auth/login',
   },
   {
-    name: '注册',
+    name: '註冊',
     path: '/auth/register',
   },
 ]
@@ -36,6 +36,8 @@ const state = reactive({
   currentCountryName: 'CN',
   captchaLink: `${API_URL}/api/captcha?${Date.now()}`,
   rememberAccount: true,
+  passwordStatus: false,
+  confirmPasswordStatus: false,
 })
 
 function toPage(path: string) {
@@ -54,10 +56,7 @@ async function onSubmit(values: any) {
     captcha: values.captcha,
   })
   if (res.code === 200) {
-    showNotify({
-      type: 'success',
-      message: res.msg,
-    })
+    showSuccessToast(res.msg)
     if (values.rememberAccount) {
       setStorage('username', values.username)
       setStorage('password', values.password)
@@ -95,13 +94,13 @@ function handleCaptchaLink() {
           <van-field
             v-model="state.params.username"
             name="username"
-            placeholder="请填写用户名"
+            placeholder="請填寫用戶名"
             :rules="[
               {
                 pattern: /^[A-Za-z0-9]{6,12}$/,
-                message: '请填写6到12位字母或者数字',
+                message: '請填寫6到12位字母或者數字',
               },
-              { required: true, message: '请填写用户名' },
+              { required: true, message: '請填寫用戶名' },
             ]"
           >
             <template #label>
@@ -115,10 +114,10 @@ function handleCaptchaLink() {
           <van-field
             v-model="state.params.mobile"
             name="mobile"
-            placeholder="请填写手机号"
+            placeholder="請填寫手機號"
             :rules="[
-              { pattern: /^\d*$/, message: '请填写数字' },
-              { required: true, message: '请填写手机号' },
+              { pattern: /^\d*$/, message: '請填寫數字' },
+              { required: true, message: '請填寫手機號' },
             ]"
           >
             <template #label>
@@ -169,17 +168,19 @@ function handleCaptchaLink() {
           </van-field>
           <van-field
             v-model="state.params.password"
-            type="password"
+            :right-icon="!state.passwordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.passwordStatus ? 'password' : 'text'"
             name="password"
-            placeholder="请填写密码"
+            placeholder="請填寫密碼"
             maxlength="12"
             :rules="[
               {
                 pattern: /^[A-Za-z0-9]{6,12}$/,
-                message: '请填写6到12位字母或者数字',
+                message: '請填寫6到12位字母或者數字',
               },
-              { required: true, message: '请填写密码' },
+              { required: true, message: '請填寫密碼' },
             ]"
+            @click-right-icon="state.passwordStatus = !state.passwordStatus"
           >
             <template #label>
               <img
@@ -191,23 +192,25 @@ function handleCaptchaLink() {
           </van-field>
           <van-field
             v-model="state.params.confirm_password"
-            type="password"
+            :right-icon="!state.confirmPasswordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.confirmPasswordStatus ? 'password' : 'text'"
             name="confirm_password"
-            placeholder="请填写确认密码"
+            placeholder="請填寫確認密碼"
             maxlength="12"
             :rules="[
               {
                 pattern: /^[A-Za-z0-9]{6,12}$/,
-                message: '请填写6到12位字母或者数字',
+                message: '請填寫6到12位字母或者數字',
               },
-              { required: true, message: '请填写确认密码' },
+              { required: true, message: '請填寫確認密碼' },
               {
                 validator: (val) => {
                   return val === state.params.password;
                 },
-                message: '两次密码输入不一致',
+                message: '兩次密碼輸入不一致',
               },
             ]"
+            @click-right-icon="state.confirmPasswordStatus = !state.confirmPasswordStatus"
           >
             <template #label>
               <img
@@ -220,11 +223,11 @@ function handleCaptchaLink() {
           <van-field
             v-model="state.params.captcha"
             name="captcha"
-            placeholder="请填写验证码"
+            placeholder="請填寫驗證碼"
             maxlength="4"
             :rules="[
-              { pattern: /^\d{4}$/, message: '请填写4位数字验证码' },
-              { required: true, message: '请填写验证码' },
+              { pattern: /^\d{4}$/, message: '請填寫4位數字驗證碼' },
+              { required: true, message: '請填寫驗證碼' },
             ]"
           >
             <template #label>
@@ -244,7 +247,7 @@ function handleCaptchaLink() {
               <van-field name="rememberAccount">
                 <template #input>
                   <van-checkbox v-model="state.rememberAccount">
-                    记住账号
+                    記住賬號
                   </van-checkbox>
                 </template>
               </van-field>
@@ -254,7 +257,7 @@ function handleCaptchaLink() {
 
         <div class="mb-[20px] mt-[80px]">
           <van-button round block type="primary" native-type="submit">
-            立即注册
+            立即註冊
           </van-button>
         </div>
       </van-form>
@@ -271,7 +274,7 @@ function handleCaptchaLink() {
     z-index: 9;
     width: 80%;
     height: 2px;
-    background-image: linear-gradient(270deg, #ffc724 3%, #f80);
+    background: linear-gradient(90deg, #00B880 0%, #88E8D1 100%);
 }
 
 .nav-active::after {
@@ -295,6 +298,11 @@ function handleCaptchaLink() {
     }
     .van-hairline--top-bottom::after {
         border: none;
+    }
+    .van-field__right-icon {
+        i {
+            font-size: 20px;
+        }
     }
 }
 </style>

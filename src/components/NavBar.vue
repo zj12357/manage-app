@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps({
   title: String,
+  rightText: String,
 })
 const router = useRouter()
 function goBack() {
@@ -14,6 +15,7 @@ function goBack() {
       :title="props.title"
       left-arrow
       fixed
+      :right-text="rightText"
       @click-left="goBack"
     />
   </div>

@@ -1,4 +1,4 @@
-import { showFailToast, showNotify } from 'vant'
+import { showFailToast } from 'vant'
 import type { AxiosInterceptor, CreateAxiosOptions } from './axiosConfig'
 import { iAxios } from './iAxios'
 import { checkStatus } from './axiosStatus'
@@ -26,7 +26,7 @@ const interceptor: AxiosInterceptor = {
           showFailToast(data.msg)
 
         else if (errorMessageMode === 'message')
-          showNotify({ type: 'danger', message: data.msg })
+          showFailToast(data.msg)
 
         if (data.code === 8888) {
           userToken.clearToken()

@@ -13,7 +13,7 @@ const route = useRoute()
 const router = useRouter()
 const navList = [
   {
-    name: '首页',
+    name: '首頁',
     path: '/',
     icon: home,
     activeIcon: homeActive,

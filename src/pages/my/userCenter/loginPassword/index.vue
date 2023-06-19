@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showSuccessToast } from 'vant'
 
 const router = useRouter()
 const { fetchGlobalUserInfo } = useGlobalData()
@@ -7,6 +7,9 @@ const state = reactive({
   password: '',
   new_password: '',
   confirm_password: '',
+  passwordStatus: false,
+  newPasswordStatus: false,
+  confirmPasswordStatus: false,
 })
 
 function toPage(path: string) {
@@ -19,10 +22,7 @@ async function onSubmit(values: any) {
     new_password: values.new_password,
   })
   if (res.code === 200) {
-    showNotify({
-      type: 'success',
-      message: res.msg,
-    })
+    showSuccessToast(res.msg)
     fetchGlobalUserInfo()
     toPage('/my/userCenter')
   }
@@ -31,44 +31,50 @@ async function onSubmit(values: any) {
 
 <template>
   <div class="h-full w-full">
-    <NavBar title="登录密码管理" />
+    <NavBar title="登錄密碼管理" />
     <div class="w-full">
       <van-form @submit="onSubmit">
         <van-cell-group>
           <van-field
             v-model="state.password"
-            type="password"
+            :right-icon="!state.passwordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.passwordStatus ? 'password' : 'text'"
             name="password"
-            label="旧登录密码"
+            label="舊登錄密碼"
             required
-            placeholder="请填写旧登录密码"
-            :rules="[{ required: true, message: '请填写旧登录密码' }]"
+            placeholder="請填寫舊登錄密碼"
+            :rules="[{ required: true, message: '請填寫舊登錄密碼' }]"
+            @click-right-icon="state.passwordStatus = !state.passwordStatus"
           />
           <van-field
             v-model="state.new_password"
-            type="password"
+            :right-icon="!state.newPasswordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.newPasswordStatus ? 'password' : 'text'"
             name="new_password"
-            label="新登录密码"
+            label="新登錄密碼"
             required
-            placeholder="请填写新登录密码"
-            :rules="[{ required: true, message: '请填写新登录密码' }]"
+            placeholder="請填寫新登錄密碼"
+            :rules="[{ required: true, message: '請填寫新登錄密碼' }]"
+            @click-right-icon="state.newPasswordStatus = !state.newPasswordStatus"
           />
           <van-field
             v-model="state.confirm_password"
-            type="password"
+            :right-icon="!state.confirmPasswordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.confirmPasswordStatus ? 'password' : 'text'"
             name="confirm_password"
-            label="确认密码"
+            label="確認密碼"
             required
-            placeholder="请填写确认密码"
+            placeholder="請填寫確認密碼"
             :rules="[
-              { required: true, message: '请填写确认密码' },
+              { required: true, message: '請填寫確認密碼' },
               {
                 validator: (val) => {
                   return val === state.new_password;
                 },
-                message: '两次密码输入不一致',
+                message: '兩次密碼輸入不一致',
               },
             ]"
+            @click-right-icon="state.confirmPasswordStatus = !state.confirmPasswordStatus"
           />
         </van-cell-group>
         <div class="mt-[40px] w-full flex-center">
@@ -83,7 +89,15 @@ async function onSubmit(values: any) {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+:deep() {
+    .van-field__right-icon {
+        i {
+            font-size: 20px;
+        }
+    }
+}
+</style>
 
 <route lang="yaml">
 meta:

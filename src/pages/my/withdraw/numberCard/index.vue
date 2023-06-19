@@ -1,23 +1,30 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showFailToast, showSuccessToast } from 'vant'
 import balance from '../balance.vue'
 
 const props = defineProps({
   wallet_id: String,
 })
 
+const { fetchGetUserBalance } = useGlobalData()
+const time = ref()
 const common = useCommonStore()
 const user = useUserStore()
 const state = reactive({
   money: '',
   trade_password: '',
+  passwordStatus: false,
 })
+
+async function getBalance() {
+  time.value = setInterval(() => {
+    fetchGetUserBalance()
+  }, 3000)
+}
+
 async function onSubmit(values: any) {
   if (!user.userInfo.balance) {
-    showNotify({
-      type: 'danger',
-      message: '余额不足',
-    })
+    showFailToast('餘額不足')
     return
   }
 
@@ -27,13 +34,16 @@ async function onSubmit(values: any) {
     trade_password: values.trade_password,
     wallet_id: props.wallet_id,
   })
-  if (res.code === 200) {
-    showNotify({
-      type: 'success',
-      message: res.msg,
-    })
-  }
+  if (res.code === 200)
+    showSuccessToast(res.msg)
 }
+
+onMounted(() => {
+  getBalance()
+})
+onUnmounted(() => {
+  clearInterval(time.value)
+})
 </script>
 
 <template>
@@ -41,7 +51,7 @@ async function onSubmit(values: any) {
     <balance />
     <div class="w-full p-[20px]">
       <h2 class="mb-[10px] text-md">
-        赎回金额
+        贖回金額
       </h2>
       <van-form @submit="onSubmit">
         <van-field
@@ -49,45 +59,55 @@ async function onSubmit(values: any) {
           class="app-money"
           name="money"
           label="￥"
-          placeholder="请填写赎回金额"
+          placeholder="請填寫贖回金額"
           :rules="[
-            { required: true, message: '请填写赎回金额' },
+            { required: true, message: '請填寫贖回金額' },
+            { pattern: isPositiveInteger, message: '請填寫正整數' },
             {
               validator: (val) => {
-
                 return (
-                  common.config.withdraw_min <= val && val <= common.config.withdraw_max
+                  +common.config.withdraw_min <= +val
+                  && +val <= +common.config.withdraw_max
                 );
               },
-              message: `单笔赎回范围：${common.config.withdraw_min} - ${common.config.withdraw_max}￥`,
+              message: `單筆贖回範圍：${common.config.withdraw_min} - ${common.config.withdraw_max}`,
             },
           ]"
+          @update:model-value="(value:any) => {
+            state.money = value.replace(/\D/g, '')
+          }"
         />
         <div class="mt-[10px] w-full flex-start-center py-[10px] text-sm">
-          <span class="text-assist7">单笔赎回范围：</span>
+          <span class="text-assist7">單筆贖回範圍</span>
           <span class="text-primary">{{ common.config.withdraw_min }} -
-            {{ common.config.withdraw_max }}￥</span>
+            {{ common.config.withdraw_max }}</span>
         </div>
         <div class="mt-[10px] w-full border-b-solid border-light">
           <van-field
             v-model="state.trade_password"
             name="trade_password"
-            type="password"
-            label="交易密码"
-            placeholder="请填写交易密码"
+            :right-icon="!state.passwordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.passwordStatus ? 'password' : 'text'"
+            label="交易密碼"
+            placeholder="請填寫交易密碼"
             maxlength="6"
             :rules="[
-              { required: true, message: '请填写交易密码' },
-              { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' },
+              { required: true, message: '請填寫交易密碼' },
+              { pattern: /^\d{6}$/, message: '請填寫6位數字交易密碼' },
             ]"
+            @click-right-icon="state.passwordStatus = !state.passwordStatus"
           />
         </div>
-        <!-- <div class="my-[14px] w-full text-assist5">
+        <div v-if="state.money" class="my-[14px] w-full text-assist5">
           <p class="mb-[4px]">
-            预计到账： <span class="text-primary">1.269394</span>  USDT
+            预计到账：
+            <span class="text-primary">{{
+              (Number(state.money) / Number(common.config.usdt_rate)) .toFixed(4)
+            }}</span>
+            USDT
           </p>
-          <p>参考汇率为1USDT ≈ 7.09CNY</p>
-        </div> -->
+          <p>参考汇率为1USDT ≈ {{ `${common.config.usdt_rate}` }}CNY</p>
+        </div>
 
         <div class="mt-[30px] w-full flex-center">
           <div class="w-[300px]">
@@ -98,18 +118,18 @@ async function onSubmit(values: any) {
         </div>
       </van-form>
       <div class="light-[16px] mt-[40px] w-full lh-[18px] text-assist8">
-        <p>温馨提醒</p>
+        <p>溫馨提醒</p>
         <p class="mt-[8px]">
-          1.每日赎回不受时间，额度，次数的限制
+          1.每日贖回不受時間，額度，次數的限制
         </p>
         <p class="mt-[8px]">
-          2.赎回过程中如果出现什么问题，请及时联系
+          2.贖回過程中如果出現什麼問題，請及時聯繫
           <a
             :href="common.config.kefu_link"
             target="_blank"
             rel="noopener noreferrer"
             class="text-primary"
-          >在线客服</a>
+          >在線客服</a>
         </p>
       </div>
     </div>
@@ -123,6 +143,11 @@ async function onSubmit(values: any) {
     }
     .van-field__label {
         width: auto;
+    }
+    .van-field__right-icon {
+        i {
+            font-size: 20px;
+        }
     }
 }
 </style>

@@ -4,7 +4,7 @@ import icon_record_cr from '~/assets/images/icons/icon_record_cr.png'
 
 const state = reactive({
   depositValue: 1,
-  statusValue: 3,
+  statusValue: 0,
   recordList: [] as any[],
   order_id: undefined,
   start_date: undefined as any,
@@ -20,15 +20,15 @@ const state = reactive({
 const router = useRouter()
 const depositTypeList = [
   {
-    label: '订单状态',
+    label: '訂單狀態',
     value: 1,
   },
   {
-    label: '订单日期',
+    label: '訂單日期',
     value: 2,
   },
   {
-    label: '订单号',
+    label: '訂單號',
     value: 3,
   },
 ]
@@ -36,14 +36,14 @@ const depositTypeList = [
 const statusList = [
   {
     label: '全部',
-    value: 3,
+    value: 0,
   },
   {
     label: '存入成功',
     value: 1,
   },
   {
-    label: '存入失败',
+    label: '存入失敗',
     value: 2,
   },
   {
@@ -77,7 +77,7 @@ function changeStatusType(type: number) {
   if (type !== state.statusValue) {
     initState()
     state.statusValue = type
-    state.status = type === 3 ? undefined : type
+    state.status = type === 0 ? undefined : type
   }
 }
 async function fetchGetUserRechargeRecord() {
@@ -123,7 +123,7 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
 
 <template>
   <div class="w-full">
-    <NavBar title="存入记录" />
+    <NavBar title="存入記錄" />
     <div class="w-full bg-white p-[20px]">
       <div class="flex-start-center border-b-solid border-light pb-[20px]">
         <div
@@ -137,7 +137,7 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
         </div>
       </div>
       <p class="my-[14px] text-sm">
-        当前系统支持查询最近7天的交易记录
+        當前系統支持查詢最近7天的交易記錄
       </p>
 
       <div v-if="state.depositValue === 1" class="w-full flex-start-center-warp">
@@ -155,14 +155,14 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
         <van-field
           v-model="state.choose_date"
           readonly
-          label="时间选择"
-          placeholder="点击选择时间"
+          label="時間選擇"
+          placeholder="點擊選擇時間"
           @click="state.showPicker = true"
         />
         <van-popup v-model:show="state.showPicker" position="bottom">
           <van-date-picker
             v-model="state.picker_date"
-            title="选择日期"
+            title="選擇日期"
             :max-date="new Date()"
             @cancel="state.showPicker = false"
             @confirm="handleDateConfirm"
@@ -190,7 +190,7 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
     <van-list
       v-model:loading=" state.loading"
       :finished="state.finished"
-      finished-text="没有更多了"
+
       @load="handleLoadPage"
     >
       <div v-for="(item, index) in state.recordList" :key="index" class="mt-[8px] w-full border-b-solid border-light bg-white p-[20px]" @click="toPage(`/my/rechargeRecord/detail?order_id=${item.order_number}`)">
@@ -202,14 +202,15 @@ watch(() => [state.start_date, state.statusValue, state.depositValue], (newValue
             <span class="mb-[6px]">存入</span>
             <span class="text-sm text-assist8">{{ item.created_at }}</span>
           </div>
-          <div class="mr-[10px] flex-col-center-start">
-            <span class="mb-[6px] text-primary">{{ item.money }}</span>
+          <div class="mr-[10px] flex-col-center-end">
+            <span class="mb-[6px] text-primary">{{ handleMoneySymbol(item.money) }}</span>
             <span class="text-sm text-assist8">{{ rechargeStatusType[item.status] }}</span>
           </div>
           <div i-carbon:chevron-right class="text-lg text-assist8"></div>
         </div>
       </div>
     </van-list>
+    <NotData v-if="!state.recordList.length && !state.loading && state.finished" />
   </div>
 </template>
 

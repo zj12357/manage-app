@@ -20,7 +20,7 @@ function goHome() {
           <div class="flex-center" @click="goHome">
             <div i-carbon:chevron-left class="text-xl font-500"></div>
             <div class="text-md">
-              返回首页
+              返回首頁
             </div>
           </div>
           <div class="flex-center">
@@ -30,13 +30,13 @@ function goHome() {
               target="_blank"
               rel="noopener noreferrer"
               class="text-sm text-white"
-            >联系客服</a>
+            >聯繫客服</a>
           </div>
         </div>
         <div class="mt-[25px] w-full">
           <img :src="logoAuth" class="w-[144px]" alt="" />
           <p class="mt-[20px] text-lg text-white">
-            宁银理财，您赢未来
+            眾安基金，您贏未來
           </p>
         </div>
         <div class="pl-[10px]">

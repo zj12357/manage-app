@@ -9,7 +9,7 @@ const user = useUserStore()
   <div class="relative mt-[20px] h-[120px] w-full bg-white">
     <div :style="{ backgroundImage: `url(${tradeBalance})` }" class="bottom-[18px] z-[10] h-[100px] w-[280px] bg-white bg-center-cover p-[20px] shadow-base absolute-row-center">
       <p class="text-md">
-        资产总额&nbsp;¥
+        資產總額
       </p>
       <p class="mt-[12px] w-full text-nowrap-ellipsis text-xl font-500 text-assist3">
         {{ user.balance.toFixed(2) }}

@@ -1,4 +1,4 @@
-import { showNotify } from 'vant'
+import { showFailToast } from 'vant'
 import type { ErrorMessageMode } from '~/types/expand/axios'
 
 export function checkStatus(
@@ -47,5 +47,5 @@ export function checkStatus(
     default:
   }
   if (errMessage)
-    showNotify({ type: 'danger', message: '请求错误' })
+    showFailToast('请求错误')
 }

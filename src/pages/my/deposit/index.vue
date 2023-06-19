@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import bankCard from '~/assets/images/icons/icon_bank_card.png'
+import { showConfirmDialog } from 'vant'
 import numberCard from '~/assets/images/icons/icon_number_card.png'
 
 const router = useRouter()
@@ -9,18 +10,31 @@ const cardNavList = [
   //   icon: bankCard,
   //   cardName: '银联存入',
   //   des: `单笔 ${common.config.depost_min}  -  ${common.config.depost_max}`,
-  //   path: '/my/deposit/bank',
+  //   path: '/my/deposit/bankCard',
   // },
   {
     icon: numberCard,
-    cardName: '数字货币存入',
-    des: `单笔 ${common.config.depost_min}  -  ${common.config.depost_max}`,
-    path: '/my/deposit/number',
+    cardName: '數字貨幣存入',
+    des: `單筆 ${common.config.depost_min}  -  ${common.config.depost_max}`,
+    path: '/my/deposit/numberCard',
   },
 ]
 
+const user = useUserStore()
 function toPage(path: string) {
-  router.push(path)
+  if (!user.userInfo.real_name) {
+    showConfirmDialog({
+      title: '溫馨提示',
+      message: '您還未完善個人資料',
+      className: 'app-dialog',
+      confirmButtonText: '確定',
+    }).then((result) => {
+      router.push('/my/userCenter/baseInfo')
+    })
+  }
+  else {
+    router.push(path)
+  }
 }
 </script>
 

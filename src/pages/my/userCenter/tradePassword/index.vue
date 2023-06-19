@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showSuccessToast } from 'vant'
 
 const user = useUserStore()
 const router = useRouter()
@@ -8,6 +8,9 @@ const state = reactive({
   trade_password: '',
   new_trade_password: '',
   confirm_trade_password: '',
+  passwordStatus: false,
+  newPasswordStatus: false,
+  confirmPasswordStatus: false,
 })
 
 function toPage(path: string) {
@@ -20,10 +23,7 @@ async function onSubmit(values: any) {
       trade_password: values.new_trade_password,
     })
     if (res.code === 200) {
-      showNotify({
-        type: 'success',
-        message: res.msg,
-      })
+      showSuccessToast(res.msg)
       fetchGlobalUserInfo()
       toPage('/my/userCenter')
     }
@@ -35,10 +35,7 @@ async function onSubmit(values: any) {
     })
 
     if (res.code === 200) {
-      showNotify({
-        type: 'success',
-        message: res.msg,
-      })
+      showSuccessToast(res.msg)
       fetchGlobalUserInfo()
       toPage('/my/userCenter')
     }
@@ -48,47 +45,53 @@ async function onSubmit(values: any) {
 
 <template>
   <div class="h-full w-full">
-    <NavBar title="交易密码管理" />
+    <NavBar title="交易密碼管理" />
     <div class="w-full">
       <van-form @submit="onSubmit">
         <van-cell-group>
           <van-field
             v-if="user.userInfo.trade_password"
             v-model="state.trade_password"
-            type="password"
+            :right-icon="!state.passwordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.passwordStatus ? 'password' : 'text'"
             name="trade_password"
-            label="旧交易密码"
+            label="舊交易密碼"
             required
-            placeholder="请填写旧交易密码"
+            placeholder="请填写舊交易密碼"
             maxlength="6"
-            :rules="[{ required: true, message: '请填写旧交易密码' }, { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' }]"
+            :rules="[{ required: true, message: '请填写舊交易密碼' }, { pattern: /^\d{6}$/, message: '請填寫6位數字交易密碼' }]"
+            @click-right-icon="state.passwordStatus = !state.passwordStatus"
           />
           <van-field
             v-model="state.new_trade_password"
-            type="password"
+            :right-icon="!state.newPasswordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.newPasswordStatus ? 'password' : 'text'"
             name="new_trade_password"
-            label="新交易密码"
+            label="新交易密碼"
             required
-            placeholder="请填写新交易密码"
+            placeholder="請填寫新交易密碼"
             maxlength="6"
-            :rules="[{ required: true, message: '请填写新交易密码' }, { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' }]"
+            :rules="[{ required: true, message: '請填寫新交易密碼' }, { pattern: /^\d{6}$/, message: '請填寫6位數字交易密碼' }]"
+            @click-right-icon="state.newPasswordStatus = !state.newPasswordStatus"
           />
           <van-field
             v-model="state.confirm_trade_password"
-            type="password"
+            :right-icon="!state.confirmPasswordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.confirmPasswordStatus ? 'password' : 'text'"
             name="confirm_trade_password"
-            label="确认密码"
+            label="確認密碼"
             required
-            placeholder="请填写确认密码"
+            placeholder="請填寫確認密碼"
             :rules="[
-              { required: true, message: '请填写确认密码' },
+              { required: true, message: '請填寫確認密碼' },
               {
                 validator: (val) => {
                   return val === state.new_trade_password;
                 },
-                message: '两次密码输入不一致',
+                message: '兩次密碼輸入不一致',
               },
             ]"
+            @click-right-icon="state.confirmPasswordStatus = !state.confirmPasswordStatus"
           />
         </van-cell-group>
         <div class="mt-[40px] w-full flex-center">
@@ -103,7 +106,15 @@ async function onSubmit(values: any) {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+:deep() {
+    .van-field__right-icon {
+        i {
+            font-size: 20px;
+        }
+    }
+}
+</style>
 
 <route lang="yaml">
 meta:

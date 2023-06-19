@@ -13,13 +13,13 @@ const amountList = [500, 5000, 10000, 20000, 50000, 100000, 200000, 500000]
         <van-field
           class="app-money"
           name="amount"
-          label="￥"
+          label="$"
           placeholder="请填写存款金额"
           :rules="[{ required: true, message: '请填写存款金额' }]"
         />
         <div class="mt-[10px] w-full flex-start-center py-[10px] text-sm">
           <span class="text-assist7">单笔存款限额：</span>
-          <span class="text-primary">100 - 1,000,000 ￥</span>
+          <span class="text-primary">100 - 1,000,000 </span>
         </div>
         <h2 class="my-[20px] text-md">
           存款金额

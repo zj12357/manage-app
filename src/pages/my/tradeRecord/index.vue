@@ -4,7 +4,7 @@ import icon_bin_vip from '~/assets/images/icons/icon_bin_vip.png'
 import icon_bin_gb from '~/assets/images/icons/icon_bin_gb.png'
 import icon_bin_pt from '~/assets/images/icons/icon_bin_pt.png'
 
-const roomType: Record<number, string> = {
+const roomImageType: Record<number, string> = {
   5: icon_bin_pt,
   4: icon_bin_gb,
   3: icon_bin_vip,
@@ -30,11 +30,11 @@ const state = reactive({
 const router = useRouter()
 const recordTypeList = [
   {
-    label: '交易仓位',
+    label: '交易倉位',
     value: 1,
   },
   {
-    label: '时间选择',
+    label: '時間選擇',
     value: 2,
   },
 ]
@@ -135,7 +135,7 @@ watch(() => [state.binValue, state.timeValue], (newValue, oldValue) => {
 
 <template>
   <div class="w-full">
-    <NavBar title="交易记录" />
+    <NavBar title="交易記錄" />
 
     <div class="w-full bg-white p-[20px]">
       <div class="flex-start-center border-b-solid border-light pb-[20px]">
@@ -150,7 +150,7 @@ watch(() => [state.binValue, state.timeValue], (newValue, oldValue) => {
         </div>
       </div>
       <p class="my-[14px] text-sm">
-        当前系统支持查询最近7天的交易记录
+        當前系統支持查詢最近7天的交易記錄
       </p>
 
       <div v-if="state.recordValue === 1" class="w-full flex-start-center-warp">
@@ -179,19 +179,19 @@ watch(() => [state.binValue, state.timeValue], (newValue, oldValue) => {
     <van-list
       v-model:loading=" state.loading"
       :finished="state.finished"
-      finished-text="没有更多了"
+
       @load="handleLoadPage"
     >
-      <div v-for="(item, index) in state.recordList" :key="index" class="mt-[8px] w-full border-b-solid border-light bg-white p-[20px]" @click="toPage(`/my/tradeRecord/detail?order_id=${item.order_number}`)">
+      <div v-for="(item, index) in state.recordList" :key="index" class="mt-[8px] w-full border-b-solid border-light bg-white p-[20px]" @click="toPage(`/my/tradeRecord/detail?order_id=${item.id}`)">
         <div class="flex-between-center">
           <div class="mr-[6px]">
-            <img :src="roomType[item.room_id]" class="w-[36px]" alt="" />
+            <img :src="roomImageType[item.room_id]" class="w-[36px]" alt="" />
           </div>
           <div class="flex-col-center-start flex-auto">
-            <span class="mb-[6px]">{{ state.binTypeList.find(v => v.value === item.room_id)?.label }}</span>
+            <span class="mb-[6px]">{{ roomType[item.room_id] }}</span>
             <span class="text-sm text-assist8">{{ item.created_at }}</span>
           </div>
-          <div class="mr-[10px] flex-col-center-start">
+          <div class="mr-[10px] flex-col-center-end">
             <span class="mb-[6px] text-primary">{{ item.status === 3 ? '匹配中' : item.change_money }}</span>
             <span class="text-sm text-assist8">{{ item.issue }}</span>
           </div>
@@ -199,6 +199,7 @@ watch(() => [state.binValue, state.timeValue], (newValue, oldValue) => {
         </div>
       </div>
     </van-list>
+    <NotData v-if="!state.recordList.length && !state.loading && state.finished" />
   </div>
 </template>
 

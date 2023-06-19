@@ -20,6 +20,7 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const billStatusType: typeof import('./common/commonType')['billStatusType']
+  const charts: typeof import('./utils/charts')['default']
   const compose: typeof import('./utils/tools')['compose']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
@@ -49,6 +50,7 @@ declare global {
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const delCookie: typeof import('./utils/tools')['delCookie']
+  const depositIn: typeof import('./api/trade')['depositIn']
   const devMode: typeof import('./config/env')['devMode']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
@@ -64,10 +66,14 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getDocumentTop: typeof import('./utils/tools')['getDocumentTop']
   const getExplorerInfo: typeof import('./utils/tools')['getExplorerInfo']
+  const getInvestMents: typeof import('./api/trade')['getInvestMents']
+  const getIssues: typeof import('./api/trade')['getIssues']
+  const getMoveRecord: typeof import('./api/trade')['getMoveRecord']
   const getNews: typeof import('./api/home')['getNews']
   const getNewsDetail: typeof import('./api/home')['getNewsDetail']
   const getNotice: typeof import('./api/home')['getNotice']
-  const getRooms: typeof import('./api/bet')['getRooms']
+  const getPlayWays: typeof import('./api/trade')['getPlayWays']
+  const getRooms: typeof import('./api/trade')['getRooms']
   const getScrollHeight: typeof import('./utils/tools')['getScrollHeight']
   const getType: typeof import('./utils/tools')['getType']
   const getUserBalance: typeof import('./api/user')['getUserBalance']
@@ -75,11 +81,14 @@ declare global {
   const getUserInfo: typeof import('./api/user')['getUserInfo']
   const getUserOrderRecord: typeof import('./api/user')['getUserOrderRecord']
   const getUserRechargeRecord: typeof import('./api/user')['getUserRechargeRecord']
+  const getUserTerminalRecord: typeof import('./api/user')['getUserTerminalRecord']
+  const getUserWithdrawRecord: typeof import('./api/user')['getUserWithdrawRecord']
   const getWallet: typeof import('./api/user')['getWallet']
   const getWindowHeight: typeof import('./utils/tools')['getWindowHeight']
   const goExitFullscreen: typeof import('./utils/tools')['goExitFullscreen']
   const goToFullScreen: typeof import('./utils/tools')['goToFullScreen']
   const h: typeof import('vue')['h']
+  const handleMoneySymbol: typeof import('./common/commonHandle')['handleMoneySymbol']
   const hasClass: typeof import('./utils/tools')['hasClass']
   const idNumber: typeof import('./utils/validate')['idNumber']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
@@ -125,6 +134,7 @@ declare global {
   const isWebURL: typeof import('./utils/validate')['isWebURL']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
+  const moveIn: typeof import('./api/trade')['moveIn']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -150,6 +160,7 @@ declare global {
   const prodMode: typeof import('./config/env')['prodMode']
   const provide: typeof import('vue')['provide']
   const pxToVw: typeof import('./config/pxtovw')['pxToVw']
+  const randomName: typeof import('./utils/tools')['randomName']
   const randomNum: typeof import('./utils/tools')['randomNum']
   const randomString: typeof import('./utils/tools')['randomString']
   const reactify: typeof import('@vueuse/core')['reactify']
@@ -171,6 +182,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const roomType: typeof import('./common/commonType')['roomType']
   const routeInterception: typeof import('./common/permission')['routeInterception']
   const scrollTo: typeof import('./utils/scroll-to')['scrollTo']
   const scrollToBottom: typeof import('./utils/tools')['scrollToBottom']
@@ -179,10 +191,12 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const shimsD: typeof import('./shims.d')['default']
+  const submitBet: typeof import('./api/trade')['submitBet']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const telephoneDatas: typeof import('./common/telephoneDatas')['default']
   const templateRef: typeof import('@vueuse/core')['templateRef']
+  const terminalStatusType: typeof import('./common/commonType')['terminalStatusType']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']
   const throttledWatch: typeof import('@vueuse/core')['throttledWatch']
   const toRaw: typeof import('vue')['toRaw']
@@ -193,6 +207,7 @@ declare global {
   const toggleClass: typeof import('./utils/tools')['toggleClass']
   const toggleDark: typeof import('./composables/dark')['toggleDark']
   const token: typeof import('./common/token')['default']
+  const tradeStatusType: typeof import('./common/commonType')['tradeStatusType']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
   const tryOnBeforeUnmount: typeof import('@vueuse/core')['tryOnBeforeUnmount']
@@ -206,6 +221,7 @@ declare global {
   const updatePassword: typeof import('./api/user')['updatePassword']
   const updateTradePassword: typeof import('./api/user')['updateTradePassword']
   const updateUserInfo: typeof import('./api/user')['updateUserInfo']
+  const uploadAvatar: typeof import('./api/user')['uploadAvatar']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
@@ -397,6 +413,7 @@ declare global {
   const watchTriggerable: typeof import('@vueuse/core')['watchTriggerable']
   const watchWithFilter: typeof import('@vueuse/core')['watchWithFilter']
   const whenever: typeof import('@vueuse/core')['whenever']
+  const withdrawStatusType: typeof import('./common/commonType')['withdrawStatusType']
 }
 // for type re-export
 declare global {
@@ -422,6 +439,7 @@ declare module 'vue' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly billStatusType: UnwrapRef<typeof import('./common/commonType')['billStatusType']>
+    readonly charts: UnwrapRef<typeof import('./utils/charts')['default']>
     readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -450,6 +468,7 @@ declare module 'vue' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly delCookie: UnwrapRef<typeof import('./utils/tools')['delCookie']>
+    readonly depositIn: UnwrapRef<typeof import('./api/trade')['depositIn']>
     readonly devMode: UnwrapRef<typeof import('./config/env')['devMode']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
@@ -463,10 +482,14 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getDocumentTop: UnwrapRef<typeof import('./utils/tools')['getDocumentTop']>
     readonly getExplorerInfo: UnwrapRef<typeof import('./utils/tools')['getExplorerInfo']>
+    readonly getInvestMents: UnwrapRef<typeof import('./api/trade')['getInvestMents']>
+    readonly getIssues: UnwrapRef<typeof import('./api/trade')['getIssues']>
+    readonly getMoveRecord: UnwrapRef<typeof import('./api/trade')['getMoveRecord']>
     readonly getNews: UnwrapRef<typeof import('./api/home')['getNews']>
     readonly getNewsDetail: UnwrapRef<typeof import('./api/home')['getNewsDetail']>
     readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
-    readonly getRooms: UnwrapRef<typeof import('./api/bet')['getRooms']>
+    readonly getPlayWays: UnwrapRef<typeof import('./api/trade')['getPlayWays']>
+    readonly getRooms: UnwrapRef<typeof import('./api/trade')['getRooms']>
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
@@ -474,11 +497,14 @@ declare module 'vue' {
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
     readonly getUserOrderRecord: UnwrapRef<typeof import('./api/user')['getUserOrderRecord']>
     readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>
+    readonly getUserTerminalRecord: UnwrapRef<typeof import('./api/user')['getUserTerminalRecord']>
+    readonly getUserWithdrawRecord: UnwrapRef<typeof import('./api/user')['getUserWithdrawRecord']>
     readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
     readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly handleMoneySymbol: UnwrapRef<typeof import('./common/commonHandle')['handleMoneySymbol']>
     readonly hasClass: UnwrapRef<typeof import('./utils/tools')['hasClass']>
     readonly idNumber: UnwrapRef<typeof import('./utils/validate')['idNumber']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
@@ -547,6 +573,7 @@ declare module 'vue' {
     readonly prodMode: UnwrapRef<typeof import('./config/env')['prodMode']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly pxToVw: UnwrapRef<typeof import('./config/pxtovw')['pxToVw']>
+    readonly randomName: UnwrapRef<typeof import('./utils/tools')['randomName']>
     readonly randomNum: UnwrapRef<typeof import('./utils/tools')['randomNum']>
     readonly randomString: UnwrapRef<typeof import('./utils/tools')['randomString']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
@@ -568,6 +595,7 @@ declare module 'vue' {
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly roomType: UnwrapRef<typeof import('./common/commonType')['roomType']>
     readonly routeInterception: UnwrapRef<typeof import('./common/permission')['routeInterception']>
     readonly scrollTo: UnwrapRef<typeof import('./utils/scroll-to')['scrollTo']>
     readonly scrollToBottom: UnwrapRef<typeof import('./utils/tools')['scrollToBottom']>
@@ -575,9 +603,11 @@ declare module 'vue' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly submitBet: UnwrapRef<typeof import('./api/trade')['submitBet']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
+    readonly terminalStatusType: UnwrapRef<typeof import('./common/commonType')['terminalStatusType']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -586,6 +616,7 @@ declare module 'vue' {
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
     readonly toggleClass: UnwrapRef<typeof import('./utils/tools')['toggleClass']>
+    readonly tradeStatusType: UnwrapRef<typeof import('./common/commonType')['tradeStatusType']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -598,6 +629,7 @@ declare module 'vue' {
     readonly updatePassword: UnwrapRef<typeof import('./api/user')['updatePassword']>
     readonly updateTradePassword: UnwrapRef<typeof import('./api/user')['updateTradePassword']>
     readonly updateUserInfo: UnwrapRef<typeof import('./api/user')['updateUserInfo']>
+    readonly uploadAvatar: UnwrapRef<typeof import('./api/user')['uploadAvatar']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -787,6 +819,7 @@ declare module 'vue' {
     readonly watchTriggerable: UnwrapRef<typeof import('@vueuse/core')['watchTriggerable']>
     readonly watchWithFilter: UnwrapRef<typeof import('@vueuse/core')['watchWithFilter']>
     readonly whenever: UnwrapRef<typeof import('@vueuse/core')['whenever']>
+    readonly withdrawStatusType: UnwrapRef<typeof import('./common/commonType')['withdrawStatusType']>
   }
 }
 declare module '@vue/runtime-core' {
@@ -806,6 +839,7 @@ declare module '@vue/runtime-core' {
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly billStatusType: UnwrapRef<typeof import('./common/commonType')['billStatusType']>
+    readonly charts: UnwrapRef<typeof import('./utils/charts')['default']>
     readonly compose: UnwrapRef<typeof import('./utils/tools')['compose']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -834,6 +868,7 @@ declare module '@vue/runtime-core' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly delCookie: UnwrapRef<typeof import('./utils/tools')['delCookie']>
+    readonly depositIn: UnwrapRef<typeof import('./api/trade')['depositIn']>
     readonly devMode: UnwrapRef<typeof import('./config/env')['devMode']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
@@ -847,10 +882,14 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getDocumentTop: UnwrapRef<typeof import('./utils/tools')['getDocumentTop']>
     readonly getExplorerInfo: UnwrapRef<typeof import('./utils/tools')['getExplorerInfo']>
+    readonly getInvestMents: UnwrapRef<typeof import('./api/trade')['getInvestMents']>
+    readonly getIssues: UnwrapRef<typeof import('./api/trade')['getIssues']>
+    readonly getMoveRecord: UnwrapRef<typeof import('./api/trade')['getMoveRecord']>
     readonly getNews: UnwrapRef<typeof import('./api/home')['getNews']>
     readonly getNewsDetail: UnwrapRef<typeof import('./api/home')['getNewsDetail']>
     readonly getNotice: UnwrapRef<typeof import('./api/home')['getNotice']>
-    readonly getRooms: UnwrapRef<typeof import('./api/bet')['getRooms']>
+    readonly getPlayWays: UnwrapRef<typeof import('./api/trade')['getPlayWays']>
+    readonly getRooms: UnwrapRef<typeof import('./api/trade')['getRooms']>
     readonly getScrollHeight: UnwrapRef<typeof import('./utils/tools')['getScrollHeight']>
     readonly getType: UnwrapRef<typeof import('./utils/tools')['getType']>
     readonly getUserBalance: UnwrapRef<typeof import('./api/user')['getUserBalance']>
@@ -858,11 +897,14 @@ declare module '@vue/runtime-core' {
     readonly getUserInfo: UnwrapRef<typeof import('./api/user')['getUserInfo']>
     readonly getUserOrderRecord: UnwrapRef<typeof import('./api/user')['getUserOrderRecord']>
     readonly getUserRechargeRecord: UnwrapRef<typeof import('./api/user')['getUserRechargeRecord']>
+    readonly getUserTerminalRecord: UnwrapRef<typeof import('./api/user')['getUserTerminalRecord']>
+    readonly getUserWithdrawRecord: UnwrapRef<typeof import('./api/user')['getUserWithdrawRecord']>
     readonly getWallet: UnwrapRef<typeof import('./api/user')['getWallet']>
     readonly getWindowHeight: UnwrapRef<typeof import('./utils/tools')['getWindowHeight']>
     readonly goExitFullscreen: UnwrapRef<typeof import('./utils/tools')['goExitFullscreen']>
     readonly goToFullScreen: UnwrapRef<typeof import('./utils/tools')['goToFullScreen']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly handleMoneySymbol: UnwrapRef<typeof import('./common/commonHandle')['handleMoneySymbol']>
     readonly hasClass: UnwrapRef<typeof import('./utils/tools')['hasClass']>
     readonly idNumber: UnwrapRef<typeof import('./utils/validate')['idNumber']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
@@ -931,6 +973,7 @@ declare module '@vue/runtime-core' {
     readonly prodMode: UnwrapRef<typeof import('./config/env')['prodMode']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly pxToVw: UnwrapRef<typeof import('./config/pxtovw')['pxToVw']>
+    readonly randomName: UnwrapRef<typeof import('./utils/tools')['randomName']>
     readonly randomNum: UnwrapRef<typeof import('./utils/tools')['randomNum']>
     readonly randomString: UnwrapRef<typeof import('./utils/tools')['randomString']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
@@ -952,6 +995,7 @@ declare module '@vue/runtime-core' {
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly roomType: UnwrapRef<typeof import('./common/commonType')['roomType']>
     readonly routeInterception: UnwrapRef<typeof import('./common/permission')['routeInterception']>
     readonly scrollTo: UnwrapRef<typeof import('./utils/scroll-to')['scrollTo']>
     readonly scrollToBottom: UnwrapRef<typeof import('./utils/tools')['scrollToBottom']>
@@ -959,9 +1003,11 @@ declare module '@vue/runtime-core' {
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly submitBet: UnwrapRef<typeof import('./api/trade')['submitBet']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
+    readonly terminalStatusType: UnwrapRef<typeof import('./common/commonType')['terminalStatusType']>
     readonly throttledRef: UnwrapRef<typeof import('@vueuse/core')['throttledRef']>
     readonly throttledWatch: UnwrapRef<typeof import('@vueuse/core')['throttledWatch']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -970,6 +1016,7 @@ declare module '@vue/runtime-core' {
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
     readonly toggleClass: UnwrapRef<typeof import('./utils/tools')['toggleClass']>
+    readonly tradeStatusType: UnwrapRef<typeof import('./common/commonType')['tradeStatusType']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -982,6 +1029,7 @@ declare module '@vue/runtime-core' {
     readonly updatePassword: UnwrapRef<typeof import('./api/user')['updatePassword']>
     readonly updateTradePassword: UnwrapRef<typeof import('./api/user')['updateTradePassword']>
     readonly updateUserInfo: UnwrapRef<typeof import('./api/user')['updateUserInfo']>
+    readonly uploadAvatar: UnwrapRef<typeof import('./api/user')['uploadAvatar']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -1171,5 +1219,6 @@ declare module '@vue/runtime-core' {
     readonly watchTriggerable: UnwrapRef<typeof import('@vueuse/core')['watchTriggerable']>
     readonly watchWithFilter: UnwrapRef<typeof import('@vueuse/core')['watchWithFilter']>
     readonly whenever: UnwrapRef<typeof import('@vueuse/core')['whenever']>
+    readonly withdrawStatusType: UnwrapRef<typeof import('./common/commonType')['withdrawStatusType']>
   }
 }

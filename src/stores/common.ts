@@ -4,7 +4,7 @@ import { getStorage, setStorage } from '~/utils/storage'
 export const useCommonStore = defineStore('commmon', {
   state: () => ({
     config: getStorage('config') || {},
-    initLoad: getStorage('initLoad') || false,
+    initLoad: getStorage('initLoad') ?? true,
   }),
   actions: {
     setConfig(value: any) {

@@ -10,45 +10,45 @@ import dqjl from '~/assets/images/icons/icon_user_dqjl.png'
 const router = useRouter()
 const navList = [
   {
-    name: '登录密码',
+    name: '登錄密碼',
     path: '/my/userCenter/loginPassword',
     icon: dlmm,
 
   },
   {
-    name: '支付密码',
+    name: '支付密碼',
     path: '/my/userCenter/tradePassword',
     icon: zfmm,
 
   },
 
   {
-    name: '卡片管理',
+    name: '錢包管理',
     path: '/my/userCenter/payCard',
     icon: kpgl,
 
   },
   {
-    name: '交易记录',
+    name: '交易記錄',
     path: '/my/tradeRecord',
     icon: jyjl,
 
   },
   {
-    name: '存入记录',
+    name: '存入記錄',
     path: '/my/rechargeRecord',
     icon: crjl,
 
   },
 
   {
-    name: '账变记录',
+    name: '賬變記錄',
     path: '/my/ledgerRecord',
     icon: zbjl,
 
   },
   {
-    name: '定期记录',
+    name: '定期記錄',
     path: '/my/terminalRecord',
     icon: dqjl,
 

@@ -13,9 +13,10 @@ const router = useRouter()
 function toPage(path: string) {
   if (!user.userInfo.real_name) {
     showConfirmDialog({
-      title: '温馨提示',
+      title: '溫馨提示',
       message: '您还未完善个人资料',
       className: 'app-dialog',
+      confirmButtonText: '確定',
     }).then((result) => {
       router.push('/my/userCenter/baseInfo')
     })
@@ -66,7 +67,7 @@ onMounted(() => {
       <div class="mt-[20px] flex-center p-[10px]">
         <img :src="warn" class="mr-[6px] w-[20px]" alt="" />
         <p class="text-sm lh-[16px]">
-          为了您的资金安全，成功赎回的银行卡会自动锁定，无法删除和修改，如果需要修改或者删除，请联系
+          为了您的资金安全，成功贖回的银行卡会自动锁定，无法删除和修改，如果需要修改或者删除，请联系
           <a href="http://" target="_blank" rel="noopener noreferrer" class="text-primary">在线客服</a>
         </p>
       </div>

@@ -37,7 +37,7 @@ export function isArray(value: unknown): value is Array<any> {
 export function isDate(val: unknown): val is Date {
   return (
     Object.prototype.toString.call(val) === '[object Date]'
-        && !Number.isNaN((val as Date).getTime())
+    && !Number.isNaN((val as Date).getTime())
   )
 }
 
@@ -54,13 +54,13 @@ export function getExplorerInfo() {
   const t = navigator.userAgent.toLowerCase()
   return t.includes('msie')
     ? {
-        // ie < 11
+      // ie < 11
         type: 'IE',
         version: Number(t.match(/msie ([\d]+)/)?.[1]),
       }
     : t.match(/trident\/.+?rv:(([\d.]+))/)
       ? {
-          // ie 11
+        // ie 11
           type: 'IE',
           version: 11,
         }
@@ -230,8 +230,8 @@ export function toggleClass(ele: HTMLElement, className: string) {
   }
   else {
     classString
-            = classString.substring(0, nameIndex)
-            + classString.substring(nameIndex + className.length)
+      = classString.substring(0, nameIndex)
+      + classString.substring(nameIndex + className.length)
   }
   ele.className = classString
 }
@@ -242,7 +242,7 @@ export function toggleClass(ele: HTMLElement, className: string) {
 
 export function isMobile() {
   const regMobileAll
-        = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
   return regMobileAll.test(window.navigator.userAgent)
 }
 
@@ -324,8 +324,8 @@ export function decimal(num: number, count = 0) {
 export function formatMoney(money: string) {
   return money.replace(
     new RegExp(
-            `(?!^)(?=(\\d{3})+${money.includes('.') ? '\\.' : '$'})`,
-            'g',
+      `(?!^)(?=(\\d{3})+${money.includes('.') ? '\\.' : '$'})`,
+      'g',
     ),
     ',',
   )
@@ -358,4 +358,31 @@ export function cryptoDecrypt(text: string, key: string) {
     mode: cryptoJS.mode.CBC, // CBC算法
     padding: cryptoJS.pad.Pkcs7, // 使用pkcs7
   }).toString(cryptoJS.enc.Utf8)
+}
+
+// 随机用户名
+// 第二个为你想生成出固定开头文字外的随机长度
+export function randomName(randomLength = 6) {
+  // 设置随机用户名
+  // 用户名随机词典数组
+  const nameArr = [
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'g', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+  ]
+  // 随机名字字符串
+  let name = ''
+  // 循环遍历从用户词典中随机抽出一个
+  for (let i = 0; i < randomLength; i++) {
+    // 随机生成index
+    const index = Math.floor(Math.random() * 2)
+    const zm = nameArr[index][Math.floor(Math.random() * nameArr[index].length)]
+    name += zm
+  }
+  // 将随机生成的名字返回
+
+  // 替換※
+  const len = name.length
+  const regex = new RegExp(name.substring(1, len - 1), 'g')
+  const replaced = name.replace(regex, '*'.repeat(len - 2))
+  return replaced
 }

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showFailToast, showSuccessToast } from 'vant'
 import QrcodeVue from 'qrcode.vue'
 import copy from 'copy-to-clipboard'
-import numberCard from '~/assets/images/icons/icon_number_card.png'
+import icon_number_card from '~/assets/images/icons/icon_number_card.png'
+import card_active from '~/assets/images/user/card_active.png'
 
 const amountList = [
   '500',
@@ -43,20 +44,30 @@ async function onSubmit() {
     style: 2,
   })
   if (res.code === 200) {
-    showNotify({
-      type: 'success',
-      message: res.msg,
-    })
+    showSuccessToast(res.msg)
     toPage('/my/rechargeRecord')
   }
 }
 
 function toNext() {
   if (!state.money) {
-    showNotify({
-      type: 'danger',
-      message: '请填写充值金额',
-    })
+    showFailToast('請填寫充值金額')
+    return
+  }
+
+  if (!isPositiveInteger.test(state.money)) {
+    showFailToast('請填寫正整數')
+  }
+  else if (
+    !(
+      +common.config.depost_min <= +state.money
+            && +state.money <= +common.config.depost_max
+            && +state.money > 0
+    )
+  ) {
+    showFailToast(
+            `單筆存入範圍：${common.config.depost_min} - ${common.config.depost_max}`,
+    )
   }
   else {
     state.isNext = true
@@ -64,20 +75,17 @@ function toNext() {
 }
 function handleCopy(val: string) {
   copy(val)
-  showNotify({
-    type: 'success',
-    message: '复制成功',
-  })
+  showSuccessToast('複製成功')
 }
 </script>
 
 <template>
   <div class="h-full w-full bg-white">
-    <NavBar title="数字货币存入" />
+    <NavBar title="數字貨幣存入" />
     <van-form @submit="onSubmit">
       <div v-if="!state.isNext" class="w-full p-[20px]">
         <h2 class="mb-[15px] text-md">
-          存款金额
+          存入類型
         </h2>
 
         <div class="flex-between-center border-b-solid border-light pb-[20px]">
@@ -88,13 +96,19 @@ function handleCopy(val: string) {
             :class="state.currentUsdt === item && 'border-primary'"
             @click="handleUstd(item)"
           >
-            <img :src="numberCard" class="w-[56px]" alt="" />
+            <img :src="icon_number_card" class="w-[56px]" alt="" />
             <div class="ml-[6px]">
               <p class="mb-[4px]">
                 USDT
               </p>
               <p>{{ item }}</p>
             </div>
+            <img
+              v-if="state.currentUsdt === item"
+              :src="card_active"
+              class="absolute bottom-0 right-0 w-[24px]"
+              alt=""
+            />
           </div>
         </div>
         <div class="flex-start-center-warp py-[20px]">
@@ -117,21 +131,38 @@ function handleCopy(val: string) {
         <van-field
           v-model="state.money"
           name="money"
-          label="存入金额"
-          placeholder="请填写存入金额"
+          label="存入金額"
+          placeholder="請填寫存入金額"
           :rules="[
-            { required: true, message: '请填写存入金额' },
+            { required: true, message: '請填寫存入金額' },
+            { pattern: isPositiveInteger, message: '請填寫正整數' },
             {
               validator: (val) => {
                 return (
-                  common.config.depost_min <= val
-                  && val <= common.config.depost_max
+                  +common.config.depost_min <= +val
+                  && +val <= +common.config.depost_max
+                  && +val > 0
                 );
               },
-              message: `单笔存入范围：${common.config.depost_min} - ${common.config.depost_max}`,
+              message: `單筆存入範圍：${common.config.depost_min} - ${common.config.depost_max}`,
             },
           ]"
+          @update:model-value="(value:any) => {
+            state.money = value.replace(/\D/g, '')
+          }"
         />
+        <div v-if="state.money" class="my-[14px] w-full text-assist5">
+          <p class="mb-[4px]">
+            存入金额：
+            <span>{{ state.money }}USDT ≈ </span>
+            <span class="text-primary">{{
+              `${(
+                Number(state.money) * Number(common.config.usdt_rate)
+              ).toFixed(4)}`
+            }}CNY</span>
+          </p>
+          <p>参考汇率为1USDT ≈ {{ `${common.config.usdt_rate}` }}CNY</p>
+        </div>
         <div class="mt-[30px] w-full flex-center">
           <div class="w-[300px]">
             <van-button round block type="primary" @click="toNext">
@@ -141,15 +172,15 @@ function handleCopy(val: string) {
         </div>
 
         <div class="mt-[30px] flex-center text-sm">
-          <span>点击下一步获取地址钱包，存入遇到问题，请联系</span>
-          <a :href="common.config.kefu_link" class="text-primary">在线客服</a>。
+          <span>點擊下一步獲取地址錢包，存入遇到問題，請聯繫</span>
+          <a :href="common.config.kefu_link" class="text-primary">在線客服</a>。
         </div>
       </div>
       <div v-else class="w-full p-[20px]">
         <p class="mb-[4px] text-md">
-          USDT钱包地址
+          USDT錢包地址
         </p>
-        <p>下方产生钱包地址扫描QR码或者<span class="text-primary">复制</span></p>
+        <p>下方產生錢包地址掃描QR碼或者<span class="text-primary">複製</span></p>
         <div class="mt-[40px] flex-between-center">
           <QrcodeVue
             :value="state.ustd_link"
@@ -164,21 +195,21 @@ function handleCopy(val: string) {
               class="mt-[20px] rounded-[4px] bg-primary px-[12px] py-[6px] text-white"
               @click="handleCopy(state.ustd_link)"
             >
-              复制
+              複製
             </div>
           </div>
         </div>
         <div class="mb-[20px] mt-[60px] w-full flex-center">
           <div class="w-[300px]">
             <van-button round block type="primary" native-type="submit">
-              请完成支付后，提交订单
+              請完成支付後，提交訂單
             </van-button>
           </div>
         </div>
         <div class="w-full p-[20px]">
           <div class="w-full rounded-[8px] bg-white p-[20px] shadow-base">
             <div class="mb-[14px] flex-start-center">
-              <p>存入金额：</p>
+              <p>存入金額：</p>
               <span>{{ state.money }}USDT</span>
               <span class="mx-[4px]">≈</span>
               <span class="text-primary">{{
@@ -188,7 +219,7 @@ function handleCopy(val: string) {
               }}</span>
             </div>
             <div class="mb-[14px] flex-start-center">
-              <p>实际金额：</p>
+              <p>實際金額：</p>
               <span class="text-primary">{{
                 `${(
                   Number(state.money) * Number(common.config.usdt_rate)
@@ -196,18 +227,18 @@ function handleCopy(val: string) {
               }}</span>
             </div>
             <p class="text-primary">
-              交易所可能会收取手续费，交易所可能会收取手续费，交易所可能会收取手续费
+              交易所可能會收取手續費，交易所可能會收取手續費，交易所可能會收取手續費
             </p>
           </div>
         </div>
         <div class="mt-[20px] flex-center text-sm">
-          存入遇到问题？请联系
+          存入遇到問題？請聯繫
           <a
             :href="common.config.kefu_link"
             target="_blank"
             rel="noopener noreferrer"
             class="text-primary"
-          >在线客服</a>
+          >在線客服</a>
         </div>
       </div>
     </van-form>

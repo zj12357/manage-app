@@ -4,7 +4,7 @@
 
 <template>
   <div class="mt-[20px] w-full">
-    <van-empty description="暂无内容" />
+    <van-empty description="暫無內容" />
   </div>
 </template>
 

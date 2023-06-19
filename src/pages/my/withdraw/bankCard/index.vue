@@ -13,27 +13,27 @@ const state = reactive({
     <balance />
     <div class="w-full p-[20px]">
       <h2 class="mb-[10px] text-md">
-        赎回金额
+        贖回金额
       </h2>
       <van-form>
         <van-field
           class="app-money"
           name="amount"
-          label="￥"
-          placeholder="请填写赎回金额"
-          :rules="[{ required: true, message: '请填写赎回金额' }, {
+          label="$"
+          placeholder="请填写贖回金额"
+          :rules="[{ required: true, message: '请填写贖回金额' }, {
             validator: (val) => {
 
               return (
-                common.config.withdraw_min <= val && val <= common.config.withdraw_max
+                +common.config.withdraw_min <= +val && +val <= +common.config.withdraw_max
               );
             },
-            message: `单笔赎回范围：${common.config.withdraw_min} - ${common.config.withdraw_max}￥`,
+            message: `单笔贖回范围：${common.config.withdraw_min} - ${common.config.withdraw_max}`,
           }]"
         />
         <div class="mt-[10px] w-full flex-start-center py-[10px] text-sm">
-          <span class="text-assist7">单笔赎回范围：</span>
-          <span class="text-primary">100 - 10,000,000￥</span>
+          <span class="text-assist7">单笔贖回范围：</span>
+          <span class="text-primary">100 - 10,000,000</span>
         </div>
         <div class="mt-[10px] w-full border-b-solid border-light">
           <van-field
@@ -56,10 +56,10 @@ const state = reactive({
       <div class="light-[16px] mt-[40px] w-full lh-[18px] text-assist8">
         <p>温馨提醒</p>
         <p class="mt-[8px]">
-          1.每日赎回不受时间，额度，次数的限制
+          1.每日贖回不受时间，额度，次数的限制
         </p>
         <p class="mt-[8px]">
-          2.赎回过程中如果出现什么问题，请及时联系
+          2.贖回过程中如果出现什么问题，请及时联系
           <a
             href="http://"
             target="_blank"

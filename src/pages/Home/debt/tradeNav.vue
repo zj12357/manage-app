@@ -13,7 +13,7 @@ const navList = [
 
   },
   {
-    name: '我要赎回',
+    name: '我要贖回',
     path: '/my/withdraw',
     icon: wysh,
 
@@ -21,12 +21,12 @@ const navList = [
 
   {
     name: '我要交易',
-    path: '/my/tradeRecord',
+    path: '/trade',
     icon: wyjy,
 
   },
   {
-    name: '我的账变',
+    name: '我的賬變',
     path: '/my/ledgerRecord',
     icon: wyzb,
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showSuccessToast } from 'vant'
 import { getStorage, setStorage } from '~/utils/storage'
 import authLock from '~/assets/images/icons/icon_auth_lock.png'
 import authSafe from '~/assets/images/icons/icon_auth_safe.png'
@@ -10,20 +10,22 @@ const { fetchGlobalUserInfo } = useGlobalData()
 const router = useRouter()
 const navList = [
   {
-    name: '登录',
+    name: '登錄',
     path: '/auth/login',
   },
   {
-    name: '注册',
+    name: '註冊',
     path: '/auth/register',
   },
 ]
-const rememberAccount = ref(true)
+
 const captchaLink = ref(`${API_URL}/api/captcha?${Date.now()}`)
 const state = reactive({
   username: (getStorage('username') as string) ?? '',
   password: (getStorage('password') as string) ?? '',
   captcha: '',
+  rememberAccount: true,
+  passwordStatus: false,
 })
 
 function toPage(path: string) {
@@ -36,10 +38,7 @@ async function onSubmit(values: any) {
     captcha: values.captcha,
   })
   if (res.code === 200) {
-    showNotify({
-      type: 'success',
-      message: res.msg,
-    })
+    showSuccessToast(res.msg)
 
     if (values.rememberAccount) {
       setStorage('username', values.username)
@@ -78,13 +77,13 @@ function handleCaptchaLink() {
           <van-field
             v-model="state.username"
             name="username"
-            placeholder="请填写用户名"
+            placeholder="請填寫用戶名"
             :rules="[
               {
                 pattern: /^[A-Za-z0-9]{6,12}$/,
-                message: '请填写6到12位字母或者数字',
+                message: '請填寫6到12位字母或者數字',
               },
-              { required: true, message: '请填写用户名' },
+              { required: true, message: '請填寫用戶名' },
             ]"
           >
             <template #label>
@@ -97,17 +96,19 @@ function handleCaptchaLink() {
           </van-field>
           <van-field
             v-model="state.password"
-            type="password"
             name="password"
-            placeholder="请填写密码"
+            placeholder="請填寫密碼"
+            :right-icon="!state.passwordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.passwordStatus ? 'password' : 'text'"
             maxlength="12"
             :rules="[
               {
                 pattern: /^[A-Za-z0-9]{6,12}$/,
-                message: '请填写6到12位字母或者数字',
+                message: '請填寫6到12位字母或者數字',
               },
-              { required: true, message: '请填写密码' },
+              { required: true, message: '請填寫密碼' },
             ]"
+            @click-right-icon="state.passwordStatus = !state.passwordStatus"
           >
             <template #label>
               <img
@@ -120,10 +121,10 @@ function handleCaptchaLink() {
           <van-field
             v-model="state.captcha"
             name="captcha"
-            placeholder="请填写验证码"
+            placeholder="請填寫驗證碼"
             :rules="[
-              { pattern: /^\d{4}$/, message: '请填写4位数字验证码' },
-              { required: true, message: '请填写验证码' },
+              { pattern: /^\d{4}$/, message: '請填寫4位數字驗證碼' },
+              { required: true, message: '請填寫驗證碼' },
             ]"
           >
             <template #label>
@@ -146,8 +147,8 @@ function handleCaptchaLink() {
             <div class="absolute right-0">
               <van-field name="rememberAccount">
                 <template #input>
-                  <van-checkbox v-model="rememberAccount">
-                    记住账号
+                  <van-checkbox v-model="state.rememberAccount">
+                    記住賬號
                   </van-checkbox>
                 </template>
               </van-field>
@@ -157,7 +158,7 @@ function handleCaptchaLink() {
 
         <div class="mb-[20px] mt-[80px]">
           <van-button round block type="primary" native-type="submit">
-            立即登录
+            立即登錄
           </van-button>
         </div>
       </van-form>
@@ -174,7 +175,7 @@ function handleCaptchaLink() {
     z-index: 9;
     width: 80%;
     height: 2px;
-    background-image: linear-gradient(270deg, #ffc724 3%, #f80);
+    background: linear-gradient(90deg, #00b880 0%, #88e8d1 100%);
 }
 
 .nav-active::after {
@@ -198,6 +199,11 @@ function handleCaptchaLink() {
     }
     .van-hairline--top-bottom::after {
         border: none;
+    }
+    .van-field__right-icon {
+        i {
+            font-size: 20px;
+        }
     }
 }
 </style>

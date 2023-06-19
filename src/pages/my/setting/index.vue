@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { showConfirmDialog } from 'vant'
+import { showConfirmDialog, showSuccessToast } from 'vant'
 
 const common = useCommonStore()
 const router = useRouter()
@@ -9,17 +9,19 @@ function toPage(path: string) {
 }
 function clearCache() {
   showConfirmDialog({
-    title: '温馨提示',
-    message: '您确定要清除缓存吗？',
+    title: '溫馨提示',
+    message: '您確定要清除緩存嗎？',
     className: 'app-dialog',
+    confirmButtonText: '確定',
   }).then((result) => {
-    common.setInitLoad(false)
+    common.setInitLoad(true)
   })
 }
 
 async function fetchUserLoginOut() {
   const res = await userLoginOut()
   if (res.code === 200) {
+    showSuccessToast(res.msg)
     userToken.clearToken()
     toPage('/')
   }
@@ -28,23 +30,23 @@ async function fetchUserLoginOut() {
 
 <template>
   <div class="w-full">
-    <NavBar title="设置" />
+    <NavBar title="設置" />
     <div class="“w-full">
       <van-cell-group>
-        <van-cell title="语言设置" value="简体中文" />
+        <van-cell title="語言設置" value="繁體中文" />
         <van-cell
-          title="清除缓存"
+          title="清除緩存"
           is-link
-          value="清除缓存"
+          value="清除緩存"
           @click="clearCache()"
         />
-        <van-cell title="当前版本" value="v12.06" />
+        <van-cell title="當前版本" value="v12.06" />
       </van-cell-group>
     </div>
     <div class="mt-[60px] w-full flex-center">
       <div class="w-[300px]">
         <van-button round block type="primary" native-type="submit" @click="fetchUserLoginOut">
-          退出登录
+          退出登錄
         </van-button>
       </div>
     </div>

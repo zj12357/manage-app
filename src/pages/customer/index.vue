@@ -18,11 +18,11 @@ function switchChat(show: boolean) {
 
     <div class="relative w-full" :style="{ height: `calc(100% - ${pxToVw(110)})` }">
       <div v-if="showChat" class="h-full w-full">
-        <div text-3xl class="absolute right-[10px] top-[10px] z-[9px]" @click="switchChat(false)">
+        <div text-3xl class="absolute right-[7px] top-[10px] z-[9px]" @click="switchChat(false)">
           <div i-carbon:close inline-block></div>
         </div>
 
-        <iframe :src="config.kefu_link" frameborder="0" class="h-full w-full"></iframe>
+        <iframe :src="config.kefu_link" frameborder="0" class="mt-[50px] h-full w-full"></iframe>
       </div>
       <div v-else class="absolute bottom-[20px] right-[20px]" @click="switchChat(true)">
         <img :src="kefu" class="w-[75px]" alt="" />

@@ -48,6 +48,7 @@ export default defineConfig({
     ['flex-col-center', 'flex flex-col justify-center items-center'],
     ['flex-col-top-center', 'flex flex-col justify-start items-center'],
     ['flex-col-center-start', 'flex flex-col justify-center items-start'],
+    ['flex-col-center-end', 'flex flex-col justify-center items-end'],
     ['flex-start-center-warp', 'flex  justify-start items-center  flex-wrap'],
     ['img-cover', 'w-full h-full object-cover'],
     ['text-nowrap-ellipsis', 'overflow-hidden whitespace-nowrap text-ellipsis'],

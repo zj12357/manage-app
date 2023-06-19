@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { showConfirmDialog, showNotify } from 'vant'
-import avatar from '~/assets/images/user/avatar.png'
+import { showConfirmDialog, showSuccessToast } from 'vant'
 
 const user = useUserStore()
 const { fetchGlobalUserInfo } = useGlobalData()
@@ -14,6 +13,17 @@ const userInfo = reactive({
 function toPage(path: string) {
   router.push(path)
 }
+
+async function afterRead(file: any) {
+  const formData = new FormData()
+  formData.append('avatar', file.file)
+  const res = await uploadAvatar(formData)
+  if (res.data.code === 200) {
+    showSuccessToast(res.data.msg)
+    fetchGlobalUserInfo()
+  }
+}
+
 async function onSubmit(values: any) {
   const res = await updateUserInfo({
     real_name: values.real_name,
@@ -21,16 +31,15 @@ async function onSubmit(values: any) {
     nickname: values.nickname,
   })
   if (res.code === 200) {
-    showNotify({
-      type: 'success',
-      message: res.msg,
-    })
+    showSuccessToast(res.msg)
+
     fetchGlobalUserInfo()
     if (!user.userInfo.trade_password) {
       showConfirmDialog({
-        title: '温馨提示',
-        message: '您还未设置交易密码',
+        title: '溫馨提示',
+        message: '您還未設置交易密碼',
         className: 'app-dialog',
+        confirmButtonText: '確定',
       }).then((result) => {
         router.push('/my/userCenter/tradePassword')
       })
@@ -44,41 +53,44 @@ async function onSubmit(values: any) {
 
 <template>
   <div class="h-full w-full">
-    <NavBar title="基本资料" />
+    <NavBar title="基本資料" />
     <div class="w-full bg-white pb-[40px]">
       <div class="w-full flex-col-center pt-[20px]">
-        <van-image
-          round
-          class="h-[64px] w-[64px]"
-          :src="user.userInfo.url_img || avatar"
-        />
-        <span class="mb-[16px] mt-[8px] font-500">完善基本资料</span>
+        <van-uploader :after-read="afterRead">
+          <UserAvatar
+            round
+            class="h-[64px] w-[64px]"
+            :src="user.userInfo.url_img"
+          />
+        </van-uploader>
+
+        <span class="mb-[16px] mt-[8px] font-500">完善基本資料</span>
       </div>
 
       <van-form class="mt-[20px]" @submit="onSubmit">
         <van-cell-group>
           <van-field
             v-model="userInfo.real_name"
-            label="真实姓名"
-            placeholder="请填写真实姓名"
+            label="真實姓名"
+            placeholder="請填寫真實姓名"
             required
             name="real_name"
-            :rules="[{ required: true, message: '请填写真实姓名' }]"
+            :rules="[{ required: true, message: '請填寫真實姓名' }]"
             :disabled="user.userInfo.real_name"
           />
           <van-field
             v-model="userInfo.nickname"
             name="nickname"
-            label="用户昵称"
-            placeholder="请填写用户昵称"
-            :rules="[{ required: true, message: '请填写用户昵称' }]"
+            label="用戶暱稱"
+            placeholder="請填寫用戶暱稱"
+            :rules="[{ required: true, message: '請填寫用戶暱稱' }]"
           />
           <van-field
             v-model="userInfo.mobile"
             name="mobile"
-            label="手机号码"
-            placeholder="请填写手机号码"
-            :rules="[{ pattern: /^\d*$/, message: '请填写数字' }, { required: true, message: '请填写手机号码' }]"
+            label="手機號碼"
+            placeholder="請填寫手機號碼"
+            :rules="[{ pattern: /^\d*$/, message: '請填寫數字' }, { required: true, message: '請填寫手機號碼' }]"
           />
         </van-cell-group>
         <div class="mt-[20px] w-full flex-center">

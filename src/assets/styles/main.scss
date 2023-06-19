@@ -36,7 +36,7 @@ body,
 }
 
 .app-dialog {
-  width: 260px;
+  width: 260px !important;
   .van-button {
     height: 40px;
     &.van-dialog__confirm {
@@ -50,9 +50,7 @@ body,
   }
 }
 
-.van-notify--success{
-  background-color: 	var(--van-success-color) !important;
-}
+
 
 .van-notify--danger {
   background-color: 	var(--van-danger-color) !important;
@@ -60,4 +58,17 @@ body,
 
 .van-notify--warning {
   background-color: 	var(--van-warning-color) !important;
+}
+
+.transparent.van-cell {
+  background: transparent!important;
+}
+.van-popup {
+  background: rgba(0,0,0,0.7)!important;
+}
+.van-dialog {
+  background: #fff!important;
+}
+.van-toast{
+  background-color:  var(--van-toast-background) !important;
 }

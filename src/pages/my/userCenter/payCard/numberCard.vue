@@ -12,11 +12,22 @@ const cardList = ref<any[]>([])
 function toPage(path: string) {
   if (!user.userInfo.real_name) {
     showConfirmDialog({
-      title: '温馨提示',
-      message: '您还未完善个人资料',
+      title: '溫馨提示',
+      message: '您還未完善個人資料',
       className: 'app-dialog',
+      confirmButtonText: '確定',
     }).then((result) => {
       router.push('/my/userCenter/baseInfo')
+    })
+  }
+  else if (!user.userInfo.trade_password) {
+    showConfirmDialog({
+      title: '溫馨提示',
+      message: '您還未設置交易密碼',
+      className: 'app-dialog',
+      confirmButtonText: '確定',
+    }).then((result) => {
+      router.push('/my/userCenter/tradePassword')
     })
   }
   else {
@@ -44,7 +55,7 @@ onMounted(() => {
       <div class="w-full flex-col-center">
         <img :src="noBankCard" class="w-full" alt="" />
         <p class="mt-[20px] text-assist7">
-          暂无虚拟卡
+          暫無虛擬卡
         </p>
       </div>
 
@@ -59,7 +70,7 @@ onMounted(() => {
           >
             <div class="flex-center">
               <div i-carbon:add class="mr-[2px] text-lg"></div>
-              <span>暂无虚拟卡</span>
+              <span>暫無虛擬卡</span>
             </div>
           </van-button>
         </div>
@@ -67,19 +78,19 @@ onMounted(() => {
       <div class="mt-[20px] flex-center p-[10px]">
         <img :src="warn" class="mr-[6px] w-[20px]" alt="" />
         <p class="text-sm lh-[16px]">
-          为了您的资金安全，成功赎回的银行卡会自动锁定，无法删除和修改，如果需要修改或者删除，请联系
-          <a href="http://" target="_blank" rel="noopener noreferrer" class="text-primary">在线客服</a>
+          為了您的資金安全，成功贖回會自動鎖定，無法刪除和修改，如果需要修改或者刪除，請聯繫
+          <a href="http://" target="_blank" rel="noopener noreferrer" class="text-primary">在線客服</a>
         </p>
       </div>
     </div>
-    <div v-else class="w-full pt-[20px]">
-      <div v-for="(item, index) in cardList" :key="index" class="h-[147px] w-full flex-start-center bg-center-cover p-[20px]" :style="{ backgroundImage: `url(${number_card_bg})` }">
+    <div v-else class="w-full p-[20px]">
+      <div v-for="(item, index) in cardList" :key="index" class="min-h-[147px] w-full flex-start-center rounded-[8px] bg-center-cover p-[20px]" :style="{ backgroundImage: `url(${number_card_bg})` }">
         <div class="h-[42px] w-[42px] flex-center rounded-[50%] bg-white">
           <img :src="icon_number_card" class="w-[32px]" alt="" />
         </div>
         <div class="ml-[20px] break-all text-md text-white">
           <p class="mb-[14px] break-all">
-            别名：{{ item.alias }}
+            別名：{{ item.alias }}
           </p>
           <p class="mb-[14px] break-all">
             {{ item.style }}

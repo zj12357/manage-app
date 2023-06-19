@@ -18,7 +18,7 @@ onMounted(() => {
     <van-notice-bar
       :text="notice"
       :left-icon="noticeTitle"
-      class="bg-[#fff9ed] text-assist1"
+      class="!bg-[#E0F1EC] !text-assist1"
     />
   </div>
 </template>
@@ -28,5 +28,6 @@ onMounted(() => {
     width: 38px;
     height: 18px;
     margin-right: 6px;
+
 }
 </style>

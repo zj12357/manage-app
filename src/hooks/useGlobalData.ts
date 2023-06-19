@@ -14,8 +14,15 @@ export function useGlobalData() {
       common.setConfig(res.data)
   }
 
+  async function fetchGetUserBalance() {
+    const res = await getUserBalance()
+    if (res.code === 200)
+      user.setUserBalance(res.data.balance)
+  }
+
   return {
     fetchGlobalUserInfo,
     fetchGlobalConfigs,
+    fetchGetUserBalance,
   }
 }

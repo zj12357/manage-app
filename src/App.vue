@@ -28,15 +28,20 @@ useHead({
 
 function setInitTime() {
   let countTime = 0
-  const time = setInterval(() => {
-    countTime += 1
-    state.progress = `${(Math.random() * 10 + countTime * 20).toFixed(2)}%`
-    if (countTime > 4) {
-      common.setInitLoad(true)
-      clearInterval(time)
-      state.progress = '0%'
-    }
-  }, 1000)
+  if (isIOS() && initLoad) {
+    const time = setInterval(() => {
+      countTime += 1
+      state.progress = `${(Math.random() * 10 + countTime * 20).toFixed(2)}%`
+      if (countTime > 4) {
+        common.setInitLoad(false)
+        clearInterval(time)
+        state.progress = '0%'
+      }
+    }, 1000)
+  }
+  else {
+    common.setInitLoad(false)
+  }
 }
 
 onMounted(() => {
@@ -51,9 +56,9 @@ watch(initLoad, (newValue, oldValue) => {
 </script>
 
 <template>
-  <div v-if="!initLoad" class="relative h-full w-full overflow-hidden">
+  <div v-if="initLoad" class="relative h-full w-full overflow-hidden">
     <img :src="initPage" class="w-full" alt="" />
-    <span class="bottom-[20px] text-primary absolute-row-center">{{
+    <span class="bottom-[20px] text-white absolute-row-center">{{
       state.progress
     }}</span>
   </div>

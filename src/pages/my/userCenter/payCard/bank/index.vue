@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { showNotify } from 'vant'
+import { showSuccessToast } from 'vant'
 
 const router = useRouter()
 const user = useUserStore()
@@ -11,6 +11,7 @@ const state = reactive({
   city: '',
   branch_name: '',
   trade_password: '',
+  passwordStatus: false,
 })
 
 function toPage(path: string) {
@@ -28,10 +29,7 @@ async function onSubmit(values: any) {
     trade_password: values.trade_password,
   })
   if (res.code === 200) {
-    showNotify({
-      type: 'success',
-      message: res.msg,
-    })
+    showSuccessToast(res.msg)
     toPage('/my/userCenter/payCard?id=0')
   }
 }
@@ -87,13 +85,15 @@ async function onSubmit(values: any) {
           />
           <van-field
             v-model="state.trade_password"
-            type="password"
+            :right-icon="!state.passwordStatus ? 'closed-eye' : 'eye-o'"
+            :type="!state.passwordStatus ? 'password' : 'text'"
             name="trade_password"
             label="交易密码"
             required
             placeholder="请填写交易密码"
             maxlength="6"
             :rules="[{ required: true, message: '请填写交易密码' }, { pattern: /^\d{6}$/, message: '请填写6位数字交易密码' }]"
+            @click-right-icon="state.passwordStatus = !state.passwordStatus"
           />
         </van-cell-group>
         <div class="mt-[20px] w-full flex-center">
@@ -108,8 +108,15 @@ async function onSubmit(values: any) {
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+:deep() {
+    .van-cell {
+        padding: 16px 0px;
+    }
+    .van-field__label {
+        width: auto;
+    }
+}
 </style>
 
 <route lang="yaml">
