@@ -4,7 +4,7 @@ import icon_record_cr from '~/assets/images/icons/icon_record_cr.png'
 
 const state = reactive({
   depositValue: 1,
-  statusValue: 0,
+  statusValue: 3,
   recordList: [] as any[],
   order_id: undefined,
   start_date: undefined as any,
@@ -36,7 +36,7 @@ const depositTypeList = [
 const statusList = [
   {
     label: '全部',
-    value: 0,
+    value: 3,
   },
   {
     label: '存入成功',
@@ -77,7 +77,7 @@ function changeStatusType(type: number) {
   if (type !== state.statusValue) {
     initState()
     state.statusValue = type
-    state.status = type === 0 ? undefined : type
+    state.status = type === 3 ? undefined : type
   }
 }
 async function fetchGetUserRechargeRecord() {

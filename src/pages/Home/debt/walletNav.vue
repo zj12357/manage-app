@@ -24,7 +24,7 @@ const navList = [
   },
 
   {
-    name: '钱包管理',
+    name: '錢包管理',
     path: '/my/userCenter/payCard',
     icon: icon_yhk,
     type: 'route',

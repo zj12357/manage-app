@@ -8,6 +8,7 @@ const active = ref(0)
 const router = useRouter()
 const state = reactive({
   wallet_id: '',
+  isBindNumber: true,
 })
 
 function goBack() {
@@ -18,38 +19,45 @@ function toPage(path: string) {
   router.push(path)
 }
 
-watch(active, (newValue, oldValue) => {
-  // if (newValue === 0) {
-  //   getCard().then((res) => {
-  //     if (res.code === 200 && res.data?.data?.length === 0) {
-  //       showConfirmDialog({
-  //         title: '溫馨提示',
-  //         message: '您还没有绑定银行卡，确定去绑定吗？',
-  //         className: 'app-dialog',
-  //         confirmButtonText: '確定',
-  //       }).then((result) => {
-  //         router.push('/my/userCenter/payCard?id=0')
-  //       })
-  //     }
-  //   })
-  // }
-  if (newValue === 0) {
-    getWallet().then((res) => {
-      if (res.code === 200 && res.data?.items?.length === 0) {
-        showConfirmDialog({
-          title: '溫馨提示',
-          message: '您還沒有綁定數字錢包，確定去綁定嗎？',
-          className: 'app-dialog',
-        }).then((result) => {
-          router.push('/my/userCenter/payCard?id=1')
-        })
-      }
-      else {
-        state.wallet_id = res.data?.items[0]?.id
-      }
-    })
+async function fetchGetBindCard() {
+  const res = await getWallet()
+  if (res.code === 200) {
+    const length = res.data?.items?.length
+    state.isBindNumber = length > 0
+    if (length > 0) {
+      state.wallet_id = res.data?.items[0]?.id
+    }
+    else {
+      showConfirmDialog({
+        title: '溫馨提示',
+        message: '您還沒有綁定數字錢包，確定去綁定嗎？',
+        className: 'app-dialog',
+      }).then((result) => {
+        router.push('/my/userCenter/payCard?id=1')
+      })
+    }
   }
-}, { immediate: true })
+}
+
+onMounted(() => {
+  fetchGetBindCard()
+})
+// watch(active, (newValue, oldValue) => {
+//   if (newValue === 0) {
+//     getCard().then((res) => {
+//       if (res.code === 200 && res.data?.data?.length === 0) {
+//         showConfirmDialog({
+//           title: '溫馨提示',
+//           message: '您还没有绑定银行卡，确定去绑定吗？',
+//           className: 'app-dialog',
+//           confirmButtonText: '確定',
+//         }).then((result) => {
+//           router.push('/my/userCenter/payCard?id=0')
+//         })
+//       }
+//     })
+//   }
+// })
 </script>
 
 <template>
@@ -70,7 +78,7 @@ watch(active, (newValue, oldValue) => {
           <bankCard />
         </van-tab> -->
         <van-tab title="數字錢包">
-          <numberCard :wallet_id="state.wallet_id" />
+          <numberCard :wallet_id="state.wallet_id" :is-bind-number="state.isBindNumber" />
         </van-tab>
       </van-tabs>
     </div>

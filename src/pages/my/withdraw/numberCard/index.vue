@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { showFailToast, showSuccessToast } from 'vant'
+import { showConfirmDialog, showFailToast, showSuccessToast } from 'vant'
 import balance from '../balance.vue'
 
 const props = defineProps({
   wallet_id: String,
+  isBindNumber: Boolean,
 })
 
 const { fetchGetUserBalance } = useGlobalData()
 const time = ref()
+const router = useRouter()
 const common = useCommonStore()
 const user = useUserStore()
 const state = reactive({
@@ -23,6 +25,16 @@ async function getBalance() {
 }
 
 async function onSubmit(values: any) {
+  if (!props.isBindNumber) {
+    showConfirmDialog({
+      title: '溫馨提示',
+      message: '您還沒有綁定數字錢包，確定去綁定嗎？',
+      className: 'app-dialog',
+    }).then((result) => {
+      router.push('/my/userCenter/payCard?id=1')
+    })
+    return
+  }
   if (!user.userInfo.balance) {
     showFailToast('餘額不足')
     return
